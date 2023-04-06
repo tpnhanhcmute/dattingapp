@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1535" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1535" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/light_violet_shape.xml" value="0.1525" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/violet_button.xml" value="0.1525" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/violet_gradiant_oval.xml" value="0.1525" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/wireframe_violet_shape.xml" value="0.1535" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/layout/activity_main.xml" value="0.14375" />
       </map>
     </option>
