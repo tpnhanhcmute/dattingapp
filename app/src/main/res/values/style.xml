@@ -1,0 +1,10 @@
+<resources>
+    <style name="HeartShapeAppearance" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+        <item name="cornerSizeTopRight">100dp</item>
+        <item name="cornerSizeTopLeft">100dp</item>
+        <item name="cornerSizeBottomRight">50%</item>
+        <item name="cornerSizeBottomLeft">50%</item>
+    </style>
+</resources>
