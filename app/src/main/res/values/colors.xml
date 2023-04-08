@@ -12,4 +12,6 @@
     <color name="light_violet">#F5E7FF</color>
     <color name="light_gray">#FAFAFA</color>
     <color name="white_gray">#9F9F9F</color>
+    <color name="light_black">#212121</color>
+    <color name="edit_text">#E6E6E6</color>
 </resources>
