@@ -7,4 +7,14 @@
         <item name="cornerSizeBottomRight">50%</item>
         <item name="cornerSizeBottomLeft">50%</item>
     </style>
+
+    <style name="HeartShape">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">50%</item>
+    </style>
+    <style name="PictureHolder">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50dp</item>
+    </style>
+
 </resources>
