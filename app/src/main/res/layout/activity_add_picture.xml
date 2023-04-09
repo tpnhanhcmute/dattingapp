@@ -63,6 +63,7 @@
                     android:orientation="horizontal">
 
                     <RelativeLayout
+                        android:id="@+id/relativeLayout1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
@@ -87,6 +88,7 @@
                             android:textSize="25dp" />
 
                         <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/shapeableImageView1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginStart="10dp"
@@ -98,9 +100,17 @@
                             app:srcCompat="@drawable/profile2">
 
                         </com.google.android.material.imageview.ShapeableImageView>
+
+                        <ImageButton
+                            android:id="@+id/imageButtonCancel1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            app:srcCompat="@drawable/ic_baseline_cancel_24" />
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/relativeLayout2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
@@ -125,14 +135,20 @@
                             android:textSize="25dp" />
 
                         <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/shapeableImageView2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
                             android:scaleType="centerCrop"
                             app:shapeAppearance="@style/PictureHolder"
                             app:srcCompat="@drawable/profile2">
-
                         </com.google.android.material.imageview.ShapeableImageView>
+                        <ImageButton
+                            android:id="@+id/imageButtonCancel2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            app:srcCompat="@drawable/ic_baseline_cancel_24" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -143,6 +159,7 @@
                     android:orientation="horizontal">
 
                     <RelativeLayout
+                        android:id="@+id/relativeLayout3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
@@ -168,6 +185,7 @@
                             android:textSize="25dp" />
 
                         <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/shapeableImageView3"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
@@ -175,9 +193,16 @@
                             app:shapeAppearance="@style/PictureHolder">
 
                         </com.google.android.material.imageview.ShapeableImageView>
+                        <ImageButton
+                            android:id="@+id/imageButtonCancel3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            app:srcCompat="@drawable/ic_baseline_cancel_24" />
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/relativeLayout4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
@@ -202,11 +227,18 @@
                             android:textSize="25dp" />
 
                         <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/shapeableImageView4"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
                             android:scaleType="centerCrop"
                             app:shapeAppearance="@style/PictureHolder"></com.google.android.material.imageview.ShapeableImageView>
+                        <ImageButton
+                            android:id="@+id/imageButtonCancel4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            app:srcCompat="@drawable/ic_baseline_cancel_24" />
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
