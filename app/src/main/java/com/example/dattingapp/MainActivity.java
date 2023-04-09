@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
                 case  R.id.chat:
                     replaceFragment(new ChatFragment());
                     break;
+                case R.id.match:
+                    replaceFragment(new MatchFragment());
 
             }
         return true;

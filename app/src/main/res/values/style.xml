@@ -14,7 +14,12 @@
     </style>
     <style name="PictureHolder">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50dp</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+    <style name="MatchHolder">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomRight">20dp</item>
+        <item name="cornerSizeBottomLeft">20dp</item>
     </style>
 
 </resources>
