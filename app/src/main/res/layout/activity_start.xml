@@ -30,7 +30,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/login_btn_background"/>
+            android:background="@drawable/violet_round_fill"/>
 
         <Button
             android:id="@+id/btn_signup"
@@ -41,7 +41,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/login_btn_background"/>
+            android:background="@drawable/violet_round_fill"/>
 
 
 

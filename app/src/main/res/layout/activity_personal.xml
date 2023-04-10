@@ -80,7 +80,8 @@
             android:hint="Input date of birth"
             android:padding="16dp"
             android:textColor="#5c5f72"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:drawableRight="@drawable/ic_round_free_cancellation_24"/>
 
         <EditText
             android:id="@+id/editTextGmail"
@@ -95,7 +96,8 @@
             android:hint="Input email"
             android:padding="16dp"
             android:textColor="#5c5f72"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:drawableRight="@drawable/ic_round_email_24"/>
         <EditText
             android:id="@+id/editTextPhoneNumber"
             android:layout_width="match_parent"
@@ -132,6 +134,24 @@
                 android:layout_height="wrap_content"
                 android:text="Female" />
         </RadioGroup>
+
+        <LinearLayout
+            android:layout_marginBottom="20dp"
+            android:gravity="center|center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btnContinue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/violet_round_fill"
+                android:text="Continue"
+                android:textColor="@color/white" />
+        </LinearLayout>
 
 
 

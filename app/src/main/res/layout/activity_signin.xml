@@ -97,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:background="@drawable/login_btn_background"
+            android:background="@drawable/violet_round_fill"
             android:text="Login"
             android:textColor="#ffffff"
             android:textSize="20sp"
