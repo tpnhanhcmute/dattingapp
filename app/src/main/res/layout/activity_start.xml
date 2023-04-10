@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rect_gradient_bg"
     android:orientation="vertical">
 
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:src="@drawable/tinder_logo_text"
+        android:layout_height="100dp"
+        android:src="@drawable/logovjp1"
         android:layout_marginTop="150dp"/>
 
 
@@ -31,7 +30,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/btn_blue_pressed"/>
+            android:background="@drawable/login_btn_background"/>
 
         <Button
             android:id="@+id/btn_signup"
@@ -42,7 +41,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/btn_blue_pressed"/>
+            android:background="@drawable/login_btn_background"/>
 
 
 

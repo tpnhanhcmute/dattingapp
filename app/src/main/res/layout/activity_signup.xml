@@ -34,7 +34,7 @@
             android:layout_gravity="center"
             android:layout_width="200dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/tinder_logo" />
+            app:srcCompat="@drawable/logovjp" />
 
         <TextView
             android:id="@+id/textView4"
