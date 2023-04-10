@@ -5,10 +5,78 @@
     android:layout_height="match_parent"
     tools:context=".ChatFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello_chat_fragment" />
+        android:layout_height="704dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="95dp">
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:src="@drawable/baseline_chat_24" />
+
+            <TextView
+                android:layout_width="86dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:text="Chats"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="210dp"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:paddingLeft="160dp"
+                android:paddingTop="20dp"
+                android:src="@drawable/baseline_search_24"
+                />
+
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/baseline_menu_24" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp">
+
+            <TextView
+                android:layout_width="86dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="7dp"
+                android:text="Now Active"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="314dp"
+                android:layout_height="match_parent"
+                android:gravity="end"
+                android:paddingTop="10dp"
+                android:text="See All"
+                android:textColor="@color/violet"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="142dp"
+            android:scrollbars="horizontal" />
+
+    </LinearLayout>
 
 </FrameLayout>
