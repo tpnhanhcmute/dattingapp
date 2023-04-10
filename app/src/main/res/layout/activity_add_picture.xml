@@ -74,7 +74,9 @@
                             android:layout_margin="10dp"
                             android:background="@drawable/wireframe_violet_shape"
                             android:scaleType="centerCrop"
-                            app:shapeAppearance="@style/PictureHolder"></com.google.android.material.imageview.ShapeableImageView>
+                            app:shapeAppearance="@style/PictureHolder">
+
+                        </com.google.android.material.imageview.ShapeableImageView>
 
                         <TextView
                             android:layout_width="50dp"
