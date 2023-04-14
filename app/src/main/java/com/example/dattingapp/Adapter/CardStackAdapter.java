@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dattingapp.Models.ItemModel;
 import com.example.dattingapp.R;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView image;
+        ShapeableImageView image;
         TextView nama, usia, kota;
         ViewHolder(@NonNull View itemView) {
             super(itemView);
