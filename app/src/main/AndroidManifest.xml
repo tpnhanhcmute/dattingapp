@@ -30,7 +30,7 @@
             android:name=".Setting"
             android:exported="false"></activity>
         <activity
-            android:name=".MainActivityTest"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

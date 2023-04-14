@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    >
 
 
     <LinearLayout
@@ -12,7 +11,7 @@
         android:id="@+id/linearLayout7"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="20dp"
         android:layout_marginEnd="32dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +20,7 @@
 
         <ImageButton
             android:id="@+id/signinBack"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_gravity="left"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -48,70 +47,48 @@
             android:textSize="30sp"
             android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/textPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Phone Number"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+
 
         <EditText
             android:id="@+id/editTextPhone"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/edittext_background"
-            android:ems="10"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/edit_button"
             android:hint="Enter your phone number"
             android:inputType="textPersonName"
             android:padding="16dp"
             android:textColor="#5c5f72"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/textPassWord"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Your Password"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:drawableLeft="@drawable/ic_round_phone"
+             />
 
         <EditText
             android:id="@+id/editTextPassWord"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/edittext_background"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/edit_button"
             android:ems="10"
             android:hint="Please Enter Your Password"
             android:inputType="textPersonName"
             android:padding="16dp"
             android:textColor="#5c5f72"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:drawableLeft="@drawable/ic_round_password"
+            />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button"
             style="@android:style/Widget.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="150dp"
             android:background="@drawable/violet_round_fill"
             android:text="Login"
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="20sp"
-            android:text="Forgot The Password?"
-            android:textColor="#b172ef"
-            android:textSize="15sp" />
 
 
 
