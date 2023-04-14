@@ -7,7 +7,6 @@ import android.widget.ImageView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.dattingapp.R;
 
 import java.util.List;
