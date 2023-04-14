@@ -27,40 +27,87 @@
             android:gravity="center|bottom"
             android:background="@drawable/gradiant_match_holder"
             app:shapeAppearance="@style/MatchHolder"/>
+
+        <FrameLayout
+            android:id="@+id/right_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/overlay_black">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/like" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:textSize="26sp"/>
+
+            <TextView
+                android:id="@+id/item_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/item_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|bottom"
+                    >
+
+                    <ImageButton
+                        android:id="@+id/imageButton1"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginRight="50dp"
+                        android:scaleType="centerInside"
+                        app:srcCompat="@drawable/btnlike"
+                        android:background="@drawable/while_gradiant_oval"
+                        />
+
+                    <ImageButton
+                        android:id="@+id/imageButton6"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:scaleType="centerInside"
+                        app:srcCompat="@drawable/btnlike"
+                        android:background="@drawable/while_gradiant_oval"
+                        />
+
+
+                </LinearLayout>
+
+
+        </LinearLayout>
     </RelativeLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:padding="16dp">
 
-        <TextView
-            android:id="@+id/item_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:textSize="26sp"/>
 
-        <TextView
-            android:id="@+id/item_age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"/>
-
-        <TextView
-            android:id="@+id/item_city"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"/>
-
-    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/left_overlay"
@@ -75,41 +122,6 @@
             android:layout_gravity="center"/>
 
     </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/right_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/overlay_black">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/like"
-            android:layout_gravity="center"/>
-
-    </FrameLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipChildren="false">
-
-
-
-
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-
-
 
 
 </androidx.cardview.widget.CardView>
