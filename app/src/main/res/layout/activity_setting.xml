@@ -12,10 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:background="@android:color/transparent"
-        android:drawableStart="@drawable/backbutton"
+        android:drawableStart="@drawable/ic_baseline_keyboard_backspace_24"
         android:onClick="onBackPressed"
-
         android:text=""
+        android:layout_marginLeft="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -25,9 +25,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="-31dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="160dp"
+        android:layout_marginStart="-39dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="168dp"
         android:layout_toEndOf="@+id/btnBack"
         android:text="Settings"
         android:textColor="#120808"
@@ -63,10 +63,10 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:background="@drawable/buttonsetting"
-            android:drawableLeft="@drawable/baseline_account_circle_24"
+            android:drawableLeft="@drawable/discovery"
             android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"
             android:drawablePadding="8dp"
-            android:text="Personal Information"
+            android:text="Discovery Settings"
             android:textAlignment="textStart"
             android:stateListAnimator="@null"/>
 
@@ -75,10 +75,10 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:background="@drawable/buttonsetting"
-            android:drawableLeft="@drawable/baseline_account_circle_24"
+            android:drawableLeft="@drawable/sercurity"
             android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"
             android:drawablePadding="8dp"
-            android:text="Personal Information"
+            android:text="Privacy &amp; permisstion"
             android:textAlignment="textStart"
             android:stateListAnimator="@null"/>
 
@@ -87,10 +87,10 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:background="@drawable/buttonsetting"
-            android:drawableLeft="@drawable/baseline_account_circle_24"
+            android:drawableLeft="@drawable/noti"
             android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"
             android:drawablePadding="8dp"
-            android:text="Personal Information"
+            android:text="Notifycation"
             android:textAlignment="textStart"
             android:stateListAnimator="@null"/>
 
@@ -99,10 +99,10 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:background="@drawable/buttonsetting"
-            android:drawableLeft="@drawable/baseline_account_circle_24"
+            android:drawableLeft="@drawable/shield"
             android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"
             android:drawablePadding="8dp"
-            android:text="Personal Information"
+            android:text="Security"
             android:textAlignment="textStart"
             android:stateListAnimator="@null"/>
 
@@ -111,10 +111,10 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:background="@drawable/buttonsetting"
-            android:drawableLeft="@drawable/baseline_account_circle_24"
+            android:drawableLeft="@drawable/storage"
             android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"
             android:drawablePadding="8dp"
-            android:text="Personal Information"
+            android:text="Data &amp; storage"
             android:textAlignment="textStart"
             android:stateListAnimator="@null"/>
 
@@ -123,10 +123,10 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:background="@drawable/buttonsetting"
-            android:drawableLeft="@drawable/baseline_account_circle_24"
+            android:drawableLeft="@drawable/feedback"
             android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"
             android:drawablePadding="8dp"
-            android:text="Personal Information"
+            android:text="Feedback"
             android:textAlignment="textStart"
             android:stateListAnimator="@null"/>
 
@@ -135,10 +135,10 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:background="@drawable/buttonsetting"
-            android:drawableLeft="@drawable/baseline_account_circle_24"
+            android:drawableLeft="@drawable/language"
             android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"
             android:drawablePadding="8dp"
-            android:text="Personal Information"
+            android:text="language"
             android:textAlignment="textStart"
             android:stateListAnimator="@null"/>
 
@@ -147,10 +147,10 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:background="@drawable/buttonsetting"
-            android:drawableLeft="@drawable/baseline_account_circle_24"
+            android:drawableLeft="@drawable/info"
             android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"
             android:drawablePadding="8dp"
-            android:text="Personal Information"
+            android:text="about"
             android:textAlignment="textStart"
             android:elevation="0dp"
             android:stateListAnimator="@null"/>

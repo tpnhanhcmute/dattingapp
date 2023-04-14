@@ -1,52 +1,45 @@
 package com.example.dattingapp;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
+import androidx.appcompat.widget.SwitchCompat;
 
-public class Discovery extends ProfileActivity{
+public class Discovery extends ProfileActivity {
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discovery);
+        SwitchCompat mySwitch = findViewById(R.id.switch1);
+        SwitchCompat mySwitch2 = findViewById(R.id.switch2);
+        mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // Nếu nút Switch được bật, thay đổi màu trackTint sang màu khác
+                    mySwitch.getTrackDrawable().setTint(getResources().getColor(R.color.light_violet));
+                } else {
+                    // Nếu nút Switch được tắt, trả lại màu trackTint về giá trị ban đầu
+                    mySwitch.getTrackDrawable().setTint(getResources().getColor(R.color.gray));
+                }
+            }
+        });
 
-//        SeekBar seekBar = findViewById(R.id.seekBar);
-//        final TextView textView = findViewById(R.id.);
-//
-//// Tính toán vị trí của dấu tick
-//        int thumbOffset = seekBar.getThumbOffset();
-//        int seekBarWidth = seekBar.getWidth() - 2 * thumbOffset;
-//        int val = seekBar.getProgress();
-//        int xPos = thumbOffset + seekBarWidth * val / seekBar.getMax();
-//
-//// Đặt vị trí của TextView theo vị trí của dấu tick
-//        textView.setX(xPos);
-//        textView.setText(String.valueOf(val));
-//
-//        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            @Override
-//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                // Tính toán vị trí của dấu tick
-//                int thumbOffset = seekBar.getThumbOffset();
-//                int seekBarWidth = seekBar.getWidth() - 2 * thumbOffset;
-//                int val = seekBar.getProgress();
-//                int xPos = thumbOffset + seekBarWidth * val / seekBar.getMax();
-//
-//                // Đặt vị trí của TextView theo vị trí của dấu tick và cập nhật giá trị
-//                textView.setX(xPos);
-//                textView.setText(String.valueOf(val));
-//            }
-//
-//            @Override
-//            public void onStartTrackingTouch(SeekBar seekBar) {
-//                // Không cần thực hiện gì khi bắt đầu chạm SeekBar
-//            }
-//
-//            @Override
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//                // Không cần thực hiện gì khi kết thúc chạm SeekBar
-//            }
-//        });
+        mySwitch2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // Nếu nút Switch được bật, thay đổi màu trackTint sang màu khác
+                    mySwitch2.getTrackDrawable().setTint(getResources().getColor(R.color.light_violet));
+                } else {
+                    // Nếu nút Switch được tắt, trả lại màu trackTint về giá trị ban đầu
+                    mySwitch2.getTrackDrawable().setTint(getResources().getColor(R.color.gray));
+                }
+            }
+        });
 
     }
 }

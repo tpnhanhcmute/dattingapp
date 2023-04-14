@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dattingapp.Adapter.ChatAdapter;
+import com.example.dattingapp.Adapter.ChatItemAdapter;
+import com.example.dattingapp.Models.ChatItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,12 @@ public class ChatFragment extends Fragment {
     private RecyclerView recyclerView;
     private ChatAdapter avatarAdapter;
     private List<Integer> avatarList;
+
+    private  RecyclerView mRecyclerView;
+
+    private ChatItemAdapter mAdapter;
+
+    private List<ChatItem> chatList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,8 +39,8 @@ public class ChatFragment extends Fragment {
 
         // Tạo danh sách các ảnh avatar
         avatarList = new ArrayList<>();
-        avatarList.add(R.drawable.profile2);
-        avatarList.add(R.drawable.profile2);
+        avatarList.add(R.drawable.baseline_tag_faces_24);
+        avatarList.add(R.drawable.baseline_tag_faces_24);
         avatarList.add(R.drawable.profile2);
         avatarList.add(R.drawable.profile2);
         avatarList.add(R.drawable.profile2);
@@ -45,6 +53,34 @@ public class ChatFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(avatarAdapter);
+
+
+        chatList.add(new ChatItem("Alice", "Hello!"));
+        chatList.add(new ChatItem("Bob", "Hi Alice!"));
+        chatList.add(new ChatItem("Alice", "How are you?"));
+        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
+        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
+        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
+        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
+        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
+        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
+        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
+        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
+        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
+        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
+        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
+        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
+        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
+        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
+        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
+
+
+        mRecyclerView = view.findViewById(R.id.recyclerView2);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+        mAdapter = new ChatItemAdapter(chatList);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+
         return  view;
     }
 }

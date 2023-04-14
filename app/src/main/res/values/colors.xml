@@ -16,4 +16,5 @@
     <color name="light_black">#212121</color>
     <color name="edit_text">#F6F6F6</color>
     <color name="transparentcolor">#00000000</color>
+    <color name="gray">#c0c0c0</color>
 </resources>
