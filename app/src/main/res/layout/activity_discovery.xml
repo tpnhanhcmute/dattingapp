@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="0dp">
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/transparent"
+        android:drawableStart="@drawable/backbutton"
+        android:onClick="onBackPressed"
+
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-31dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="160dp"
+        android:layout_toEndOf="@+id/btnBack"
+        android:text="Discovery Settings"
+        android:textColor="#120808"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btnBack"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="659dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="72dp"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@drawable/buttonsetting"
+            android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"
+            android:drawablePadding="6dp"
+            android:text="Location"
+            android:textSize="18dp"
+            android:textAllCaps="false"
+            android:textAlignment="textStart"
+            android:stateListAnimator="@null"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Age"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="15dp"/>
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignEnd="@id/seekBar"-->
+<!--            android:layout_alignRight="@id/seekBar"-->
+<!--            android:layout_marginTop="-30dp"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:background="@color/violet"-->
+<!--            android:textColor="@color/edit_text"-->
+<!--            android:padding="2dp"-->
+<!--            android:textSize="16sp"-->
+<!--            />-->
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:padding="10dp"
+            android:progressTint="@color/violet"
+            android:scrollbarSize="20dp"
+            android:thumbTint="@color/violet"
+            android:tickMarkTint="@color/violet" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Distance"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="15dp"/>
+
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:padding="10dp"
+            android:progressTint="@color/violet"
+            android:scrollbarSize="20dp"
+            android:thumbTint="@color/violet"
+            android:tickMarkTint="@color/violet" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="195dp"
+                android:layout_height="60dp"
+                android:gravity="fill"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="Expand Search Area"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <Switch
+                android:layout_width="208dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@drawable/buttonsetting"
+            android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"
+            android:drawablePadding="8dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:stateListAnimator="@null"
+            android:text="Show me"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="195dp"
+                android:layout_height="60dp"
+                android:gravity="fill"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="Hide Last Seen"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <Switch
+                android:layout_width="208dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

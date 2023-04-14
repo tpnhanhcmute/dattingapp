@@ -27,6 +27,7 @@
             android:layout_height="400dp"
             android:orientation="vertical">
             <ImageView
+                android:layout_gravity="center|center"
                 android:id="@+id/imageViewIsAmatch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

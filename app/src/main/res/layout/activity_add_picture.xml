@@ -74,7 +74,9 @@
                             android:layout_margin="10dp"
                             android:background="@drawable/wireframe_violet_shape"
                             android:scaleType="centerCrop"
-                            app:shapeAppearance="@style/PictureHolder"></com.google.android.material.imageview.ShapeableImageView>
+                            app:shapeAppearance="@style/PictureHolder">
+
+                        </com.google.android.material.imageview.ShapeableImageView>
 
                         <TextView
                             android:layout_width="50dp"
@@ -96,8 +98,7 @@
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
                             android:scaleType="centerCrop"
-                            app:shapeAppearance="@style/PictureHolder"
-                            app:srcCompat="@drawable/profile2">
+                            app:shapeAppearance="@style/PictureHolder">
 
                         </com.google.android.material.imageview.ShapeableImageView>
 
@@ -106,6 +107,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@android:color/transparent"
+                            android:contentDescription="@string/app_name"
+                            android:minHeight="48dp"
                             app:srcCompat="@drawable/ic_baseline_cancel_24" />
                     </RelativeLayout>
 
@@ -121,7 +124,9 @@
                             android:layout_margin="10dp"
                             android:background="@drawable/wireframe_violet_shape"
                             android:scaleType="centerCrop"
-                            app:shapeAppearance="@style/PictureHolder"></com.google.android.material.imageview.ShapeableImageView>
+                            app:shapeAppearance="@style/PictureHolder">
+
+                        </com.google.android.material.imageview.ShapeableImageView>
 
                         <TextView
                             android:layout_width="50dp"
@@ -141,13 +146,16 @@
                             android:layout_margin="10dp"
                             android:scaleType="centerCrop"
                             app:shapeAppearance="@style/PictureHolder"
-                            app:srcCompat="@drawable/profile2">
+                            >
                         </com.google.android.material.imageview.ShapeableImageView>
+
                         <ImageButton
                             android:id="@+id/imageButtonCancel2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@android:color/transparent"
+                            android:contentDescription="@string/app_name"
+                            android:minHeight="48dp"
                             app:srcCompat="@drawable/ic_baseline_cancel_24" />
                     </RelativeLayout>
                 </LinearLayout>
@@ -170,7 +178,8 @@
                             android:layout_margin="10dp"
                             android:background="@drawable/wireframe_violet_shape"
                             android:scaleType="centerCrop"
-                            app:shapeAppearance="@style/PictureHolder"></com.google.android.material.imageview.ShapeableImageView>
+                            app:shapeAppearance="@style/PictureHolder">
+                        </com.google.android.material.imageview.ShapeableImageView>
 
                         <TextView
                             android:id="@+id/textView3"
@@ -193,11 +202,14 @@
                             app:shapeAppearance="@style/PictureHolder">
 
                         </com.google.android.material.imageview.ShapeableImageView>
+
                         <ImageButton
                             android:id="@+id/imageButtonCancel3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@android:color/transparent"
+                            android:contentDescription="@string/app_name"
+                            android:minHeight="48dp"
                             app:srcCompat="@drawable/ic_baseline_cancel_24" />
                     </RelativeLayout>
 
@@ -233,11 +245,14 @@
                             android:layout_margin="10dp"
                             android:scaleType="centerCrop"
                             app:shapeAppearance="@style/PictureHolder"></com.google.android.material.imageview.ShapeableImageView>
+
                         <ImageButton
                             android:id="@+id/imageButtonCancel4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@android:color/transparent"
+                            android:contentDescription="@string/app_name"
+                            android:minHeight="48dp"
                             app:srcCompat="@drawable/ic_baseline_cancel_24" />
                     </RelativeLayout>
                 </LinearLayout>
