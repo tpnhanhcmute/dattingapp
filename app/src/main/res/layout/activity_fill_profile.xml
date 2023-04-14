@@ -48,6 +48,38 @@
             android:layout_marginRight="30dp"
             android:orientation="vertical">
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profile2"
+                app:civ_border_color="@color/violet"
+                app:civ_border_width="2dp">
+            </de.hdodenhof.circleimageview.CircleImageView>
+            <LinearLayout
+                android:id="@+id/LinearLayoutEditPic"
+                android:layout_marginBottom="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center|center">
+                <TextView
+                    android:id="@+id/textViewEditProfile"
+                    android:gravity="right|center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Change profile ">
+                </TextView>
+
+                <ImageView
+                    android:gravity="left|center"
+                    android:id="@+id/imageViewEditProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/ic_round_edit_24" />
+            </LinearLayout>
             <EditText
                 android:id="@+id/editTextTextName"
                 android:layout_width="match_parent"
@@ -138,7 +170,8 @@
                 android:layout_marginRight="10dp"
                 android:background="@drawable/violet_round_fill"
                 android:text="Continue"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
 
 

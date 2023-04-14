@@ -1,6 +1,7 @@
 package com.example.dattingapp;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
@@ -8,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -22,6 +24,8 @@ public class FillProfileActivity  extends AppCompatActivity {
     Spinner  spnGender;
     int year, month, day;
     List<String> listGender;
+    LinearLayout linearLayoutEditImage;
+    ImageView imageViewBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +87,8 @@ public class FillProfileActivity  extends AppCompatActivity {
     private  void Mapping(){
         editTextDateOfBirth = findViewById(R.id.editTextDateOfBirth);
         spnGender = findViewById(R.id.spinnerGender);
+        linearLayoutEditImage = findViewById(R.id.LinearLayoutEditPic);
+        imageViewBack = findViewById(R.id.imageViewBack);
     }
     private  void SetListener(){
         editTextDateOfBirth.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +101,19 @@ public class FillProfileActivity  extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog(v);
+            }
+        });
+        linearLayoutEditImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FillProfileActivity.this,AddPictureActivity.class);
+                startActivity(intent);
+            }
+        });
+        imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FillProfileActivity.super.onBackPressed();
             }
         });
     }
