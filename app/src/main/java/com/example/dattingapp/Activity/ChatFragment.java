@@ -1,4 +1,4 @@
-package com.example.dattingapp;
+package com.example.dattingapp.Activity;
 
 import android.os.Bundle;
 
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.example.dattingapp.Adapter.ChatAdapter;
 import com.example.dattingapp.Adapter.ChatItemAdapter;
 import com.example.dattingapp.Models.ChatItem;
+import com.example.dattingapp.R;
 
 import java.util.ArrayList;
 import java.util.List;

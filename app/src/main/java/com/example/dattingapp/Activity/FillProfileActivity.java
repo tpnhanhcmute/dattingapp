@@ -1,4 +1,4 @@
-package com.example.dattingapp;
+package com.example.dattingapp.Activity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,17 +16,24 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dattingapp.Adapter.HobbyAdapter;
-import com.example.dattingapp.Adapter.MatchAdapter;
+import com.example.dattingapp.DTO.AuthenticationRequest;
+import com.example.dattingapp.Models.ResponseModel;
+import com.example.dattingapp.R;
+import com.example.dattingapp.common.RetrofitClient;
+import com.example.dattingapp.service.APIService;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FillProfileActivity  extends AppCompatActivity {
     EditText editTextDateOfBirth;
@@ -37,6 +45,7 @@ public class FillProfileActivity  extends AppCompatActivity {
     RecyclerView rcHobby;
     HobbyAdapter hobbyAdapter;
     List<String> listHobby;
+    Button continueButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +54,7 @@ public class FillProfileActivity  extends AppCompatActivity {
         SetListener();
         SetData();
         BindingData();
+
 
 
     }
@@ -121,6 +131,7 @@ public class FillProfileActivity  extends AppCompatActivity {
         linearLayoutEditImage = findViewById(R.id.LinearLayoutEditPic);
         imageViewBack = findViewById(R.id.imageViewBack);
         rcHobby = findViewById(R.id.rcHobby);
+        continueButton = findViewById(R.id.continueButton);
     }
     private  void SetListener(){
         editTextDateOfBirth.setOnClickListener(new View.OnClickListener() {
@@ -146,6 +157,32 @@ public class FillProfileActivity  extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FillProfileActivity.super.onBackPressed();
+            }
+        });
+
+        continueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Authentication();
+            }
+        });
+
+    }
+
+    private void Authentication() {
+
+        APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
+        AuthenticationRequest request = new AuthenticationRequest();
+        request.email = "tpnhan12a1@gmail.com";
+        apiService.authentication(request).enqueue(new Callback<ResponseModel>() {
+            @Override
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                Toast.makeText(getApplicationContext(), response.body().message,Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
     }

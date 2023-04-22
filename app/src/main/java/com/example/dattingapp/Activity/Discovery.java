@@ -1,12 +1,11 @@
-package com.example.dattingapp;
+package com.example.dattingapp.Activity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.CompoundButton;
-import android.widget.SeekBar;
-import android.widget.Switch;
-import android.widget.TextView;
+
 import androidx.appcompat.widget.SwitchCompat;
+
+import com.example.dattingapp.R;
 
 public class Discovery extends ProfileActivity {
     @Override

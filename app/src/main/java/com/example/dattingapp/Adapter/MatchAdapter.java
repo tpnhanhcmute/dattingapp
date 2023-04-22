@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dattingapp.Models.Match;
-import com.example.dattingapp.ProfileActivity;
+import com.example.dattingapp.Activity.ProfileActivity;
 import com.example.dattingapp.R;
 
 import java.util.List;

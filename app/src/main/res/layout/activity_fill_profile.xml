@@ -8,11 +8,9 @@
     android:orientation="vertical">
 
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,163 +18,181 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp">
-
-            <ImageView
-                android:id="@+id/imageViewBack"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:scaleType="fitEnd"
-                app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:gravity="center|bottom"
-                android:text="Fill Your Profile"
-                android:textColor="@color/light_black"
-                android:textSize="30dp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginRight="30dp"
+            android:layout_weight="1"
             android:orientation="vertical">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="match_parent"
-                android:layout_marginBottom="10dp"
-                android:layout_height="150dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/profile2"
-                app:civ_border_color="@color/violet"
-                app:civ_border_width="2dp">
-            </de.hdodenhof.circleimageview.CircleImageView>
             <LinearLayout
-                android:id="@+id/LinearLayoutEditPic"
-                android:layout_marginBottom="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center|center">
-                <TextView
-                    android:id="@+id/textViewEditProfile"
-                    android:gravity="right|center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Change profile ">
-                </TextView>
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
 
                 <ImageView
-                    android:gravity="left|center"
-                    android:id="@+id/imageViewEditProfile"
+                    android:id="@+id/imageViewBack"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitEnd"
+                    app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24" />
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    app:srcCompat="@drawable/ic_round_edit_24" />
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center|bottom"
+                    android:text="Fill Your Profile"
+                    android:textColor="@color/light_black"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
             </LinearLayout>
-            <EditText
-                android:id="@+id/editTextTextName"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/edit_button"
-                android:ems="10"
-                android:hint="Name"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:padding="10dp" />
 
-            <EditText
-                android:id="@+id/editTextTextNickName"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/edit_button"
-                android:ems="10"
-                android:hint="Nick Name"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:padding="10dp" />
-            <EditText
-                android:id="@+id/editTextDateOfBirth"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/edit_button"
-                android:layout_marginBottom="20dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="Date Of Birth"
-                android:inputType="none"
-                android:minHeight="48dp"
-                android:padding="10dp"
-                android:editable="false"
-                android:drawableRight="@drawable/ic_round_free_cancellation_24"/>
-
-
-            <Spinner
-                android:spinnerMode="dropdown"
-                android:background="@drawable/edit_button"
-                android:id="@+id/spinnerGender"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:contentDescription="@string/app_name"
-                android:minHeight="48dp"
-                android:drawableRight="@drawable/ic_round_arrow_drop_down_24"/>
-            <EditText
-                android:id="@+id/editTextEmail"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/edit_button"
-                android:ems="10"
-                android:hint="Email"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:padding="10dp"
-                android:drawableRight="@drawable/ic_round_email_24" />
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="30dp"
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editTextPhone"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/edit_button"
-                android:ems="10"
-                android:hint="Phone Number"
-                android:inputType="number"
-                android:minHeight="48dp"
-                android:padding="10dp" />
-        </LinearLayout>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginBottom="10dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/profile2"
+                    app:civ_border_color="@color/violet"
+                    app:civ_border_width="2dp"></de.hdodenhof.circleimageview.CircleImageView>
 
-        <LinearLayout
-            android:layout_marginBottom="20dp"
-            android:gravity="center|center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+                <LinearLayout
+                    android:id="@+id/LinearLayoutEditPic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center|center"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/button"
+                    <TextView
+                        android:id="@+id/textViewEditProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="right|center"
+                        android:text="Change profile "></TextView>
+
+                    <ImageView
+                        android:id="@+id/imageViewEditProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="left|center"
+                        app:srcCompat="@drawable/ic_round_edit_24" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/editTextTextName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/edit_button"
+                    android:ems="10"
+                    android:hint="Name"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:padding="10dp" />
+
+                <EditText
+                    android:id="@+id/editTextTextNickName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/edit_button"
+                    android:ems="10"
+                    android:hint="Career"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:padding="10dp" />
+
+                <EditText
+                    android:id="@+id/editTextDateOfBirth"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_button"
+                    android:drawableRight="@drawable/ic_round_free_cancellation_24"
+                    android:editable="false"
+                    android:ems="10"
+                    android:hint="Date Of Birth"
+                    android:inputType="none"
+                    android:minHeight="48dp"
+                    android:padding="10dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/edit_button"
+                    android:contentDescription="@string/app_name"
+                    android:drawableRight="@drawable/ic_round_arrow_drop_down_24"
+                    android:minHeight="48dp"
+                    android:spinnerMode="dropdown" />
+
+                <EditText
+                    android:id="@+id/editTextEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/edit_button"
+                    android:drawableRight="@drawable/ic_round_email_24"
+                    android:ems="10"
+                    android:hint="Email"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:padding="10dp" />
+
+                <EditText
+                    android:id="@+id/editTextPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/edit_button"
+                    android:ems="10"
+                    android:hint="Phone Number"
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:padding="10dp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcHobby"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/violet_round_fill"
-                android:text="Continue"
-                android:textColor="@color/white"
-                tools:ignore="TouchTargetSizeCheck" />
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:gravity="center|center">
+
+                <Button
+                    android:id="@+id/continueButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/violet_round_fill"
+                    android:text="Continue"
+                    android:textColor="@color/white"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+
+
         </LinearLayout>
-
-
-    </LinearLayout>
-
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.dattingapp;
+package com.example.dattingapp.Activity;
 
 import android.os.Bundle;
 import android.view.animation.Animation;
@@ -6,6 +6,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.dattingapp.R;
 
 public class MatchActivity  extends AppCompatActivity {
     ImageView imageViewIsMatch;

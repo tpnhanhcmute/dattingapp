@@ -1,4 +1,4 @@
-package com.example.dattingapp;
+package com.example.dattingapp.Activity;
 
 import android.os.Bundle;
 
@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.dattingapp.Adapter.CardStackAdapter;
 import com.example.dattingapp.Adapter.CardStackCallback;
 import com.example.dattingapp.Models.ItemModel;
+import com.example.dattingapp.R;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.CardStackView;

@@ -1,4 +1,4 @@
-package com.example.dattingapp;
+package com.example.dattingapp.Activity;
 
 import android.os.Bundle;
 
@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.dattingapp.Adapter.ImagePagerAdapter;
+import com.example.dattingapp.R;
 
 public class ProfileActivity extends AppCompatActivity {
 

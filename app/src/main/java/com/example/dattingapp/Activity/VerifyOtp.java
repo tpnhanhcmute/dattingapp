@@ -1,4 +1,4 @@
-package com.example.dattingapp;
+package com.example.dattingapp.Activity;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -6,6 +6,8 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.dattingapp.R;
 
 public class VerifyOtp extends AppCompatActivity {
     private EditText pin1EditText, pin2EditText, pin3EditText, pin4EditText;

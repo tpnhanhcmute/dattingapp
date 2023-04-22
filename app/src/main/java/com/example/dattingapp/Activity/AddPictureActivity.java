@@ -1,4 +1,4 @@
-package com.example.dattingapp;
+package com.example.dattingapp.Activity;
 
 import android.Manifest;
 import android.app.Activity;
@@ -23,6 +23,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dattingapp.Models.UploadImageModel;
+import com.example.dattingapp.R;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.io.FileNotFoundException;

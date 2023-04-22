@@ -1,4 +1,4 @@
-package com.example.dattingapp;
+package com.example.dattingapp.Activity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dattingapp.Adapter.MessageContentAdapter;
 import com.example.dattingapp.Models.MessageContent;
+import com.example.dattingapp.R;
 
 import java.util.ArrayList;
 import java.util.List;

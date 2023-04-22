@@ -1,7 +1,5 @@
 package com.example.dattingapp.Adapter;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +8,7 @@ import android.widget.ImageView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dattingapp.ChatMessageActivity;
-import com.example.dattingapp.MainActivity;
+import com.example.dattingapp.Activity.ChatMessageActivity;
 import com.example.dattingapp.R;
 
 import java.util.List;
