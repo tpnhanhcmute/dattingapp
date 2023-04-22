@@ -15,6 +15,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.dattingapp.Adapter.HobbyAdapter;
+import com.example.dattingapp.Adapter.MatchAdapter;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +34,9 @@ public class FillProfileActivity  extends AppCompatActivity {
     List<String> listGender;
     LinearLayout linearLayoutEditImage;
     ImageView imageViewBack;
+    RecyclerView rcHobby;
+    HobbyAdapter hobbyAdapter;
+    List<String> listHobby;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,12 +60,32 @@ public class FillProfileActivity  extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 onItemSelectedHandler(parent, view, position, id);
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
+
+        listHobby = new ArrayList<String>();
+        listHobby.add("Nuôi chó");
+        listHobby.add("Nuôi mèo");
+        listHobby.add("Cung nhân mã");
+        listHobby.add("Cung con bò");
+        listHobby.add("Nuôi con mèo con");
+
+        hobbyAdapter = new HobbyAdapter(this, listHobby);
+        rcHobby.setHasFixedSize(true);
+//        RecyclerView.LayoutManager layoutManager =
+//                new GridLayoutManager(this,2);
+
+        FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(this);
+        layoutManager.setFlexDirection(FlexDirection.ROW);
+        layoutManager.setJustifyContent(JustifyContent.FLEX_START);
+        rcHobby.setLayoutManager(layoutManager);
+        rcHobby.setAdapter(hobbyAdapter);
+
+        //recyclerViewMatch.scrollToPosition(messageList.size()-1);
+        hobbyAdapter.notifyDataSetChanged();
+
     }
 
     private void onItemSelectedHandler(AdapterView<?> parent, View view, int position, long id) {
@@ -89,6 +120,7 @@ public class FillProfileActivity  extends AppCompatActivity {
         spnGender = findViewById(R.id.spinnerGender);
         linearLayoutEditImage = findViewById(R.id.LinearLayoutEditPic);
         imageViewBack = findViewById(R.id.imageViewBack);
+        rcHobby = findViewById(R.id.rcHobby);
     }
     private  void SetListener(){
         editTextDateOfBirth.setOnClickListener(new View.OnClickListener() {
