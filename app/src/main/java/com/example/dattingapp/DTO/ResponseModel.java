@@ -1,4 +1,4 @@
-package com.example.dattingapp.Models;
+package com.example.dattingapp.DTO;
 
 public class ResponseModel {
     public  boolean isError;

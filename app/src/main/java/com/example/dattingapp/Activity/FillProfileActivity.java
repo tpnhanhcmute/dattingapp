@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dattingapp.Adapter.HobbyAdapter;
 import com.example.dattingapp.DTO.AuthenticationRequest;
-import com.example.dattingapp.Models.ResponseModel;
+import com.example.dattingapp.DTO.ResponseModel;
 import com.example.dattingapp.R;
 import com.example.dattingapp.common.RetrofitClient;
 import com.example.dattingapp.service.APIService;
