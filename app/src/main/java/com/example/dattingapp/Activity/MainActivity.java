@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.match:
                     replaceFragment(new MatchFragment());
+                    break;
+                case  R.id.profile:
+                    replaceFragment(new Frame_Setting());
 
             }
         return true;

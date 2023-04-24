@@ -1,5 +1,6 @@
 package com.example.dattingapp.Adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dattingapp.ChatMessageActivity;
 import com.example.dattingapp.Models.ChatItem;
 import com.example.dattingapp.R;
 
@@ -23,6 +25,14 @@ public class ChatItemAdapter extends RecyclerView.Adapter<ChatItemAdapter.ChatVi
             super(itemView);
             textName = itemView.findViewById(R.id.text_name);
             textMessage = itemView.findViewById(R.id.text_message);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), ChatMessageActivity.class);
+                    v.getContext().startActivity(intent);
+                }
+            });
+
         }
     }
 

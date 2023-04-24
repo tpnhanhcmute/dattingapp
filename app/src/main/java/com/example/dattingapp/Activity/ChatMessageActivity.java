@@ -2,6 +2,9 @@ package com.example.dattingapp.Activity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +34,14 @@ public class ChatMessageActivity extends AppCompatActivity {
         editor.commit();
         Mapping();
         SetData();
+
+        ImageView backButton = (ImageView) findViewById(R.id.imageViewBack);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
     }
 

@@ -36,7 +36,6 @@ public class ChatFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_chat, container, false);
 
 
-        recyclerView = view.findViewById(R.id.recyclerView);
 
         // Tạo danh sách các ảnh avatar
         avatarList = new ArrayList<>();
