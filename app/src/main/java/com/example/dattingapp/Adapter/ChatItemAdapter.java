@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dattingapp.ChatMessageActivity;
+import com.example.dattingapp.Activity.ChatMessageActivity;
 import com.example.dattingapp.Models.ChatItem;
 import com.example.dattingapp.R;
 

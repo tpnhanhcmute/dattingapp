@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.example.dattingapp.Frame_Setting;
 import com.example.dattingapp.R;
 import com.example.dattingapp.databinding.ActivityMainBinding;
 
