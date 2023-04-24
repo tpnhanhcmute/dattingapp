@@ -92,7 +92,7 @@ public class SignupActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                         if(response.body().isError){
-                            Toast.makeText(getApplicationContext(), response.body().message, Toast.LENGTH_SHORT);
+                            Toast.makeText(getApplicationContext(),"Error: "+ response.body().message, Toast.LENGTH_SHORT);
                             return;
                         }
                         Type type = new TypeToken<RegisterResponse>(){}.getType();
@@ -104,11 +104,9 @@ public class SignupActivity extends AppCompatActivity {
                     }
                     @Override
                     public void onFailure(Call<ResponseModel> call, Throwable t) {
-
+                        Toast.makeText(getApplicationContext(), "Error: "+t.getMessage(), Toast.LENGTH_SHORT);
                     }
                 });
-
-
             }
         });
     }

@@ -16,6 +16,6 @@ public interface APIService {
     @POST("users/register")
     Call<ResponseModel> register(@Body RegisterRequest request);
 
-    @POST("login")
+    @POST("users/login")
     Call<ResponseModel> login(@Body LoginRequest request);
 }

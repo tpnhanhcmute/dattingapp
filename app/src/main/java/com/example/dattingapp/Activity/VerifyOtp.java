@@ -108,7 +108,7 @@ public class VerifyOtp extends AppCompatActivity {
                    return;
                }
                String otp = getIntent().getStringExtra(Const.OTP);
-               if(pin1+pin2+pin3+pin4 !=otp){
+               if(!(pin1+pin2+pin3+pin4).equals(otp)){
                    Toast.makeText(getApplicationContext(), "Authentication failure", Toast.LENGTH_SHORT);
                    return;
                }
@@ -125,7 +125,7 @@ public class VerifyOtp extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), response.body().message, Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(VerifyOtp.this, SigninActivity.class);
                             startActivity(intent);
-                            finish();
+
                    }
                    @Override
                    public void onFailure(Call<ResponseModel> call, Throwable t) {
@@ -135,6 +135,12 @@ public class VerifyOtp extends AppCompatActivity {
            }
        });
    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
 }
 
 

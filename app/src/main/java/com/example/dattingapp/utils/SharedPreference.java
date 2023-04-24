@@ -18,7 +18,8 @@ public class SharedPreference {
     private  static Context ctx;
     private  static  SharedPreference _instance;
 
-    public SharedPreference getInstance(){
+    public static SharedPreference getInstance(Context context){
+        ctx =context;
         if(_instance == null) _instance = new SharedPreference();
         return _instance;
     }
