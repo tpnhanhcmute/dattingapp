@@ -17,7 +17,7 @@ public class MessageManager extends Application implements Subject {
 
     //--------------------Observer------------------------------//
     List<Observer> messageObserverList;
-    //-------------------------Databae -------------------------//
+    //-------------------------Database -------------------------//
     private FirebaseDatabase database;
     private DatabaseReference messageRef;
     private static MessageManager _instance;
@@ -28,13 +28,14 @@ public class MessageManager extends Application implements Subject {
         return _instance;
     }
     private  MessageManager(){
-        FirebaseApp.initializeApp(getApplicationContext());
+        FirebaseApp.initializeApp(this);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         messageObserverList = new ArrayList<>();
-        messageRef= database.getReference("message");
+        messageRef= database.getReference("message").child("Nhan");
         messageRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 notifyObservers(snapshot);
             }
 

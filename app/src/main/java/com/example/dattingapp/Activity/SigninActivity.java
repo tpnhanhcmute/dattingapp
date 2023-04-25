@@ -3,6 +3,7 @@ package com.example.dattingapp.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +20,10 @@ import com.example.dattingapp.DTO.ResponseModel;
 import com.example.dattingapp.Models.User;
 import com.example.dattingapp.R;
 import com.example.dattingapp.common.RetrofitClient;
+import com.example.dattingapp.observerpattern.Observer;
+import com.example.dattingapp.observerpattern.Subject;
 import com.example.dattingapp.service.APIService;
+import com.example.dattingapp.utils.MessageManager;
 import com.example.dattingapp.utils.SharedPreference;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -30,12 +34,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SigninActivity extends AppCompatActivity {
+public class SigninActivity extends AppCompatActivity implements Observer {
 
     private TextView txtSignup;
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button continueButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,8 @@ public class SigninActivity extends AppCompatActivity {
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
         continueButton = findViewById(R.id.continueButton);
+        MessageManager.getInstance().register(this);
+
 
         txtSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,5 +120,23 @@ public class SigninActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MessageManager.getInstance().unregister(this);
+    }
+
+    @Override
+    public void update(Object object) {
+
+        Log.d("TEST", "Nhân");
+        Toast.makeText(this,"Nhanananana", Toast.LENGTH_LONG);
+    }
+
+    @Override
+    public void setSubject(Subject sub) {
+
     }
 }
