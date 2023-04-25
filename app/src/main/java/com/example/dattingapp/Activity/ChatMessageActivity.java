@@ -51,7 +51,7 @@ public class ChatMessageActivity extends AppCompatActivity {
         messageContent.sender = "heo";
         MessageContent messageContent1 = new MessageContent();
         messageContent1.sender="nhan";
-       messageContentList.add(messageContent1);
+        messageContentList.add(messageContent1);
         messageContentList.add(messageContent1);
         messageContentList.add(messageContent);
         messageContentList.add(messageContent);
