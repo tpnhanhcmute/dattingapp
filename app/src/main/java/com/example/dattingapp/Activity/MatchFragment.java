@@ -13,7 +13,9 @@ import android.view.ViewGroup;
 
 import com.example.dattingapp.Adapter.MatchAdapter;
 import com.example.dattingapp.Models.Match;
+import com.example.dattingapp.Models.User;
 import com.example.dattingapp.R;
+import com.example.dattingapp.utils.SharedPreference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,12 @@ public class MatchFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_match, container, false);
+        User user = new User();
+        user.setUserID("");
+        SharedPreference userShare = new SharedPreference();
+        userShare.SetUser(user);
+
+
 
         Mapping(view);
         SetListener();
@@ -39,24 +47,15 @@ public class MatchFragment extends Fragment {
     private void AddData() {
         matchList = new ArrayList<>();
         matchList.add(new Match());
-        matchList.add(new Match());
-        matchList.add(new Match());
-        matchList.add(new Match());
-        matchList.add(new Match());
-        matchList.add(new Match());
-        matchList.add(new Match());
-        matchList.add(new Match());
-        matchList.add(new Match());
-        matchList.add(new Match());
-        matchList.add(new Match());
-        matchList.add(new Match());
-        matchList.add(new Match());
+
 
         matchAdapter = new MatchAdapter(this.getContext(), matchList);
         recyclerViewMatch.setHasFixedSize(true);
+
+
+
         RecyclerView.LayoutManager layoutManager =
                 new GridLayoutManager(getContext().getApplicationContext(),2);
-
         recyclerViewMatch.setLayoutManager(layoutManager);
         recyclerViewMatch.setAdapter(matchAdapter);
 
