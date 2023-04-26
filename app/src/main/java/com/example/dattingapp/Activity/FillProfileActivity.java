@@ -119,11 +119,6 @@ public class FillProfileActivity  extends AppCompatActivity {
         if(!TextUtils.isEmpty(user.fullName)) editTextFullName.setText(user.fullName);
         if(!TextUtils.isEmpty(user.career)) editTextCareer.setText(user.career);
         if(!TextUtils.isEmpty(user.dateOfBirth)) editTextDateOfBirth.setText(user.dateOfBirth);
-
-        if(user.hobby != null){
-            hobbyAdapter.SetHobbySellected( user.hobby);
-        }
-
     }
 
     private void onItemSelectedHandler(AdapterView<?> parent, View view, int position, long id) {

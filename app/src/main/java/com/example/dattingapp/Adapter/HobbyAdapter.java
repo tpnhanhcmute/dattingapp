@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dattingapp.Activity.MainActivity;
 import com.example.dattingapp.R;
+import com.example.dattingapp.utils.SharedPreference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +21,6 @@ public class HobbyAdapter  extends RecyclerView.Adapter<HobbyAdapter.ViewHolder>
     Context context;
     List<String> listHobby;
     List<String> hobbySelected;
-    public  void SetHobbySellected(List<String> hobbySelected){
-        this.hobbySelected = hobbySelected;
-        notifyDataSetChanged();
-    }
     public  List<String> GetHobbySellected(){
         return hobbySelected;
     }
@@ -31,6 +28,7 @@ public class HobbyAdapter  extends RecyclerView.Adapter<HobbyAdapter.ViewHolder>
         this.listHobby = listHobby;
         this.context = context;
         hobbySelected= new ArrayList<>();
+        this.hobbySelected = SharedPreference.getInstance(context).GetUser().hobby==null?new ArrayList<String>():SharedPreference.getInstance(context).GetUser().hobby;
     }
     @NonNull
     @Override
@@ -44,12 +42,7 @@ public class HobbyAdapter  extends RecyclerView.Adapter<HobbyAdapter.ViewHolder>
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvHobby.setText(listHobby.get(position));
         holder.hobby = listHobby.get(position);
-        if(hobbySelected.contains(listHobby.get(position))){
-            holder.isSelected =false;
-            holder.tvHobby.setBackgroundResource(R.drawable.sellect_hobby);
-            holder.tvHobby.setTextColor(context.getResources().getColor(R.color.white));
-        }
-
+        holder.SetSelected();
     }
 
     @Override
@@ -81,6 +74,13 @@ public class HobbyAdapter  extends RecyclerView.Adapter<HobbyAdapter.ViewHolder>
                     isSelected = !isSelected;
                 }
             });
+        }
+        public  void SetSelected(){
+            if(hobbySelected.contains((hobby))){
+                isSelected =false;
+                tvHobby.setBackgroundResource(R.drawable.sellect_hobby);
+                tvHobby.setTextColor(context.getResources().getColor(R.color.white));
+            }
         }
     }
 }
