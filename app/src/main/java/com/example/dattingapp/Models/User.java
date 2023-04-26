@@ -2,6 +2,7 @@ package com.example.dattingapp.Models;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class User {
     public  String userID;
@@ -11,7 +12,7 @@ public class User {
     public  String career;
     public String dateOfBirth;
     public  Integer age;
-    public ArrayList<String> hobby;
+    public List<String> hobby;
     public  String gender;
     public  boolean isFirstLogin;
     public  String occupation;

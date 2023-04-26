@@ -97,7 +97,7 @@ public class SigninActivity extends AppCompatActivity implements Observer {
                     @Override
                     public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                         if(response.body().isError){
-                            Toast.makeText(getApplicationContext(), "Error: "+ response.body().message,Toast.LENGTH_SHORT);
+                            Toast.makeText(getApplicationContext(), "Error: "+ response.body().message,Toast.LENGTH_SHORT).show();
                             return;
                         }
                         Type type = new TypeToken<LoginResponse>(){}.getType();
@@ -106,6 +106,13 @@ public class SigninActivity extends AppCompatActivity implements Observer {
                         User user = loginResponse.user;
                         user.userID = loginResponse.id;
                         SharedPreference.getInstance(getApplicationContext()).SetUser(user);
+
+                        if(user.isFirstLogin){
+                            Intent intent = new Intent(SigninActivity.this, FillProfileActivity.class);
+                            startActivity(intent);
+                            return;
+                        }
+
                         Toast.makeText(getApplicationContext(), response.body().message,Toast.LENGTH_SHORT);
 
                         Intent intent = new Intent(SigninActivity.this, MainActivity.class);
@@ -114,7 +121,7 @@ public class SigninActivity extends AppCompatActivity implements Observer {
 
                     @Override
                     public void onFailure(Call<ResponseModel> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "Error: "+t.getMessage(),Toast.LENGTH_SHORT);
+                        Toast.makeText(getApplicationContext(), "Error: "+t.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -131,8 +138,6 @@ public class SigninActivity extends AppCompatActivity implements Observer {
     @Override
     public void update(Object object) {
 
-        Log.d("TEST", "Nhân");
-        Toast.makeText(this,"Nhanananana", Toast.LENGTH_LONG);
     }
 
     @Override

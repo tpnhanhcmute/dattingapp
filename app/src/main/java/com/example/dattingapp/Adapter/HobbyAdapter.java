@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dattingapp.Activity.MainActivity;
 import com.example.dattingapp.R;
 
 import java.util.ArrayList;
@@ -18,10 +19,11 @@ import java.util.List;
 public class HobbyAdapter  extends RecyclerView.Adapter<HobbyAdapter.ViewHolder>{
     Context context;
     List<String> listHobby;
-    List<String> hobbySelected;
+    public List<String> hobbySelected;
     public HobbyAdapter(Context context, List<String> listHobby) {
         this.listHobby = listHobby;
         this.context = context;
+        hobbySelected= new ArrayList<>();
     }
     @NonNull
     @Override
@@ -34,6 +36,7 @@ public class HobbyAdapter  extends RecyclerView.Adapter<HobbyAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvHobby.setText(listHobby.get(position));
+        holder.hobby = listHobby.get(position);
     }
 
     @Override
@@ -42,11 +45,12 @@ public class HobbyAdapter  extends RecyclerView.Adapter<HobbyAdapter.ViewHolder>
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public  Boolean isSelected= false;
+        public  String hobby;
+        public  Boolean isSelected;
         public TextView tvHobby;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            isSelected= false;
+            isSelected = true;
             tvHobby= itemView.findViewById(R.id.tvHobby);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -54,10 +58,13 @@ public class HobbyAdapter  extends RecyclerView.Adapter<HobbyAdapter.ViewHolder>
                     if(isSelected) {
                         tvHobby.setBackgroundResource(R.drawable.sellect_hobby);
                         tvHobby.setTextColor(context.getResources().getColor(R.color.white));
+                        hobbySelected.add(hobby);
+
                     }
                     else {
                         tvHobby.setBackgroundResource(R.drawable.light_violet_hobby);
-                        tvHobby.setTextColor(context.getResources().getColor(R.color.black));
+                        tvHobby.setTextColor(context.getResources().getColor(R.color.light_black));
+                        hobbySelected.remove(hobby);
                     }
                     isSelected = !isSelected;
                 }

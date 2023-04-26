@@ -1,6 +1,7 @@
 package com.example.dattingapp.service;
 
 import com.example.dattingapp.DTO.AuthenticationRequest;
+import com.example.dattingapp.DTO.FillProfileRequest;
 import com.example.dattingapp.DTO.LoginRequest;
 import com.example.dattingapp.DTO.RegisterRequest;
 import com.example.dattingapp.DTO.ResponseModel;
@@ -18,4 +19,7 @@ public interface APIService {
 
     @POST("users/login")
     Call<ResponseModel> login(@Body LoginRequest request);
+
+    @POST("users/update")
+    Call<ResponseModel> update(@Body FillProfileRequest request);
 }
