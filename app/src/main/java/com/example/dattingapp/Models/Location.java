@@ -1,7 +1,7 @@
 package com.example.dattingapp.Models;
 
 public class Location {
-    String name;
-    String lng;
-    String lat;
+    public  String name;
+    public  Double lat;
+    public  Double lng;
 }

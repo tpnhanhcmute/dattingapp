@@ -21,11 +21,14 @@
         <ImageButton
             android:id="@+id/signupBack"
             android:layout_width="wrap_content"
-            android:layout_gravity="left"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:background="@color/white"
+            android:contentDescription="@string/app_name"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
             app:srcCompat="@drawable/ic_back" />
 
         <ImageView
@@ -49,17 +52,16 @@
 
 
         <EditText
-            android:id="@+id/editTextPhone"
+            android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/edit_button"
             android:ems="10"
-            android:hint="Enter your phone number"
+            android:hint="Enter your email"
             android:inputType="textPersonName"
             android:padding="16dp"
             android:textColor="#5c5f72"
-            android:textSize="18sp"
             android:drawableRight="@drawable/ic_round_phone"
             />
 

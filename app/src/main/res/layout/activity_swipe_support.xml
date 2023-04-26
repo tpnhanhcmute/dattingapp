@@ -85,8 +85,9 @@
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_marginRight="50dp"
+                        android:padding="5dp"
                         android:scaleType="centerInside"
-                        app:srcCompat="@drawable/btnlike"
+                        app:srcCompat="@drawable/btnunlike5"
                         android:background="@drawable/while_gradiant_oval"
                         />
 
@@ -94,8 +95,9 @@
                         android:id="@+id/imageButton6"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
+                        android:padding="5dp"
                         android:scaleType="centerInside"
-                        app:srcCompat="@drawable/btnlike"
+                        app:srcCompat="@drawable/btnheart"
                         android:background="@drawable/while_gradiant_oval"
                         />
 

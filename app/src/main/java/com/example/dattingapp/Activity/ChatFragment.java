@@ -35,7 +35,7 @@ public class ChatFragment extends Fragment {
 
         View view =  inflater.inflate(R.layout.fragment_chat, container, false);
 
-
+        recyclerView = view.findViewById(R.id.recyclerView);
 
         // Tạo danh sách các ảnh avatar
         avatarList = new ArrayList<>();
@@ -75,7 +75,7 @@ public class ChatFragment extends Fragment {
         chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
 
 
-        mRecyclerView = view.findViewById(R.id.recyclerView2);
+        mRecyclerView = view.findViewById(R.id.recyclerView);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         mAdapter = new ChatItemAdapter(chatList);
         mRecyclerView.setLayoutManager(mLayoutManager);

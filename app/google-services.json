@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "709267786637",
+    "firebase_url": "https://datingapp-56f26-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "datingapp-56f26",
+    "storage_bucket": "datingapp-56f26.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709267786637:android:c8e88ca43bc2a403840bc4",
+        "android_client_info": {
+          "package_name": "com.example.dattingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "709267786637-08ik9911nedj9gnlm6jnjec8ctdiq6tf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJV7EY9PZdHbYAhObECjyd9wxmP0EpDwY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "709267786637-08ik9911nedj9gnlm6jnjec8ctdiq6tf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709267786637:android:a54137dd17d5d475840bc4",
+        "android_client_info": {
+          "package_name": "com.hcmute.dattingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "709267786637-08ik9911nedj9gnlm6jnjec8ctdiq6tf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJV7EY9PZdHbYAhObECjyd9wxmP0EpDwY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "709267786637-08ik9911nedj9gnlm6jnjec8ctdiq6tf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

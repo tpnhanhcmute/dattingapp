@@ -10,7 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dattingapp.Activity.MainActivity;
 import com.example.dattingapp.R;
+import com.example.dattingapp.utils.SharedPreference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +21,14 @@ public class HobbyAdapter  extends RecyclerView.Adapter<HobbyAdapter.ViewHolder>
     Context context;
     List<String> listHobby;
     List<String> hobbySelected;
+    public  List<String> GetHobbySellected(){
+        return hobbySelected;
+    }
     public HobbyAdapter(Context context, List<String> listHobby) {
         this.listHobby = listHobby;
         this.context = context;
+        hobbySelected= new ArrayList<>();
+        this.hobbySelected = SharedPreference.getInstance(context).GetUser().hobby==null?new ArrayList<String>():SharedPreference.getInstance(context).GetUser().hobby;
     }
     @NonNull
     @Override
@@ -34,6 +41,8 @@ public class HobbyAdapter  extends RecyclerView.Adapter<HobbyAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvHobby.setText(listHobby.get(position));
+        holder.hobby = listHobby.get(position);
+        holder.SetSelected();
     }
 
     @Override
@@ -42,26 +51,36 @@ public class HobbyAdapter  extends RecyclerView.Adapter<HobbyAdapter.ViewHolder>
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public  Boolean isSelected= false;
+        public  String hobby;
+        public  Boolean isSelected;
         public TextView tvHobby;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            isSelected= false;
             tvHobby= itemView.findViewById(R.id.tvHobby);
+            isSelected = true;
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(isSelected) {
                         tvHobby.setBackgroundResource(R.drawable.sellect_hobby);
                         tvHobby.setTextColor(context.getResources().getColor(R.color.white));
+                        hobbySelected.add(hobby);
                     }
                     else {
                         tvHobby.setBackgroundResource(R.drawable.light_violet_hobby);
-                        tvHobby.setTextColor(context.getResources().getColor(R.color.black));
+                        tvHobby.setTextColor(context.getResources().getColor(R.color.light_black));
+                        hobbySelected.remove(hobby);
                     }
                     isSelected = !isSelected;
                 }
             });
+        }
+        public  void SetSelected(){
+            if(hobbySelected.contains((hobby))){
+                isSelected =false;
+                tvHobby.setBackgroundResource(R.drawable.sellect_hobby);
+                tvHobby.setTextColor(context.getResources().getColor(R.color.white));
+            }
         }
     }
 }

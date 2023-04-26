@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:elevation="0dp"
     >
-
     <Button
         android:id="@+id/btnBack"
         android:layout_width="48dp"
@@ -186,6 +185,4 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
 </RelativeLayout>

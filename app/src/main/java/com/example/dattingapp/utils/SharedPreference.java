@@ -18,11 +18,12 @@ public class SharedPreference {
     private  static Context ctx;
     private  static  SharedPreference _instance;
 
-    public SharedPreference getInstance(){
+    public static SharedPreference getInstance(Context context){
+        ctx =context;
         if(_instance == null) _instance = new SharedPreference();
         return _instance;
     }
-    
+
     public  User GetUser(){
         SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String user =  sharedPreferences.getString(USERKEY,"");
@@ -41,7 +42,7 @@ public class SharedPreference {
         SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String location =  sharedPreferences.getString(LOCATIONKEY,"");
         if(location=="") return null;
-        Type type = new TypeToken<Location>(){}.getType(); //
+        Type type = new TypeToken<Location>(){}.getType();
         return new Gson().fromJson(location, type);
     }
     public  void SetLocation(Location location){

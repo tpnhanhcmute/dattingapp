@@ -2,7 +2,9 @@ package com.example.dattingapp.Activity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -15,15 +17,19 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dattingapp.Adapter.HobbyAdapter;
 import com.example.dattingapp.DTO.AuthenticationRequest;
-import com.example.dattingapp.Models.ResponseModel;
+import com.example.dattingapp.DTO.FillProfileRequest;
+import com.example.dattingapp.DTO.ResponseModel;
+import com.example.dattingapp.Models.User;
 import com.example.dattingapp.R;
 import com.example.dattingapp.common.RetrofitClient;
 import com.example.dattingapp.service.APIService;
+import com.example.dattingapp.utils.SharedPreference;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
@@ -36,7 +42,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FillProfileActivity  extends AppCompatActivity {
-    EditText editTextDateOfBirth;
+
     Spinner  spnGender;
     int year, month, day;
     List<String> listGender;
@@ -46,6 +52,17 @@ public class FillProfileActivity  extends AppCompatActivity {
     HobbyAdapter hobbyAdapter;
     List<String> listHobby;
     Button continueButton;
+
+
+    EditText editTextFullName;
+    EditText editTextCareer;
+    EditText editTextDateOfBirth;
+    EditText editTextEmail;
+    EditText editTextPhoneNumber;
+
+
+    //--------------------------------------------Request Fill Profile--------------------------------------------//
+    FillProfileRequest fillProfileRequest = new FillProfileRequest();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +72,7 @@ public class FillProfileActivity  extends AppCompatActivity {
         SetData();
         BindingData();
 
-
+        fillProfileRequest.id = SharedPreference.getInstance(this).GetUser().userID;
 
     }
 
@@ -92,16 +109,23 @@ public class FillProfileActivity  extends AppCompatActivity {
         layoutManager.setJustifyContent(JustifyContent.FLEX_START);
         rcHobby.setLayoutManager(layoutManager);
         rcHobby.setAdapter(hobbyAdapter);
-
-        //recyclerViewMatch.scrollToPosition(messageList.size()-1);
         hobbyAdapter.notifyDataSetChanged();
 
+
+
+
+        //-----------------------------------------Binding infomation-----------------------------//
+        User user = SharedPreference.getInstance(this).GetUser();
+        if(!TextUtils.isEmpty(user.fullName)) editTextFullName.setText(user.fullName);
+        if(!TextUtils.isEmpty(user.career)) editTextCareer.setText(user.career);
+        if(!TextUtils.isEmpty(user.dateOfBirth)) editTextDateOfBirth.setText(user.dateOfBirth);
     }
 
     private void onItemSelectedHandler(AdapterView<?> parent, View view, int position, long id) {
         Adapter adapter = parent.getAdapter();
         String gender = (String)adapter.getItem(position);
-        Toast.makeText(getApplicationContext(), "Selected Employee: " +gender ,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Selected Gender: " + gender ,Toast.LENGTH_SHORT).show();
+//--------------------------------------------Request Fill Profile--------------------------------------------//
 
     }
 
@@ -122,6 +146,7 @@ public class FillProfileActivity  extends AppCompatActivity {
             // Do something with the date chosen by the user
             String date = day + "/" + (month + 1) + "/" + year;
             editTextDateOfBirth.setText(date);
+//--------------------------------------------Request Fill Profile--------------------------------------------/
         }
     };
 
@@ -132,6 +157,12 @@ public class FillProfileActivity  extends AppCompatActivity {
         imageViewBack = findViewById(R.id.imageViewBack);
         rcHobby = findViewById(R.id.rcHobby);
         continueButton = findViewById(R.id.continueButton);
+
+        editTextFullName = findViewById(R.id.editTextTextName);
+        editTextCareer = findViewById(R.id.editTextTextCareer);
+        editTextDateOfBirth = findViewById(R.id.editTextDateOfBirth);
+        editTextEmail =findViewById(R.id.editTextEmail);
+        editTextPhoneNumber = findViewById(R.id.editTextPhone);
     }
     private  void SetListener(){
         editTextDateOfBirth.setOnClickListener(new View.OnClickListener() {
@@ -163,27 +194,66 @@ public class FillProfileActivity  extends AppCompatActivity {
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Authentication();
+                UpdateProfile();
             }
         });
-
     }
 
-    private void Authentication() {
+    private void UpdateProfile() {
+
+        String fullName = editTextFullName.getText().toString();
+        String career = editTextCareer.getText().toString();
+        String dateOfBirth = editTextDateOfBirth.getText().toString();
+        String gender = spnGender.getSelectedItem().toString();
+        String email = editTextEmail.getText().toString();
+        String phoneNumber = editTextPhoneNumber.getText().toString();
+
+        if(TextUtils.isEmpty(fullName)){
+            editTextFullName.setError("Pleas enter your full name");
+            editTextFullName.requestFocus();
+            return;
+        }
+        if(TextUtils.isEmpty(career)){
+            editTextCareer.setError("Pleas enter your career");
+            editTextCareer.requestFocus();
+            return;
+        }
+        if(TextUtils.isEmpty(dateOfBirth)){
+            editTextDateOfBirth.setError("Pleas enter your password");
+            editTextDateOfBirth.requestFocus();
+            return;
+        }
 
         APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
-        AuthenticationRequest request = new AuthenticationRequest();
-        request.email = "tpnhan12a1@gmail.com";
-        apiService.authentication(request).enqueue(new Callback<ResponseModel>() {
+        fillProfileRequest.id = SharedPreference.getInstance(FillProfileActivity.this).GetUser().userID;
+        fillProfileRequest.user = new User();
+        fillProfileRequest.user.hobby = new ArrayList<>(GetHobbySellected());
+        fillProfileRequest.user.fullName = fullName;
+        fillProfileRequest.user.dateOfBirth = dateOfBirth;
+        fillProfileRequest.user.gender = gender;
+        fillProfileRequest.user.career = career;
+
+        apiService.update(fillProfileRequest).enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                if(response.body().isError) {
+                    Toast.makeText(getApplicationContext(), "Error: "+ response.body().message,Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Toast.makeText(getApplicationContext(), response.body().message,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(FillProfileActivity.this, MainActivity.class);
+                startActivity(intent);
             }
 
             @Override
             public void onFailure(Call<ResponseModel> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Error: "+ t.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
+
+    }
+    public  List<String> GetHobbySellected(){
+        //--------------------------------------------Request Fill Profile--------------------------------------------//
+        return hobbyAdapter.GetHobbySellected();
     }
 }
