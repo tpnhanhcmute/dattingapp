@@ -61,8 +61,6 @@ public class FillProfileActivity  extends AppCompatActivity {
     EditText editTextPhoneNumber;
 
 
-
-
     //--------------------------------------------Request Fill Profile--------------------------------------------//
     FillProfileRequest fillProfileRequest = new FillProfileRequest();
     @Override
@@ -112,6 +110,19 @@ public class FillProfileActivity  extends AppCompatActivity {
         rcHobby.setLayoutManager(layoutManager);
         rcHobby.setAdapter(hobbyAdapter);
         hobbyAdapter.notifyDataSetChanged();
+
+
+
+
+        //-----------------------------------------Binding infomation-----------------------------//
+        User user = SharedPreference.getInstance(this).GetUser();
+        if(!TextUtils.isEmpty(user.fullName)) editTextFullName.setText(user.fullName);
+        if(!TextUtils.isEmpty(user.career)) editTextCareer.setText(user.career);
+        if(!TextUtils.isEmpty(user.dateOfBirth)) editTextDateOfBirth.setText(user.dateOfBirth);
+
+        if(user.hobby != null){
+            hobbyAdapter.SetHobbySellected( user.hobby);
+        }
 
     }
 
@@ -219,11 +230,11 @@ public class FillProfileActivity  extends AppCompatActivity {
         }
 
         APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
-        fillProfileRequest.id = "4Npa8hpqOsuNWcRqohVb";
+        fillProfileRequest.id = SharedPreference.getInstance(FillProfileActivity.this).GetUser().userID;
         fillProfileRequest.user = new User();
         fillProfileRequest.user.hobby = new ArrayList<>(GetHobbySellected());
         fillProfileRequest.user.fullName = fullName;
-        fillProfileRequest.user.fullName = dateOfBirth;
+        fillProfileRequest.user.dateOfBirth = dateOfBirth;
         fillProfileRequest.user.gender = gender;
         fillProfileRequest.user.career = career;
 
@@ -248,6 +259,6 @@ public class FillProfileActivity  extends AppCompatActivity {
     }
     public  List<String> GetHobbySellected(){
         //--------------------------------------------Request Fill Profile--------------------------------------------//
-        return hobbyAdapter.hobbySelected;
+        return hobbyAdapter.GetHobbySellected();
     }
 }

@@ -19,7 +19,14 @@ import java.util.List;
 public class HobbyAdapter  extends RecyclerView.Adapter<HobbyAdapter.ViewHolder>{
     Context context;
     List<String> listHobby;
-    public List<String> hobbySelected;
+    List<String> hobbySelected;
+    public  void SetHobbySellected(List<String> hobbySelected){
+        this.hobbySelected = hobbySelected;
+        notifyDataSetChanged();
+    }
+    public  List<String> GetHobbySellected(){
+        return hobbySelected;
+    }
     public HobbyAdapter(Context context, List<String> listHobby) {
         this.listHobby = listHobby;
         this.context = context;
@@ -37,6 +44,12 @@ public class HobbyAdapter  extends RecyclerView.Adapter<HobbyAdapter.ViewHolder>
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvHobby.setText(listHobby.get(position));
         holder.hobby = listHobby.get(position);
+        if(hobbySelected.contains(listHobby.get(position))){
+            holder.isSelected =false;
+            holder.tvHobby.setBackgroundResource(R.drawable.sellect_hobby);
+            holder.tvHobby.setTextColor(context.getResources().getColor(R.color.white));
+        }
+
     }
 
     @Override
@@ -50,8 +63,8 @@ public class HobbyAdapter  extends RecyclerView.Adapter<HobbyAdapter.ViewHolder>
         public TextView tvHobby;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            isSelected = true;
             tvHobby= itemView.findViewById(R.id.tvHobby);
+            isSelected = true;
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -59,7 +72,6 @@ public class HobbyAdapter  extends RecyclerView.Adapter<HobbyAdapter.ViewHolder>
                         tvHobby.setBackgroundResource(R.drawable.sellect_hobby);
                         tvHobby.setTextColor(context.getResources().getColor(R.color.white));
                         hobbySelected.add(hobby);
-
                     }
                     else {
                         tvHobby.setBackgroundResource(R.drawable.light_violet_hobby);

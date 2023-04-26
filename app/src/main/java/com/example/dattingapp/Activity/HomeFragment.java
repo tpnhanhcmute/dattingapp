@@ -63,8 +63,10 @@ public class HomeFragment extends Fragment {
             public void onCardSwiped(Direction direction) {
                 Log.d(TAG, "onCardSwiped: p=" + manager.getTopPosition() + " d=" + direction);
                 if (direction == Direction.Right){
+                    //----------------------------------------------Like--------------------------------------------//
                     Toast.makeText(getContext(), "Direction Right", Toast.LENGTH_SHORT).show();
                 }
+                //----------------------------------------------Dislike--------------------------------------------//
                 if (direction == Direction.Left){
                     Toast.makeText(getContext(), "Direction Left", Toast.LENGTH_SHORT).show();
                 }
