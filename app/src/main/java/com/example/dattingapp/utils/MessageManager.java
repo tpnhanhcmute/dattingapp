@@ -31,7 +31,8 @@ public class MessageManager extends Application implements Subject {
         FirebaseApp.initializeApp(this);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         messageObserverList = new ArrayList<>();
-        messageRef= database.getReference("message").child("Nhan");
+        messageRef= database.getReference("message");
+
         messageRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

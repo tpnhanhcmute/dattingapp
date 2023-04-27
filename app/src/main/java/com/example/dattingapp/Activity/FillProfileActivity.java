@@ -34,7 +34,10 @@ import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -118,7 +121,7 @@ public class FillProfileActivity  extends AppCompatActivity {
         User user = SharedPreference.getInstance(this).GetUser();
         if(!TextUtils.isEmpty(user.fullName)) editTextFullName.setText(user.fullName);
         if(!TextUtils.isEmpty(user.career)) editTextCareer.setText(user.career);
-        if(!TextUtils.isEmpty(user.dateOfBirth)) editTextDateOfBirth.setText(user.dateOfBirth);
+        if(user.dateOfBirth != null) editTextDateOfBirth.setText(user.dateOfBirth.toString());
     }
 
     private void onItemSelectedHandler(AdapterView<?> parent, View view, int position, long id) {
@@ -203,11 +206,11 @@ public class FillProfileActivity  extends AppCompatActivity {
 
         String fullName = editTextFullName.getText().toString();
         String career = editTextCareer.getText().toString();
-        String dateOfBirth = editTextDateOfBirth.getText().toString();
+        String dateOfBirthText = editTextDateOfBirth.getText().toString();
         String gender = spnGender.getSelectedItem().toString();
         String email = editTextEmail.getText().toString();
         String phoneNumber = editTextPhoneNumber.getText().toString();
-
+        String dateOfBirth = editTextDateOfBirth.getText().toString();
         if(TextUtils.isEmpty(fullName)){
             editTextFullName.setError("Pleas enter your full name");
             editTextFullName.requestFocus();
@@ -218,7 +221,7 @@ public class FillProfileActivity  extends AppCompatActivity {
             editTextCareer.requestFocus();
             return;
         }
-        if(TextUtils.isEmpty(dateOfBirth)){
+        if(TextUtils.isEmpty(dateOfBirthText)){
             editTextDateOfBirth.setError("Pleas enter your password");
             editTextDateOfBirth.requestFocus();
             return;
