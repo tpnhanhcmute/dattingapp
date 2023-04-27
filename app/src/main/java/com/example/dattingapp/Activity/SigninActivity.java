@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dattingapp.DTO.LoginRequest;
 import com.example.dattingapp.DTO.LoginResponse;
-import com.example.dattingapp.DTO.RegisterResponse;
 import com.example.dattingapp.DTO.ResponseModel;
 import com.example.dattingapp.Models.User;
 import com.example.dattingapp.R;
@@ -119,8 +117,9 @@ public class SigninActivity extends AppCompatActivity implements Observer {
                             Toast.makeText(getApplicationContext(), "Error: "+ response.body().message,Toast.LENGTH_SHORT).show();
                             return;
                         }
+
                         Type type = new TypeToken<LoginResponse>(){}.getType();
-                        LoginResponse loginResponse =  new Gson().fromJson(response.body().data.toString(),type);
+                        LoginResponse loginResponse =  new Gson().fromJson(new Gson().toJson(response.body().data),type);
                         //Add builder
                         User user = loginResponse.user;
                         user.userID = loginResponse.id;
