@@ -2,7 +2,9 @@ package com.example.dattingapp.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +38,9 @@ public class SignupActivity extends AppCompatActivity {
     private Button continueButton;
     private EditText  editTextEmail;
     private  EditText editTextPassword;
+    private ImageButton imageButtonHintPassword;
+
+    private  boolean isHintPassword = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,7 @@ public class SignupActivity extends AppCompatActivity {
         continueButton = findViewById(R.id.continueButton);
         editTextPassword = findViewById(R.id.editTextPassWord);
         editTextEmail = findViewById(R.id.editTextEmail);
+        imageButtonHintPassword = findViewById(R.id.imageButtonHintPassword);
     }
     private  void SetListener(){
         txtSignin.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +70,23 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        imageButtonHintPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isHintPassword){
+                    editTextPassword.setTransformationMethod(null);
+                    editTextPassword.setSelection(editTextPassword.getText().toString().length());
+                    imageButtonHintPassword.setImageResource(R.drawable.ic_outline_remove_red_eye_24_active);
+                }
+                else {
+                    editTextPassword.setTransformationMethod(new PasswordTransformationMethod());
+                    editTextPassword.setSelection(editTextPassword.getText().toString().length());
+                    imageButtonHintPassword.setImageResource(R.drawable.ic_outline_remove_red_eye_24);
+                }
+                isHintPassword= !isHintPassword;
             }
         });
 

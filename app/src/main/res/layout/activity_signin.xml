@@ -53,29 +53,52 @@
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/edit_button"
-            android:hint="Enter your phone email"
-            android:inputType="textPersonName"
-            android:padding="16dp"
-            android:textColor="#5c5f72"
-            android:textSize="18sp"
-            android:drawableLeft="@drawable/ic_round_phone"
-             />
-
-        <EditText
-            android:id="@+id/editTextPassword"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/edit_button"
             android:ems="10"
-            android:hint="Please Enter Your Password"
+            android:hint="Enter your email"
             android:inputType="textPersonName"
-            android:padding="16dp"
+            android:paddingLeft= "10dp"
+            android:paddingRight= "10dp"
             android:textColor="#5c5f72"
-            android:textSize="18sp"
-            android:drawableLeft="@drawable/ic_round_password"
+            android:drawableLeft="@drawable/ic_round_phone_24"
             />
 
+        <RelativeLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <EditText
+                android:id="@+id/editTextPassWord"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/edit_button"
+                android:ems="10"
+                android:hint="Enter Your Password"
+                android:inputType="textPassword"
+                android:paddingLeft= "10dp"
+                android:paddingRight= "10dp"
+                android:textColor="#5c5f72"
+                android:textSize="18sp"
+                android:drawableLeft="@drawable/ic_round_lock_24"/>
+
+            <ImageButton
+                android:id="@+id/imageButtonHintPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                app:srcCompat="@drawable/ic_outline_remove_red_eye_24" />
+
+        </RelativeLayout>
         <Button
             android:id="@+id/continueButton"
             style="@android:style/Widget.Button"
@@ -83,7 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
             android:background="@drawable/violet_round_fill"
-            android:text="Login"
+            android:text="SIGN IN"
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:textStyle="bold" />

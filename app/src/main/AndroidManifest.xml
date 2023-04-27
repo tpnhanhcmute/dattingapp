@@ -71,6 +71,7 @@
             android:name=".Activity.SignupActivity"
             android:exported="true">
 
+
         </activity>
     </application>
 

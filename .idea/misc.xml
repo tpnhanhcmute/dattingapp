@@ -13,9 +13,13 @@
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/gradiant_match_holder.xml" value="0.2445" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/heart.xml" value="0.1525" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/heart_background.xml" value="0.2985" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_baseline_cancel_24.xml" value="0.304" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.2145" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_baseline_keyboard_backspace_24.xml" value="0.2145" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.304" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.304" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1535" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.304" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_outline_favorite_24.xml" value="0.2145" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_outline_heart_broken_wireframe.xml" value="0.1535" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_outline_home_wireframe.xml" value="0.1535" />
@@ -24,9 +28,16 @@
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_round_arrow_drop_down_24.xml" value="0.304" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_round_chat_bubble.xml" value="0.1535" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_round_chat_bubble_wireframe.xml" value="0.1535" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_round_edit_24.xml" value="0.304" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_round_email_24.xml" value="0.304" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_round_free_cancellation_24.xml" value="0.304" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_round_heart_broken.xml" value="0.304" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_round_home.xml" value="0.2145" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_round_map.xml" value="0.2145" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_round_password.xml" value="0.304" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_round_person_24.xml" value="0.2145" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_round_phone.xml" value="0.304" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/ic_round_send_24.xml" value="0.304" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/item_home_selection.xml" value="0.2135" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/item_selection.xml" value="0.2135" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/drawable/light_violet_hobby.xml" value="0.1535" />
@@ -50,8 +61,8 @@
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/layout/activity_personal.xml" value="0.30052083333333335" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/layout/activity_setting.xml" value="0.2753623188405797" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/layout/activity_signin.xml" value="0.14666666666666667" />
-        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/layout/activity_signup.xml" value="0.30052083333333335" />
-        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/layout/activity_start.xml" value="0.30052083333333335" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/layout/activity_signup.xml" value="0.22" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/layout/activity_start.xml" value="0.14666666666666667" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/layout/activity_swipe_support.xml" value="0.14666666666666667" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/layout/activity_verity_otp.xml" value="0.22" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/layout/chat_item.xml" value="0.30052083333333335" />
@@ -59,6 +70,7 @@
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/layout/createpin.xml" value="0.20729166666666668" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/layout/fragment_chat.xml" value="0.20729166666666668" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/layout/fragment_first.xml" value="0.30052083333333335" />
+        <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/layout/fragment_frame__setting.xml" value="0.12447916666666667" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/layout/fragment_home.xml" value="0.20729166666666668" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/layout/fragment_match.xml" value="0.12" />
         <entry key="..\:/2022_2023/HK2/CNPMHDT/datingapp/app/src/main/res/layout/fragment_second.xml" value="0.30052083333333335" />
