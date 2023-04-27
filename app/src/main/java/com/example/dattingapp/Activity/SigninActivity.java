@@ -3,6 +3,7 @@ package com.example.dattingapp.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -40,7 +41,8 @@ public class SigninActivity extends AppCompatActivity implements Observer {
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button continueButton;
-
+    private  ImageButton imageButtonHintPassword;
+    private  boolean isHintPassword =true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +51,27 @@ public class SigninActivity extends AppCompatActivity implements Observer {
 
         txtSignup = (TextView) findViewById(R.id.txtSignup);
         editTextEmail = findViewById(R.id.editTextEmail);
-        editTextPassword = findViewById(R.id.editTextPassword);
+        editTextPassword = findViewById(R.id.editTextPassWord);
         continueButton = findViewById(R.id.continueButton);
+        imageButtonHintPassword = findViewById(R.id.imageButtonHintPassword);
         MessageManager.getInstance().register(this);
 
+        imageButtonHintPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isHintPassword){
+                    editTextPassword.setTransformationMethod(null);
+                    editTextPassword.setSelection(editTextPassword.getText().toString().length());
+                    imageButtonHintPassword.setImageResource(R.drawable.ic_outline_remove_red_eye_24_active);
+                }
+                else {
+                    editTextPassword.setTransformationMethod(new PasswordTransformationMethod());
+                    editTextPassword.setSelection(editTextPassword.getText().toString().length());
+                    imageButtonHintPassword.setImageResource(R.drawable.ic_outline_remove_red_eye_24);
+                }
+                isHintPassword= !isHintPassword;
+            }
+        });
 
         txtSignup.setOnClickListener(new View.OnClickListener() {
             @Override
