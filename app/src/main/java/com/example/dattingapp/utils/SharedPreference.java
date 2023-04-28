@@ -38,6 +38,14 @@ public class SharedPreference {
         editor.putString(USERKEY, userString);
         editor.apply();
     }
+
+    public  void SetUserS(String x){
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor =  sharedPreferences.edit();
+        editor.putString(USERKEY, x);
+        editor.apply();
+    }
+
     public Location GetLocation(){
         SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String location =  sharedPreferences.getString(LOCATIONKEY,"");
@@ -52,4 +60,12 @@ public class SharedPreference {
         editor.putString(LOCATIONKEY, locationString);
         editor.apply();
     }
+
+    public boolean isLoggedIn() {
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(USERKEY, null) != null;
+    }
+
+
+
 }

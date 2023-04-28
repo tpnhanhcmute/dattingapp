@@ -86,15 +86,64 @@
 <!--            android:textSize="16sp"-->
 <!--            />-->
 
-        <SeekBar
-            android:id="@+id/seekBar"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:padding="10dp"
-            android:progressTint="@color/violet"
-            android:scrollbarSize="20dp"
-            android:thumbTint="@color/violet"
-            android:tickMarkTint="@color/violet" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <Button
+                android:id="@+id/incrementButton"
+                android:layout_width="66dp"
+                android:layout_height="32dp"
+                android:layout_below="@+id/linearLayout"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/violet_round_fill"
+                android:text="-"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.56"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                app:layout_constraintVertical_bias="0.139" />
+
+
+
+
+            <TextView
+                android:id="@+id/ageTextView"
+                android:layout_width="89dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:text="18"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/decrementButton"
+                android:layout_width="67dp"
+                android:layout_height="29dp"
+                android:layout_below="@+id/linearLayout"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/violet_round_fill"
+                android:text="+"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.56"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                app:layout_constraintVertical_bias="0.139" />
+
+        </LinearLayout>
 
 
         <TextView
@@ -108,15 +157,66 @@
             android:paddingTop="5dp"
             android:paddingLeft="15dp"/>
 
-
-        <SeekBar
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:padding="10dp"
-            android:progressTint="@color/violet"
-            android:scrollbarSize="20dp"
-            android:thumbTint="@color/violet"
-            android:tickMarkTint="@color/violet" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/incrementButton2"
+                android:layout_width="66dp"
+                android:layout_height="32dp"
+                android:layout_below="@+id/linearLayout"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/violet_round_fill"
+                android:text="-"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.56"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                app:layout_constraintVertical_bias="0.139" />
+
+            <TextView
+                android:id="@+id/ageTextView2"
+                android:layout_width="89dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:text="18"
+
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/decrementButton2"
+                android:layout_width="67dp"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/linearLayout"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/violet_round_fill"
+                android:text="+"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.56"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                app:layout_constraintVertical_bias="0.139" />
+
+
+
+        </LinearLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
