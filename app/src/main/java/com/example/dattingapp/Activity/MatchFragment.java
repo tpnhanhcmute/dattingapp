@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -13,11 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.dattingapp.Adapter.MatchAdapter;
-import com.example.dattingapp.DTO.GetmatchRequest;
-import com.example.dattingapp.DTO.GetmatchRespone;
+import com.example.dattingapp.DTO.UserRequest;
 import com.example.dattingapp.DTO.ResponseModel;
 import com.example.dattingapp.Models.Match;
-import com.example.dattingapp.Models.User;
 import com.example.dattingapp.R;
 import com.example.dattingapp.common.RetrofitClient;
 import com.example.dattingapp.service.APIService;
@@ -43,10 +40,10 @@ public class MatchFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_match, container, false);
         SharedPreference userShare = SharedPreference.getInstance(getContext());
         APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
-        GetmatchRequest getmatchRequest = new GetmatchRequest();
-        getmatchRequest.id = userShare.GetUser().userID;
+        UserRequest UserRequest = new UserRequest();
+        UserRequest.userID = userShare.GetUser().userID;
 
-        apiService.getmatch(getmatchRequest).enqueue(new Callback<ResponseModel>() {
+        apiService.getmatch(UserRequest).enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if(response.body().isError){
