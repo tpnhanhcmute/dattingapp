@@ -36,7 +36,7 @@ public class VerifyOtp extends AppCompatActivity {
        pin2EditText = findViewById(R.id.pin2);
        pin3EditText = findViewById(R.id.pin3);
        pin4EditText = findViewById(R.id.pin4);
-       continueButton = findViewById(R.id.continueButton);
+       continueButton = findViewById(R.id.buttonContinue);
 
        pin1EditText.addTextChangedListener(new TextWatcher() {
            @Override

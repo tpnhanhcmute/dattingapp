@@ -135,28 +135,14 @@
                     android:minHeight="48dp"
                     android:spinnerMode="dropdown" />
 
-                <EditText
-                    android:id="@+id/editTextEmail"
+                <TextView
+                    android:id="@+id/textViewEmail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/edit_button"
                     android:drawableRight="@drawable/ic_round_email_24"
                     android:ems="10"
-                    android:hint="Email"
-                    android:inputType="textPersonName"
-                    android:minHeight="48dp"
-                    android:padding="10dp" />
-
-                <EditText
-                    android:id="@+id/editTextPhone"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/edit_button"
-                    android:ems="10"
-                    android:hint="Phone Number"
-                    android:inputType="number"
                     android:minHeight="48dp"
                     android:padding="10dp" />
             </LinearLayout>
@@ -179,7 +165,7 @@
                 android:gravity="center|center">
 
                 <Button
-                    android:id="@+id/continueButton"
+                    android:id="@+id/buttonContinue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"

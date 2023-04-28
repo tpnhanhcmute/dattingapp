@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-import com.example.dattingapp.Frame_Setting;
 import com.example.dattingapp.R;
 import com.example.dattingapp.databinding.ActivityMainBinding;
 
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(new MatchFragment());
                     break;
                 case  R.id.profile:
-                    replaceFragment(new Frame_Setting());
+                    replaceFragment(new SettingFragment());
 
             }
         return true;

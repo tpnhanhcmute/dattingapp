@@ -12,24 +12,44 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.dattingapp.DTO.ResponseModel;
+import com.example.dattingapp.DTO.UploadImageRequest;
 import com.example.dattingapp.Models.UploadImageModel;
+import com.example.dattingapp.Models.User;
 import com.example.dattingapp.R;
+import com.example.dattingapp.common.RetrofitClient;
+import com.example.dattingapp.service.APIService;
+import com.example.dattingapp.service.FireStoreService;
+import com.example.dattingapp.utils.SharedPreference;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class AddPictureActivity extends AppCompatActivity {
 
@@ -61,8 +81,11 @@ public class AddPictureActivity extends AppCompatActivity {
     ImageButton imageButtonCancel3;
     ImageButton imageButtonCancel4;
 
+    Button buttonContinue;
     RelativeLayout relativeLayoutChoose;
     Uri mUri;
+
+    public String[] urls;
 
     HashMap< RelativeLayout, UploadImageModel> viewMapping = new HashMap<>();
 
@@ -72,6 +95,7 @@ public class AddPictureActivity extends AppCompatActivity {
         Mapping();
         SetListener();
         SetStatusCancelButton();
+        urls = new String[4];
     }
 
     private void SetStatusCancelButton() {
@@ -109,6 +133,58 @@ public class AddPictureActivity extends AppCompatActivity {
                 }
             });
         }
+
+        buttonContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Uri> uris = new ArrayList<Uri>();
+                for(Map.Entry<RelativeLayout, UploadImageModel> entry :viewMapping.entrySet()){
+                    if(entry.getValue().uri != null){
+                        uris.add(entry.getValue().uri);
+                    }
+                }
+
+                FireStoreService.getInstance().UploadImage(uris, new OnSuccessListener<List<String>>() {
+                    @Override
+                    public void onSuccess(List<String> listUrls) {
+
+                        Log.d("UploadImage", String.valueOf(listUrls.size()));
+                        User user = SharedPreference.getInstance(AddPictureActivity.this).GetUser();
+                        UploadImageRequest request = new UploadImageRequest();
+                        request.userID = user.userID;
+                        request.listImage = listUrls;
+
+                        APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
+                        apiService.uploadImage(request).enqueue(new Callback<ResponseModel>() {
+                            @Override
+                            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                                if(response.body().isError) {
+                                    Toast.makeText(getApplicationContext(),response.message(),Toast.LENGTH_SHORT).show();
+                                            return;
+                                }
+                                onBackPressed();
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseModel> call, Throwable t) {
+                                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+
+
+
+
+                    }
+                }, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+            }
+        });
     }
     private  void Mapping(){
         relativeLayout1 = findViewById(R.id.relativeLayout1);
@@ -130,6 +206,8 @@ public class AddPictureActivity extends AppCompatActivity {
         UploadImageModel uploadImageModel2 = new UploadImageModel(shapeableImageView2,imageButtonCancel2);
         UploadImageModel uploadImageModel3 = new UploadImageModel(shapeableImageView3,imageButtonCancel3);
         UploadImageModel uploadImageModel4 = new UploadImageModel(shapeableImageView4,imageButtonCancel4);
+
+        buttonContinue= findViewById(R.id.buttonContinue);
 
         viewMapping.put(relativeLayout1,uploadImageModel1);
         viewMapping.put(relativeLayout2,uploadImageModel2);
@@ -176,7 +254,9 @@ public class AddPictureActivity extends AppCompatActivity {
                             return;
                         }
                         Uri uri = data.getData();
+
                         viewMapping.get(relativeLayoutChoose).uri = uri;
+                        Log.d("IMAGE",uri.getPath());
                         try {
                             Bitmap bitmap =
                                     MediaStore.Images.Media.getBitmap(getContentResolver(), uri);

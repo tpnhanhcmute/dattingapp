@@ -50,7 +50,7 @@ public class SigninActivity extends AppCompatActivity implements Observer {
         txtSignup = (TextView) findViewById(R.id.txtSignup);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassWord);
-        continueButton = findViewById(R.id.continueButton);
+        continueButton = findViewById(R.id.buttonContinue);
         imageButtonHintPassword = findViewById(R.id.imageButtonHintPassword);
         MessageManager.getInstance().register(this);
 

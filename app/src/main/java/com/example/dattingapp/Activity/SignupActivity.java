@@ -2,7 +2,6 @@ package com.example.dattingapp.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -17,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.dattingapp.DTO.RegisterRequest;
 import com.example.dattingapp.DTO.RegisterResponse;
 import com.example.dattingapp.DTO.ResponseModel;
-import com.example.dattingapp.Models.Location;
 import com.example.dattingapp.R;
 import com.example.dattingapp.common.Const;
 import com.example.dattingapp.common.RetrofitClient;
@@ -52,7 +50,7 @@ public class SignupActivity extends AppCompatActivity {
     private void  Mapping(){
         txtSignin = (TextView)findViewById(R.id.txtSignin);
         signupBack = findViewById(R.id.signupBack);
-        continueButton = findViewById(R.id.continueButton);
+        continueButton = findViewById(R.id.buttonContinue);
         editTextPassword = findViewById(R.id.editTextPassWord);
         editTextEmail = findViewById(R.id.editTextEmail);
         imageButtonHintPassword = findViewById(R.id.imageButtonHintPassword);
