@@ -195,6 +195,7 @@ public class SigninActivity extends AppCompatActivity implements Observer {
 
                     }
                 });
+                locationManager.removeUpdates(this);
             }
         });
 
