@@ -2,7 +2,6 @@ package com.example.dattingapp.Activity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -15,14 +14,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dattingapp.Adapter.HobbyAdapter;
-import com.example.dattingapp.DTO.AuthenticationRequest;
 import com.example.dattingapp.DTO.FillProfileRequest;
 import com.example.dattingapp.DTO.ResponseModel;
 import com.example.dattingapp.Models.User;
@@ -34,10 +32,7 @@ import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -60,8 +55,7 @@ public class FillProfileActivity  extends AppCompatActivity {
     EditText editTextFullName;
     EditText editTextCareer;
     EditText editTextDateOfBirth;
-    EditText editTextEmail;
-    EditText editTextPhoneNumber;
+    TextView textViewEmail;
 
 
     //--------------------------------------------Request Fill Profile--------------------------------------------//
@@ -104,8 +98,6 @@ public class FillProfileActivity  extends AppCompatActivity {
 
         hobbyAdapter = new HobbyAdapter(this, listHobby);
         rcHobby.setHasFixedSize(true);
-//        RecyclerView.LayoutManager layoutManager =
-//                new GridLayoutManager(this,2);
 
         FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(this);
         layoutManager.setFlexDirection(FlexDirection.ROW);
@@ -114,14 +106,12 @@ public class FillProfileActivity  extends AppCompatActivity {
         rcHobby.setAdapter(hobbyAdapter);
         hobbyAdapter.notifyDataSetChanged();
 
-
-
-
         //-----------------------------------------Binding infomation-----------------------------//
         User user = SharedPreference.getInstance(this).GetUser();
         if(!TextUtils.isEmpty(user.fullName)) editTextFullName.setText(user.fullName);
         if(!TextUtils.isEmpty(user.career)) editTextCareer.setText(user.career);
-        if(user.dateOfBirth != null) editTextDateOfBirth.setText(user.dateOfBirth.toString());
+        if(user.dateOfBirth != null) editTextDateOfBirth.setText(user.dateOfBirth);
+        if(!TextUtils.isEmpty(user.email)) textViewEmail.setText(user.email);
     }
 
     private void onItemSelectedHandler(AdapterView<?> parent, View view, int position, long id) {
@@ -129,7 +119,6 @@ public class FillProfileActivity  extends AppCompatActivity {
         String gender = (String)adapter.getItem(position);
         Toast.makeText(getApplicationContext(), "Selected Gender: " + gender ,Toast.LENGTH_SHORT).show();
 //--------------------------------------------Request Fill Profile--------------------------------------------//
-
     }
 
     private void SetData() {
@@ -159,13 +148,12 @@ public class FillProfileActivity  extends AppCompatActivity {
         linearLayoutEditImage = findViewById(R.id.LinearLayoutEditPic);
         imageViewBack = findViewById(R.id.imageViewBack);
         rcHobby = findViewById(R.id.rcHobby);
-        continueButton = findViewById(R.id.continueButton);
+        continueButton = findViewById(R.id.buttonContinue);
 
         editTextFullName = findViewById(R.id.editTextTextName);
         editTextCareer = findViewById(R.id.editTextTextCareer);
         editTextDateOfBirth = findViewById(R.id.editTextDateOfBirth);
-        editTextEmail =findViewById(R.id.editTextEmail);
-        editTextPhoneNumber = findViewById(R.id.editTextPhone);
+        textViewEmail =findViewById(R.id.textViewEmail);
     }
     private  void SetListener(){
         editTextDateOfBirth.setOnClickListener(new View.OnClickListener() {
@@ -208,8 +196,6 @@ public class FillProfileActivity  extends AppCompatActivity {
         String career = editTextCareer.getText().toString();
         String dateOfBirthText = editTextDateOfBirth.getText().toString();
         String gender = spnGender.getSelectedItem().toString();
-        String email = editTextEmail.getText().toString();
-        String phoneNumber = editTextPhoneNumber.getText().toString();
         String dateOfBirth = editTextDateOfBirth.getText().toString();
         if(TextUtils.isEmpty(fullName)){
             editTextFullName.setError("Pleas enter your full name");

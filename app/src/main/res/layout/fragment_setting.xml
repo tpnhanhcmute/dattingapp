@@ -47,7 +47,7 @@
 
 
         <Button
-            android:id="@+id/continueButton"
+            android:id="@+id/buttonContinue"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:background="@drawable/buttonsetting"
@@ -59,7 +59,7 @@
             android:stateListAnimator="@null"/>
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/buttonDiscorverSetting"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:background="@drawable/buttonsetting"

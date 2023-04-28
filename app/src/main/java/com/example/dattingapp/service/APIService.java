@@ -5,6 +5,7 @@ import com.example.dattingapp.DTO.FillProfileRequest;
 import com.example.dattingapp.DTO.LoginRequest;
 import com.example.dattingapp.DTO.RegisterRequest;
 import com.example.dattingapp.DTO.ResponseModel;
+import com.example.dattingapp.DTO.UploadImageRequest;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -22,4 +23,7 @@ public interface APIService {
 
     @POST("users/update")
     Call<ResponseModel> update(@Body FillProfileRequest request);
+
+    @POST("image/upload")
+    Call<ResponseModel> uploadImage(@Body UploadImageRequest request);
 }

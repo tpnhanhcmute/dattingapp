@@ -100,7 +100,7 @@
 
         </RelativeLayout>
         <Button
-            android:id="@+id/continueButton"
+            android:id="@+id/buttonContinue"
             style="@android:style/Widget.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
