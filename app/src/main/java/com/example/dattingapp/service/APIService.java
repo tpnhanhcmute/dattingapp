@@ -2,6 +2,7 @@ package com.example.dattingapp.service;
 
 import com.example.dattingapp.DTO.AuthenticationRequest;
 import com.example.dattingapp.DTO.FillProfileRequest;
+import com.example.dattingapp.DTO.UpdateLocationRequest;
 import com.example.dattingapp.DTO.UserRequest;
 import com.example.dattingapp.DTO.LoginRequest;
 import com.example.dattingapp.DTO.RegisterRequest;
@@ -27,10 +28,14 @@ public interface APIService {
 
     @POST("image/upload")
     Call<ResponseModel> uploadImage(@Body UploadImageRequest request);
+
     @POST("users/getmatch")
     Call<ResponseModel> getmatch(@Body UserRequest request);
 
-    @POST("image/getImage")
+    @POST("images/getImage")
     Call<ResponseModel> getImage(@Body UserRequest request);
+
+    @POST("location/update")
+    Call<ResponseModel> updateLocation(@Body UpdateLocationRequest request);
 
 }
