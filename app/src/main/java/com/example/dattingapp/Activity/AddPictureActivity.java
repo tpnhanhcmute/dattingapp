@@ -170,12 +170,6 @@ public class AddPictureActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
                             }
                         });
-
-
-
-
-
-
                     }
                 }, new OnFailureListener() {
                     @Override

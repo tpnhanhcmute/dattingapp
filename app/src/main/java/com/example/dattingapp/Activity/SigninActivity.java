@@ -135,6 +135,7 @@ public class SigninActivity extends AppCompatActivity implements Observer {
 
                         Intent intent = new Intent(SigninActivity.this, MainActivity.class);
                         startActivity(intent);
+
                     }
 
                     @Override
