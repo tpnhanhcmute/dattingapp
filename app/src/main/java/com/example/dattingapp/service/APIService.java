@@ -26,14 +26,14 @@ public interface APIService {
     @POST("users/update")
     Call<ResponseModel> update(@Body FillProfileRequest request);
 
-    @POST("image/upload")
+    @POST("images/upload")
     Call<ResponseModel> uploadImage(@Body UploadImageRequest request);
 
     @POST("users/getmatch")
     Call<ResponseModel> getmatch(@Body UserRequest request);
 
-    @POST("images/getImage")
-    Call<ResponseModel> getImage(@Body UserRequest request);
+    @POST("images/getImages")
+    Call<ResponseModel> getImages(@Body UserRequest request);
 
     @POST("location/update")
     Call<ResponseModel> updateLocation(@Body UpdateLocationRequest request);

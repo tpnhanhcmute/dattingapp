@@ -218,7 +218,7 @@ public class SigninActivity extends AppCompatActivity implements Observer {
         UserRequest userRequest = new UserRequest();
         userRequest.userID = user.userID;
 
-        apiService.getImage(userRequest).enqueue(new Callback<ResponseModel>() {
+        apiService.getImages(userRequest).enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if(!response.isSuccessful()) return;
@@ -227,8 +227,7 @@ public class SigninActivity extends AppCompatActivity implements Observer {
                 }
                 Type type = new TypeToken<GetImageResponse>(){}.getType();
                 GetImageResponse getImageResponse =  new Gson().fromJson(new Gson().toJson(response.body().data),type);
-
-                SharedPreference.getInstance(getApplicationContext()).SetAvatarUrl(getImageResponse.url);
+                SharedPreference.getInstance(getApplicationContext()).SetListImage(getImageResponse.listImage);
             }
 
             @Override
