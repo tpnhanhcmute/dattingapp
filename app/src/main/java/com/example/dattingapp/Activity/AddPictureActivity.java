@@ -96,7 +96,6 @@ public class AddPictureActivity extends AppCompatActivity {
         SetListener();
         BindingData();
     }
-
     private void BindingData() {
         List<String> imageUrls = SharedPreference.getInstance(this).GetImageList();
         if(imageUrls ==null) return;

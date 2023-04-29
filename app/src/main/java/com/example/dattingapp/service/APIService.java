@@ -1,7 +1,9 @@
 package com.example.dattingapp.service;
 
+import com.example.dattingapp.Activity.ChatMessageActivity;
 import com.example.dattingapp.DTO.AuthenticationRequest;
 import com.example.dattingapp.DTO.FillProfileRequest;
+import com.example.dattingapp.DTO.SendMessageRequest;
 import com.example.dattingapp.DTO.UpdateLocationRequest;
 import com.example.dattingapp.DTO.UserRequest;
 import com.example.dattingapp.DTO.LoginRequest;
@@ -37,5 +39,8 @@ public interface APIService {
 
     @POST("location/update")
     Call<ResponseModel> updateLocation(@Body UpdateLocationRequest request);
+
+    @POST("users/chat")
+    Call<ResponseModel> chat(@Body SendMessageRequest request);
 
 }

@@ -57,6 +57,10 @@
         <activity
             android:name=".Activity.SigninActivity"
             android:exported="true">
+        </activity>
+        <activity
+            android:name=".Activity.ChatMessageActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
