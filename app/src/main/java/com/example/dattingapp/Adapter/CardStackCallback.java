@@ -2,15 +2,16 @@ package com.example.dattingapp.Adapter;
 
 import androidx.recyclerview.widget.DiffUtil;
 
+import com.example.dattingapp.DTO.DiscoverModel;
 import com.example.dattingapp.Models.ItemModel;
 
 import java.util.List;
 
 public class CardStackCallback extends DiffUtil.Callback {
 
-    private List<ItemModel> old, baru;
+    private List<DiscoverModel> old, baru;
 
-    public CardStackCallback(List<ItemModel> old, List<ItemModel> baru) {
+    public CardStackCallback(List<DiscoverModel> old, List<DiscoverModel> baru) {
         this.old = old;
         this.baru = baru;
     }

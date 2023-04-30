@@ -7,7 +7,10 @@ public class DiscoverModel {
     public  String fullName;
     public int age;
     public List<String> hobby;
-    public int distance;
+    public double distance;
     public String locationName;
     public List<String> imageUrl;
+    public  String getImage(){
+        return imageUrl == null ?"":imageUrl.get(0);
+    }
 }
