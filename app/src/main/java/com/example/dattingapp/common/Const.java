@@ -12,4 +12,7 @@ import java.util.ListIterator;
 public class Const {
     public  static  final  String OTP = "otp";
     public  static  final  String EMAIL = "email";
+    public  static  final  String MESSAGEID= "messageID";
+    public  static  final String USERID = "otherUserID";
+    public static  final  String USERNAME = "userName";
 }
