@@ -12,14 +12,20 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.dattingapp.Adapter.MatchAdapter;
+import com.example.dattingapp.DTO.GetmatchRespone;
+import com.example.dattingapp.DTO.RegisterResponse;
 import com.example.dattingapp.DTO.UserRequest;
 import com.example.dattingapp.DTO.ResponseModel;
 import com.example.dattingapp.Models.Match;
+import com.example.dattingapp.Models.User;
 import com.example.dattingapp.R;
 import com.example.dattingapp.common.RetrofitClient;
 import com.example.dattingapp.service.APIService;
 import com.example.dattingapp.utils.SharedPreference;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +36,7 @@ import retrofit2.Response;
 public class MatchFragment extends Fragment {
 
     private RecyclerView recyclerViewMatch;
-    List<Match> matchList;
+    public Match matchList = new Match();
     MatchAdapter matchAdapter;
 
     @Override
@@ -42,7 +48,6 @@ public class MatchFragment extends Fragment {
         APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
         UserRequest UserRequest = new UserRequest();
         UserRequest.userID = userShare.GetUser().userID;
-
         apiService.getmatch(UserRequest).enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
@@ -50,10 +55,12 @@ public class MatchFragment extends Fragment {
                     Toast.makeText(getActivity(), "Error: "+ response.body().message,Toast.LENGTH_SHORT).show();
                     return;
                 }
-                else {
-                    Toast.makeText(getActivity(), "hello",Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                Type type = new TypeToken<GetmatchRespone>(){}.getType();
+                 GetmatchRespone getmatchRespone =  new Gson().fromJson(new Gson().toJson(response.body().data),type);
+                 // sau khi parse xong
+
+                matchList.userList = getmatchRespone.match ;
+                matchList.image = getmatchRespone.image;// gán cái list hứng được cho cái userlist trong model match
             }
 
             @Override
@@ -61,31 +68,19 @@ public class MatchFragment extends Fragment {
 
             }
         });
-
-
-
-
-//        Mapping(view);
-//        SetListener();
-//        AddData();
+        Mapping(view);
+        SetListener();
+        AddData();
         return  view;
     }
 
     private void AddData() {
-        matchList = new ArrayList<>();
-        matchList.add(new Match());
-
-
         matchAdapter = new MatchAdapter(this.getContext(), matchList);
         recyclerViewMatch.setHasFixedSize(true);
-
-
-
         RecyclerView.LayoutManager layoutManager =
                 new GridLayoutManager(getContext().getApplicationContext(),2);
         recyclerViewMatch.setLayoutManager(layoutManager);
         recyclerViewMatch.setAdapter(matchAdapter);
-
         //recyclerViewMatch.scrollToPosition(messageList.size()-1);
         matchAdapter.notifyDataSetChanged();
     }

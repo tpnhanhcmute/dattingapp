@@ -101,7 +101,7 @@ public class SigninActivity extends AppCompatActivity implements Observer {
                     return;
                 }
                 if(TextUtils.isEmpty(password)){
-                    editTextPassword.setError("Pleas enter your password");
+                    editTextPassword.setError("Pleasenter your password");
                     editTextPassword.requestFocus();
                     return;
                 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GetmatchRespone {
-    public List<User> Userlist = new ArrayList<>();
+    public List<User> match = new ArrayList<>();
 
-    public String imgaeurl = new String();
+    public List<String> image = new ArrayList<>();
 }

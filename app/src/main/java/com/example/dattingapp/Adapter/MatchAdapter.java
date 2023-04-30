@@ -5,21 +5,23 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dattingapp.Models.Match;
 import com.example.dattingapp.Activity.ProfileActivity;
+import com.example.dattingapp.Models.User;
 import com.example.dattingapp.R;
 
 import java.util.List;
 
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder>{
     private Context context;
-    private List<Match> matchList;
+    public Match matchList = new Match();
 
-    public MatchAdapter(Context context, List<Match> matchList) {
+    public MatchAdapter(Context context, Match matchList) {
         this.context = context;
         this.matchList = matchList;
     }
@@ -34,16 +36,18 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+        String name = matchList.userList.get(position).fullName;
+        holder.textView.setText(name);
     }
 
     @Override
     public int getItemCount() {
-        return matchList== null?0:matchList.size();
+        return matchList== null?0:matchList.userList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public  String id;
+        TextView textView = itemView.findViewById(R.id.textViewName);
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(new View.OnClickListener() {
