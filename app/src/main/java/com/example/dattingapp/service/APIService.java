@@ -1,7 +1,11 @@
 package com.example.dattingapp.service;
 
+import com.example.dattingapp.Activity.ChatMessageActivity;
 import com.example.dattingapp.DTO.AuthenticationRequest;
+import com.example.dattingapp.DTO.DiscorverRequest;
 import com.example.dattingapp.DTO.FillProfileRequest;
+import com.example.dattingapp.DTO.SendMessageRequest;
+import com.example.dattingapp.DTO.UpdateLocationRequest;
 import com.example.dattingapp.DTO.UserRequest;
 import com.example.dattingapp.DTO.LoginRequest;
 import com.example.dattingapp.DTO.RegisterRequest;
@@ -25,12 +29,22 @@ public interface APIService {
     @POST("users/update")
     Call<ResponseModel> update(@Body FillProfileRequest request);
 
-    @POST("image/upload")
+    @POST("images/upload")
     Call<ResponseModel> uploadImage(@Body UploadImageRequest request);
+
     @POST("users/getmatch")
     Call<ResponseModel> getmatch(@Body UserRequest request);
 
-    @POST("image/getImage")
-    Call<ResponseModel> getImage(@Body UserRequest request);
+    @POST("images/getImages")
+    Call<ResponseModel> getImages(@Body UserRequest request);
+
+    @POST("location/update")
+    Call<ResponseModel> updateLocation(@Body UpdateLocationRequest request);
+
+    @POST("users/chat")
+    Call<ResponseModel> chat(@Body SendMessageRequest request);
+
+    @POST("users/discorver")
+    Call<ResponseModel> getUserDiscorver(@Body DiscorverRequest request);
 
 }

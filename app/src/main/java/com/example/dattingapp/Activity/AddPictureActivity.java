@@ -25,6 +25,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.example.dattingapp.DTO.GetImageResponse;
 import com.example.dattingapp.DTO.ResponseModel;
 import com.example.dattingapp.DTO.UploadImageRequest;
 import com.example.dattingapp.Models.UploadImageModel;
@@ -37,11 +39,13 @@ import com.example.dattingapp.utils.SharedPreference;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.imageview.ShapeableImageView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,11 +53,10 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class AddPictureActivity extends AppCompatActivity {
 
-    public  static  final  int MY_REQUEST_CODE = 100;
+    public static final int MY_REQUEST_CODE = 100;
     public static String[] storge_permissions = {
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
             android.Manifest.permission.READ_EXTERNAL_STORAGE
@@ -84,19 +87,33 @@ public class AddPictureActivity extends AppCompatActivity {
     Button buttonContinue;
     RelativeLayout relativeLayoutChoose;
     Uri mUri;
+    HashMap<RelativeLayout, UploadImageModel> viewMapping = new HashMap<>();
 
-    public String[] urls;
-
-    HashMap< RelativeLayout, UploadImageModel> viewMapping = new HashMap<>();
-
-    protected void onCreate (Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_picture);
         Mapping();
         SetListener();
-        SetStatusCancelButton();
-        urls = new String[4];
+        BindingData();
     }
+    private void BindingData() {
+        List<String> imageUrls = SharedPreference.getInstance(this).GetImageList();
+        if(imageUrls ==null) return;
+        int index= 0;
+        int count = imageUrls.size();
+
+        for(Map.Entry<RelativeLayout, UploadImageModel>entry: viewMapping.entrySet()){
+            if(index < count && imageUrls != null){
+                String url = imageUrls.get(index);
+                Glide.with(this).load(url).into(entry.getValue().shapeableImageView);
+                entry.getValue().CancelUpload.setVisibility(View.VISIBLE);
+            }else {
+                entry.getValue().CancelUpload.setVisibility(View.GONE);
+            }
+            index++;
+        }
+    }
+
 
     private void SetStatusCancelButton() {
         for(Map.Entry<RelativeLayout, UploadImageModel> entry :viewMapping.entrySet()) {
@@ -162,6 +179,10 @@ public class AddPictureActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(),response.message(),Toast.LENGTH_SHORT).show();
                                             return;
                                 }
+                                Type type = new TypeToken<GetImageResponse>(){}.getType();
+                                GetImageResponse getImageResponse =  new Gson().fromJson(new Gson().toJson(response.body().data),type);
+                                SharedPreference.getInstance(AddPictureActivity.this).SetListImage(getImageResponse.listImage);
+
                                 onBackPressed();
                             }
 
@@ -207,6 +228,8 @@ public class AddPictureActivity extends AppCompatActivity {
         viewMapping.put(relativeLayout2,uploadImageModel2);
         viewMapping.put(relativeLayout3,uploadImageModel3);
         viewMapping.put(relativeLayout4,uploadImageModel4);
+
+
     }
     private void CheckPermission() {
         if(Build.VERSION.SDK_INT<Build.VERSION_CODES.M){

@@ -20,6 +20,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.dattingapp.Adapter.HobbyAdapter;
 import com.example.dattingapp.DTO.FillProfileRequest;
 import com.example.dattingapp.DTO.ResponseModel;
@@ -35,6 +36,7 @@ import com.google.android.flexbox.JustifyContent;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -56,6 +58,7 @@ public class FillProfileActivity  extends AppCompatActivity {
     EditText editTextCareer;
     EditText editTextDateOfBirth;
     TextView textViewEmail;
+    private CircleImageView circleImageViewAvatar;
 
 
     //--------------------------------------------Request Fill Profile--------------------------------------------//
@@ -112,6 +115,12 @@ public class FillProfileActivity  extends AppCompatActivity {
         if(!TextUtils.isEmpty(user.career)) editTextCareer.setText(user.career);
         if(user.dateOfBirth != null) editTextDateOfBirth.setText(user.dateOfBirth);
         if(!TextUtils.isEmpty(user.email)) textViewEmail.setText(user.email);
+        //------------------------------------Binding Avatar---------------------------------------//
+        List<String> imageList = SharedPreference.getInstance(this).GetImageList();
+        if(imageList != null){
+            if(imageList.get(0)!= null)
+            Glide.with(this).load(imageList.get(0)).into(circleImageViewAvatar);
+        }
     }
 
     private void onItemSelectedHandler(AdapterView<?> parent, View view, int position, long id) {
@@ -154,6 +163,7 @@ public class FillProfileActivity  extends AppCompatActivity {
         editTextCareer = findViewById(R.id.editTextTextCareer);
         editTextDateOfBirth = findViewById(R.id.editTextDateOfBirth);
         textViewEmail =findViewById(R.id.textViewEmail);
+        circleImageViewAvatar = findViewById(R.id.circleImageViewAvatar);
     }
     private  void SetListener(){
         editTextDateOfBirth.setOnClickListener(new View.OnClickListener() {

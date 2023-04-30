@@ -68,15 +68,12 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1">
 
-                        <com.google.android.material.imageview.ShapeableImageView
+                        <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
-                            android:background="@drawable/wireframe_violet_shape"
                             android:scaleType="centerCrop"
-                            app:shapeAppearance="@style/PictureHolder">
-
-                        </com.google.android.material.imageview.ShapeableImageView>
+                          />
 
                         <TextView
                             android:layout_width="50dp"
@@ -118,15 +115,15 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1">
 
-                        <com.google.android.material.imageview.ShapeableImageView
+                        <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
-                            android:background="@drawable/wireframe_violet_shape"
-                            android:scaleType="centerCrop"
-                            app:shapeAppearance="@style/PictureHolder">
 
-                        </com.google.android.material.imageview.ShapeableImageView>
+                            android:scaleType="centerCrop"
+                           >
+
+                        </ImageView>
 
                         <TextView
                             android:layout_width="50dp"
@@ -143,10 +140,13 @@
                             android:id="@+id/shapeableImageView2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
                             android:scaleType="centerCrop"
-                            app:shapeAppearance="@style/PictureHolder"
-                            >
+                            app:shapeAppearance="@style/PictureHolder">
+
                         </com.google.android.material.imageview.ShapeableImageView>
 
                         <ImageButton
@@ -172,14 +172,13 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1">
 
-                        <com.google.android.material.imageview.ShapeableImageView
+                        <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
-                            android:background="@drawable/wireframe_violet_shape"
                             android:scaleType="centerCrop"
-                            app:shapeAppearance="@style/PictureHolder">
-                        </com.google.android.material.imageview.ShapeableImageView>
+                           >
+                        </ImageView>
 
                         <TextView
                             android:id="@+id/textView3"
@@ -219,13 +218,15 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1">
 
-                        <com.google.android.material.imageview.ShapeableImageView
+                        <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
-                            android:background="@drawable/wireframe_violet_shape"
+
                             android:scaleType="centerCrop"
-                            app:shapeAppearance="@style/PictureHolder"></com.google.android.material.imageview.ShapeableImageView>
+                            >
+
+                        </ImageView>
 
                         <TextView
                             android:layout_width="50dp"
@@ -242,7 +243,10 @@
                             android:id="@+id/shapeableImageView4"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
                             android:scaleType="centerCrop"
                             app:shapeAppearance="@style/PictureHolder"></com.google.android.material.imageview.ShapeableImageView>
 

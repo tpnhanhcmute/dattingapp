@@ -3,6 +3,7 @@ package com.example.dattingapp.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.dattingapp.Models.Filter;
 import com.example.dattingapp.Models.Location;
 import com.example.dattingapp.Models.User;
 import com.google.gson.Gson;
@@ -15,7 +16,10 @@ public class SharedPreference {
     public  static  final  String SHARED_PREF_NAME = "DattingApp";
     public static final   String USERKEY = "User";
     public static final String LOCATIONKEY="Location";
-    public  static  final String AVATARURL="AvatarUrl";
+    public  static  final String LISTIMAGE="ListImage";
+
+    public  static  final String FILTER ="filter";
+
     private  static Context ctx;
     private  static  SharedPreference _instance;
 
@@ -24,17 +28,20 @@ public class SharedPreference {
         if(_instance == null) _instance = new SharedPreference();
         return _instance;
     }
-    public  void SetAvatarUrl(String url){
+    public  void SetListImage(List<String> listUrl){
         SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor =  sharedPreferences.edit();
-        editor.putString(AVATARURL, url);
+        String listImageString = new Gson().toJson(listUrl);
+        editor.putString(LISTIMAGE, listImageString);
         editor.apply();
     }
-    public  String GetAvatarUrl(){
+    public  List<String> GetImageList(){
         SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        String url =  sharedPreferences.getString(AVATARURL,"");
-        if(url=="") return null;
-        return url;
+        String listUrlString =  sharedPreferences.getString(LISTIMAGE,"");
+        if(listUrlString=="") return null;
+        Type type = new TypeToken<List<String>>(){}.getType();
+        List<String> listUrl = new Gson().fromJson(listUrlString, type);
+        return listUrl;
     }
 
     public  User GetUser(){
@@ -77,6 +84,35 @@ public class SharedPreference {
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(USERKEY, null) != null;
+    }
+
+    public  void SetFilter(Filter filter){
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        String filterJson = new Gson().toJson(filter);
+        SharedPreferences.Editor editor =  sharedPreferences.edit();
+        editor.putString(FILTER, filterJson);
+        editor.apply();
+    }
+
+    public Filter GetFilter(){
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        String filterJson = sharedPreferences.getString(FILTER,"");
+        Filter defaultFilter = new Filter();
+        defaultFilter.maxAge = 150;
+        defaultFilter.minAge =0;
+        defaultFilter.gender = "Both";
+        defaultFilter.distance = Integer.MAX_VALUE;
+        if(filterJson == ""){
+            return defaultFilter;
+        }
+        Type type = new TypeToken<Filter>(){}.getType();
+        Filter filter = new Gson().fromJson(filterJson,type);
+        if(filter.distance!= 0) defaultFilter.distance = filter.distance;
+        if(filter.gender != "") defaultFilter.gender = filter.gender;
+        if(filter.minAge >0) defaultFilter.minAge = filter.minAge;
+        if(filter.maxAge <150) defaultFilter.maxAge =filter.maxAge;
+
+        return defaultFilter;
     }
 
 

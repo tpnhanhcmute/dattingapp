@@ -39,7 +39,7 @@
             app:srcCompat="@drawable/logovjp" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textViewDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Create Your Account"
@@ -126,7 +126,7 @@
 
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/textViewContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Already have an account ? "

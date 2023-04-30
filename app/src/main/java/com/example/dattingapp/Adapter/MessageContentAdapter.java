@@ -1,16 +1,19 @@
 package com.example.dattingapp.Adapter;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dattingapp.Models.MessageContent;
+import com.example.dattingapp.Models.User;
 import com.example.dattingapp.R;
+import com.example.dattingapp.utils.SharedPreference;
 
 import java.util.List;
 
@@ -44,7 +47,16 @@ public class MessageContentAdapter  extends RecyclerView.Adapter<MessageContentA
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+        MessageContent content = messageContentList.get(position);
+        holder.textViewContent.setText(content.content);
+        if(holder.viewType == MESSAGE_SENDER)
+        {
+            if(content.isSending){
+                holder.imgViewIsSending.setVisibility(View.VISIBLE);
+            }else {
+                holder.imgViewIsSending.setVisibility(View.GONE);
+            }
+        }
     }
 
     @Override
@@ -55,18 +67,29 @@ public class MessageContentAdapter  extends RecyclerView.Adapter<MessageContentA
     @Override
     public int getItemViewType(int position) {
         // check if is user and type content
-        SharedPreferences sharedPreferences =  context.getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        User user = SharedPreference.getInstance(context).GetUser();
         MessageContent message = messageContentList.get(position);
-        return message.sender.equals(sharedPreferences.getString("localUser",""))?MESSAGE_SENDER:MESSAGE_RECEIVER;
+        return message.senderID.equals(user.userID)?MESSAGE_SENDER:MESSAGE_RECEIVER;
 
     }
     public class MyViewHolder extends RecyclerView.ViewHolder {
+
+        public TextView textViewContent;
+        public  TextView textViewDate;
+        public  int viewType;
+        public ImageView imgViewIsSending;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-        }
 
+        }
         public MyViewHolder(View view, int viewType) {
             super(view);
+            this.viewType = viewType;
+            textViewContent= view.findViewById(R.id.textViewContent);
+            textViewDate = view.findViewById(R.id.textViewDate);
+            imgViewIsSending = view.findViewById(R.id.imageViewSending);
+
         }
     }
 }

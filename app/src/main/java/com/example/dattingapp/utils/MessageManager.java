@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.dattingapp.observerpattern.MessageObserver;
+import com.example.dattingapp.observerpattern.MessageObserverImpl;
 import com.example.dattingapp.observerpattern.Observer;
 import com.example.dattingapp.observerpattern.Subject;
 import com.google.firebase.FirebaseApp;
@@ -39,12 +41,38 @@ public class MessageManager extends Application implements Subject {
 
                 notifyObservers(snapshot);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+    }
+    public void RegisterOnMessage(String path, MessageObserverImpl messageObserver){
+
+        FirebaseApp.initializeApp(this);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference messageRef = database.getReference("message/"+path);
+
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                messageObserver.update(snapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        messageObserver.setValueEventListener(valueEventListener);
+        messageRef.addValueEventListener(valueEventListener);
+    }
+
+    public void UnRegisterOnMessage(String path, MessageObserverImpl messageObserver){
+        FirebaseApp.initializeApp(this);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference messageRef = database.getReference("message/"+path);
+        messageRef.removeEventListener(messageObserver.getValueEventListener());
     }
 
     public FirebaseDatabase getDatabase(){
