@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.dattingapp.Adapter.MatchAdapter;
+import com.example.dattingapp.DTO.GetmatcModel;
 import com.example.dattingapp.DTO.GetmatchRespone;
 import com.example.dattingapp.DTO.RegisterResponse;
 import com.example.dattingapp.DTO.UserRequest;
@@ -36,7 +37,7 @@ import retrofit2.Response;
 public class MatchFragment extends Fragment {
 
     private RecyclerView recyclerViewMatch;
-    public Match matchList = new Match();
+    public List<GetmatcModel> matchList;
     MatchAdapter matchAdapter;
 
     @Override
@@ -44,6 +45,9 @@ public class MatchFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_match, container, false);
+        Mapping(view);
+        SetListener();
+        AddData();
         SharedPreference userShare = SharedPreference.getInstance(getContext());
         APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
         UserRequest UserRequest = new UserRequest();
@@ -59,8 +63,8 @@ public class MatchFragment extends Fragment {
                  GetmatchRespone getmatchRespone =  new Gson().fromJson(new Gson().toJson(response.body().data),type);
                  // sau khi parse xong
 
-                matchList.userList = getmatchRespone.match ;
-                matchList.image = getmatchRespone.image;// gán cái list hứng được cho cái userlist trong model match
+                matchList = getmatchRespone.match ;
+                matchAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -68,9 +72,7 @@ public class MatchFragment extends Fragment {
 
             }
         });
-        Mapping(view);
-        SetListener();
-        AddData();
+
         return  view;
     }
 

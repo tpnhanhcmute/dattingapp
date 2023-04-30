@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dattingapp.DTO.GetmatcModel;
 import com.example.dattingapp.Models.Match;
 import com.example.dattingapp.Activity.ProfileActivity;
 import com.example.dattingapp.Models.User;
@@ -19,9 +20,9 @@ import java.util.List;
 
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder>{
     private Context context;
-    public Match matchList = new Match();
+    public List<GetmatcModel> matchList ;
 
-    public MatchAdapter(Context context, Match matchList) {
+    public MatchAdapter(Context context, List<GetmatcModel> matchList) {
         this.context = context;
         this.matchList = matchList;
     }
@@ -36,20 +37,21 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        String name = matchList.userList.get(position).fullName;
+        String name = matchList.get(position).fullName;
         holder.textView.setText(name);
     }
 
     @Override
     public int getItemCount() {
-        return matchList== null?0:matchList.userList.size();
+        return matchList== null?0:matchList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public  String id;
-        TextView textView = itemView.findViewById(R.id.textViewName);
+        TextView textView ;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            textView = itemView.findViewById(R.id.textViewName);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
