@@ -4,6 +4,7 @@ import com.example.dattingapp.Activity.ChatMessageActivity;
 import com.example.dattingapp.DTO.AuthenticationRequest;
 import com.example.dattingapp.DTO.DiscorverRequest;
 import com.example.dattingapp.DTO.FillProfileRequest;
+import com.example.dattingapp.DTO.LikeRequest;
 import com.example.dattingapp.DTO.SendMessageRequest;
 import com.example.dattingapp.DTO.UpdateLocationRequest;
 import com.example.dattingapp.DTO.UserRequest;
@@ -46,5 +47,8 @@ public interface APIService {
 
     @POST("users/discorver")
     Call<ResponseModel> getUserDiscorver(@Body DiscorverRequest request);
+
+    @POST("users/like")
+    Call<ResponseModel> like(@Body LikeRequest request);
 
 }

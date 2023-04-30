@@ -1,5 +1,6 @@
 package com.example.dattingapp.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -20,11 +21,15 @@ import com.example.dattingapp.Adapter.CardStackCallback;
 import com.example.dattingapp.DTO.DiscorverRequest;
 import com.example.dattingapp.DTO.DiscoverModel;
 import com.example.dattingapp.DTO.DiscoverResponse;
+import com.example.dattingapp.DTO.GetImageResponse;
+import com.example.dattingapp.DTO.LikeRequest;
+import com.example.dattingapp.DTO.LikeResponse;
 import com.example.dattingapp.DTO.LoginResponse;
 import com.example.dattingapp.DTO.ResponseModel;
 import com.example.dattingapp.Models.Filter;
 import com.example.dattingapp.Models.ItemModel;
 import com.example.dattingapp.R;
+import com.example.dattingapp.common.Const;
 import com.example.dattingapp.common.RetrofitClient;
 import com.example.dattingapp.service.APIService;
 import com.example.dattingapp.utils.SharedPreference;
@@ -79,12 +84,61 @@ public class HomeFragment extends Fragment {
                 Log.d(TAG, "onCardSwiped: p=" + manager.getTopPosition() + " d=" + direction);
                 if (direction == Direction.Right){
                     //----------------------------------------------Like--------------------------------------------//
-                    Toast.makeText(getContext(), "Direction Right", Toast.LENGTH_SHORT).show();
+                    LikeRequest request = new LikeRequest();
+                    request.userID = SharedPreference.getInstance(getContext()).GetUser().userID;
+                    request.isLike = true;
+                    request.otherUserID = stackItems.get(manager.getTopPosition()).userID;
+
+                    APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
+                    apiService.like(request).enqueue(new Callback<ResponseModel>() {
+                        @Override
+                        public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                            if(response.isSuccessful()){
+                                if(response.body().isError) return;
+
+                                Type type = new TypeToken<LikeResponse>(){}.getType();
+                                LikeResponse likeResponse = new Gson().fromJson(new Gson().toJson(response.body().data), type);
+                                if(likeResponse.isMatch){
+                                    Intent intent = new Intent(getContext(), MatchActivity.class);
+                                    intent.putExtra(Const.IMAGEURL, likeResponse.imageUrl);
+                                    intent.putExtra(Const.USERID, likeResponse.otherUserID);
+                                    intent.putExtra(Const.USERNAME, likeResponse.fullName);
+                                    intent.putExtra(Const.MESSAGEID, likeResponse.messageID);
+                                    startActivity(intent);
+                                }else {
+
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseModel> call, Throwable t) {
+
+                        }
+                    });
                 }
                 //----------------------------------------------Dislike--------------------------------------------//
                 if (direction == Direction.Left){
-                    Toast.makeText(getContext(), "Direction Left", Toast.LENGTH_SHORT).show();
+
+                    LikeRequest request = new LikeRequest();
+                    request.userID = SharedPreference.getInstance(getContext()).GetUser().userID;
+                    request.isLike = false;
+                    request.otherUserID = stackItems.get(manager.getTopPosition()).userID;
+
+                    APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
+                    apiService.like(request).enqueue(new Callback<ResponseModel>() {
+                        @Override
+                        public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                            if (response.isSuccessful()) {
+                            }
+                        }
+                        @Override
+                        public void onFailure(Call<ResponseModel> call, Throwable t) {
+
+                        }
+                    });
                 }
+
                 // Paginating
                 if (manager.getTopPosition() == adapter.getItemCount() -1){
                     paginate();

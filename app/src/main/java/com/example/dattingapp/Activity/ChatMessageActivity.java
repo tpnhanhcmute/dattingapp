@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -51,6 +52,7 @@ import retrofit2.Response;
 
 public class ChatMessageActivity extends AppCompatActivity implements Observer {
 
+    TextView textViewName;
     RecyclerView rcMessage;
     MessageContentAdapter messageContentAdapter;
     List<MessageContent> messageContentList;
@@ -59,12 +61,15 @@ public class ChatMessageActivity extends AppCompatActivity implements Observer {
     EditText editTextMessage;
     String messageID;
     String userID;
+    String userName;
     private int previousHeight = 0;
 
     MessageObserverImpl messageObserver = new MessageObserverImpl() {
         @Override
         public void update(Object object) {
             DataSnapshot dataSnapshot = (DataSnapshot) object;
+            messageContentList.clear();
+
             for (DataSnapshot child : dataSnapshot.getChildren()) {
                 try {
                     MessageContent content = child.getValue(MessageContent.class);
@@ -84,12 +89,14 @@ public class ChatMessageActivity extends AppCompatActivity implements Observer {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_message);
+
+        messageID =getIntent().getStringExtra(Const.MESSAGEID);
+        userID = getIntent().getStringExtra(Const.USERID);
+        userName = getIntent().getStringExtra(Const.USERNAME);
         Mapping();
         SetData();
+        textViewName.setText(userName);
 
-
-        messageID ="-NU1UaDhjx_n9PMJ-Gvg";
-        userID = "81CjEd2CEkgvXrVjGIb7";
         SetOnClickListener();
 
         //----------------------------------Register event receiver message-------------------------
@@ -101,7 +108,7 @@ public class ChatMessageActivity extends AppCompatActivity implements Observer {
         super.onPause();
         MessageManager.getInstance().unregister(this);
         MessageManager.getInstance().UnRegisterOnMessage(messageID, messageObserver);
-
+        finish();
     }
 
     private void SetOnClickListener() {
@@ -193,6 +200,7 @@ public class ChatMessageActivity extends AppCompatActivity implements Observer {
         buttonSendMessage = findViewById(R.id.buttonSendMessage);
         backButton = (ImageView) findViewById(R.id.imageViewBack);
         editTextMessage = findViewById(R.id.editTextMessage);
+        textViewName = findViewById(R.id.textViewName);
     }
 
     //------------------------------------Observer-----------------------------------------------//

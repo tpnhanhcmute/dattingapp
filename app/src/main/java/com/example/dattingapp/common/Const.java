@@ -15,4 +15,5 @@ public class Const {
     public  static  final  String MESSAGEID= "messageID";
     public  static  final String USERID = "otherUserID";
     public static  final  String USERNAME = "userName";
+    public  static  final  String IMAGEURL = "imageUrl";
 }
