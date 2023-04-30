@@ -47,7 +47,9 @@ public class MatchFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_match, container, false);
         Mapping(view);
         SetListener();
+
         AddData();
+
         SharedPreference userShare = SharedPreference.getInstance(getContext());
         APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
         UserRequest UserRequest = new UserRequest();
@@ -63,7 +65,13 @@ public class MatchFragment extends Fragment {
                  GetmatchRespone getmatchRespone =  new Gson().fromJson(new Gson().toJson(response.body().data),type);
                  // sau khi parse xong
 
-                matchList = getmatchRespone.match ;
+                matchList = getmatchRespone.match;
+                matchAdapter = new MatchAdapter(getContext(), matchList);
+                recyclerViewMatch.setHasFixedSize(true);
+                RecyclerView.LayoutManager layoutManager =
+                        new GridLayoutManager(getContext().getApplicationContext(),2);
+                recyclerViewMatch.setLayoutManager(layoutManager);
+                recyclerViewMatch.setAdapter(matchAdapter);
                 matchAdapter.notifyDataSetChanged();
             }
 
@@ -77,14 +85,7 @@ public class MatchFragment extends Fragment {
     }
 
     private void AddData() {
-        matchAdapter = new MatchAdapter(this.getContext(), matchList);
-        recyclerViewMatch.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager =
-                new GridLayoutManager(getContext().getApplicationContext(),2);
-        recyclerViewMatch.setLayoutManager(layoutManager);
-        recyclerViewMatch.setAdapter(matchAdapter);
-        //recyclerViewMatch.scrollToPosition(messageList.size()-1);
-        matchAdapter.notifyDataSetChanged();
+
     }
 
     private void SetListener() {
