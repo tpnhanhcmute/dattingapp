@@ -3,6 +3,7 @@ package com.example.dattingapp.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.dattingapp.Models.Filter;
 import com.example.dattingapp.Models.Location;
 import com.example.dattingapp.Models.User;
 import com.google.gson.Gson;
@@ -16,6 +17,9 @@ public class SharedPreference {
     public static final   String USERKEY = "User";
     public static final String LOCATIONKEY="Location";
     public  static  final String LISTIMAGE="ListImage";
+
+    public  static  final String FILTER ="filter";
+
     private  static Context ctx;
     private  static  SharedPreference _instance;
 
@@ -80,6 +84,35 @@ public class SharedPreference {
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(USERKEY, null) != null;
+    }
+
+    public  void SetFilter(Filter filter){
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        String filterJson = new Gson().toJson(filter);
+        SharedPreferences.Editor editor =  sharedPreferences.edit();
+        editor.putString(FILTER, filterJson);
+        editor.apply();
+    }
+
+    public Filter GetFilter(){
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        String filterJson = sharedPreferences.getString(FILTER,"");
+        Filter defaultFilter = new Filter();
+        defaultFilter.maxAge = 150;
+        defaultFilter.minAge =0;
+        defaultFilter.gender = "Both";
+        defaultFilter.distance = Integer.MAX_VALUE;
+        if(filterJson == ""){
+            return defaultFilter;
+        }
+        Type type = new TypeToken<Filter>(){}.getType();
+        Filter filter = new Gson().fromJson(filterJson,type);
+        if(filter.distance!= 0) defaultFilter.distance = filter.distance;
+        if(filter.gender != "") defaultFilter.gender = filter.gender;
+        if(filter.minAge >0) defaultFilter.minAge = filter.minAge;
+        if(filter.maxAge <150) defaultFilter.maxAge =filter.maxAge;
+
+        return defaultFilter;
     }
 
 

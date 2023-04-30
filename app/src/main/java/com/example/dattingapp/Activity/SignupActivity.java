@@ -113,11 +113,11 @@ public class SignupActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                         if(response.body().isError){
-                            Toast.makeText(getApplicationContext(),"Error: "+ response.body().message, Toast.LENGTH_SHORT);
+                            Toast.makeText(getApplicationContext(),"Error: "+ response.body().message, Toast.LENGTH_SHORT).show();
                             return;
                         }
                         Type type = new TypeToken<RegisterResponse>(){}.getType();
-                        RegisterResponse registerResponse =  new Gson().fromJson(response.body().data.toString(),type);
+                        RegisterResponse registerResponse =  new Gson().fromJson(new Gson().toJson(response.body().data),type);
                         Intent intent = new Intent(SignupActivity.this, VerifyOtp.class);
                         intent.putExtra(Const.OTP,registerResponse.otp);
                         intent.putExtra(Const.EMAIL, registerResponse.email);
@@ -125,7 +125,7 @@ public class SignupActivity extends AppCompatActivity {
                     }
                     @Override
                     public void onFailure(Call<ResponseModel> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "Error: "+t.getMessage(), Toast.LENGTH_SHORT);
+                        Toast.makeText(getApplicationContext(), "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

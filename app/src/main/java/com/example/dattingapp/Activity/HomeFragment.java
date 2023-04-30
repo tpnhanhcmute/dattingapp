@@ -34,18 +34,15 @@ public class HomeFragment extends Fragment {
 
     private static final String TAG = "MainActivity";
     private CardStackLayoutManager manager;
-
     public Button btnLike;
-
     private CardStackAdapter adapter;
-
+    private List<ItemModel> stackItems;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        stackItems = new ArrayList<ItemModel>();
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,13 +68,10 @@ public class HomeFragment extends Fragment {
                     Toast.makeText(getContext(), "Direction Left", Toast.LENGTH_SHORT).show();
                 }
                 // Paginating
-                if (manager.getTopPosition() == adapter.getItemCount() - 5){
+                if (manager.getTopPosition() == adapter.getItemCount()){
                     paginate();
                 }
-
             }
-
-
 
             @Override
             public void onCardRewound() {
@@ -112,13 +106,12 @@ public class HomeFragment extends Fragment {
         manager.setCanScrollHorizontal(true);
         manager.setSwipeableMethod(SwipeableMethod.Manual);
         manager.setOverlayInterpolator(new LinearInterpolator());
+
         adapter = new CardStackAdapter(addList());
+
         cardStackView.setLayoutManager(manager);
         cardStackView.setAdapter(adapter);
         cardStackView.setItemAnimator(new DefaultItemAnimator());
-
-
-
 
         return view;
 
@@ -130,17 +123,13 @@ public class HomeFragment extends Fragment {
         CardStackCallback callback = new CardStackCallback(old, baru);
         DiffUtil.DiffResult hasil = DiffUtil.calculateDiff(callback);
         adapter.setItems(baru);
+        adapter.notifyDataSetChanged();
+        manager.setTopPosition(0);
         hasil.dispatchUpdatesTo(adapter);
     }
 
     private List<ItemModel> addList() {
         List<ItemModel> items = new ArrayList<>();
-        items.add(new ItemModel(R.drawable.sample1, "Markonah", "24", "Jember"));
-        items.add(new ItemModel(R.drawable.sample2, "Marpuah", "20", "Malang"));
-        items.add(new ItemModel(R.drawable.sample3, "Sukijah", "27", "Jonggol"));
-        items.add(new ItemModel(R.drawable.sample4, "Markobar", "19", "Bandung"));
-        items.add(new ItemModel(R.drawable.sample5, "Marmut", "25", "Hutan"));
-
         items.add(new ItemModel(R.drawable.sample1, "Markonah", "24", "Jember"));
         items.add(new ItemModel(R.drawable.sample2, "Marpuah", "20", "Malang"));
         items.add(new ItemModel(R.drawable.sample3, "Sukijah", "27", "Jonggol"));
