@@ -81,11 +81,10 @@ public class Discovery extends AppCompatActivity {
         textViewagemin.setText(String.valueOf(filter.minAge));
         textViewDistance.setText(String.valueOf(filter.distance/1000000));
 
-
         setclick(btndeagemax, btninagemax, textViewagemax);
         setclick(btndeagemin, btninagemin, textViewagemin);
         setclickDou(btndedis,btnindis,textViewDistance);
-
+///hhahahha
 
 
         btnBack.setOnClickListener(new View.OnClickListener() {
