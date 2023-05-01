@@ -4,15 +4,16 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dattingapp.DTO.DiscoverModel;
-import com.example.dattingapp.Models.ItemModel;
 import com.example.dattingapp.R;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.squareup.picasso.Picasso;
 
@@ -48,22 +49,39 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
 
     class ViewHolder extends RecyclerView.ViewHolder{
         ShapeableImageView image;
-        TextView nama, usia, kota;
+        TextView nama, age, city;
+        RecyclerView rcHobby;
+        DiscoverModel discoverModel;
+        HobbyAdapter hobbyAdapter;
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.item_image);
             nama = itemView.findViewById(R.id.item_name);
-            usia = itemView.findViewById(R.id.item_age);
-            kota = itemView.findViewById(R.id.item_city);
+            age = itemView.findViewById(R.id.item_age);
+            city = itemView.findViewById(R.id.item_city);
+            rcHobby = itemView.findViewById(R.id.rcHobby);
         }
 
         void setData(DiscoverModel data) {
+            discoverModel = data;
             Picasso.get()
                     .load(data.getImage())
                     .fit()
                     .centerCrop()
                     .into(image);
             nama.setText(data.fullName);
+            age.setText(data.age.toString());
+            city.setText(data.locationName);
+
+            hobbyAdapter = new HobbyAdapter(itemView.getContext(), discoverModel.hobby,true);
+            rcHobby.setHasFixedSize(true);
+
+            FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(itemView.getContext());
+            layoutManager.setFlexDirection(FlexDirection.ROW);
+            layoutManager.setJustifyContent(JustifyContent.FLEX_START);
+            rcHobby.setLayoutManager(layoutManager);
+            rcHobby.setAdapter(hobbyAdapter);
+            hobbyAdapter.notifyDataSetChanged();
 //            usia.setText(data.getUsia());
 //            kota.setText(data.getKota());
         }

@@ -73,7 +73,12 @@
                 android:textColor="@android:color/white"
                 android:textSize="20sp"/>
 
-                <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcHobby"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

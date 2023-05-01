@@ -151,7 +151,6 @@ public class HomeFragment extends Fragment {
                     paginate();
                 }
             }
-
             @Override
             public void onCardRewound() {
                 Log.d(TAG, "onCardRewound: " + manager.getTopPosition());
@@ -229,7 +228,8 @@ public class HomeFragment extends Fragment {
                         }
                     }
                     stackItems = tempItem;
-                    adapter.AddItem(tempItem);
+                    adapter.setItems(stackItems);
+                    manager.setTopPosition(0);
                     adapter.notifyDataSetChanged();
                 }
             }

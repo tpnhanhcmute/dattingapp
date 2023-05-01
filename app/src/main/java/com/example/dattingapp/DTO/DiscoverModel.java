@@ -9,7 +9,7 @@ public class DiscoverModel {
 
     public  String userID;
     public  String fullName;
-    public int age;
+    public Integer age;
     public List<String> hobby;
     public double distance;
     public String locationName;
