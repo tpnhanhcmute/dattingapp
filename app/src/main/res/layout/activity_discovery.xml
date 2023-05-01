@@ -71,6 +71,17 @@
             android:paddingTop="5dp"
             android:paddingLeft="15dp"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="min"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="15dp"/>
+
 <!--        <TextView-->
 <!--            android:id="@+id/textView"-->
 <!--            android:layout_width="wrap_content"-->
@@ -93,7 +104,7 @@
             android:orientation="horizontal"
             android:gravity="center">
             <Button
-                android:id="@+id/incrementButton"
+                android:id="@+id/decrementButtonmin"
                 android:layout_width="66dp"
                 android:layout_height="32dp"
                 android:layout_below="@+id/linearLayout"
@@ -115,7 +126,7 @@
 
 
             <TextView
-                android:id="@+id/ageTextView"
+                android:id="@+id/agemin"
                 android:layout_width="89dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
@@ -125,9 +136,9 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/decrementButton"
+                android:id="@+id/incrementButtonmin"
                 android:layout_width="67dp"
-                android:layout_height="29dp"
+                android:layout_height="match_parent"
                 android:layout_below="@+id/linearLayout"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
@@ -143,7 +154,82 @@
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout"
                 app:layout_constraintVertical_bias="0.139" />
 
+
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="max"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="15dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/decrementButtonmax"
+                android:layout_width="66dp"
+                android:layout_height="32dp"
+                android:layout_below="@+id/linearLayout"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/violet_round_fill"
+                android:text="-"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.56"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                app:layout_constraintVertical_bias="0.139" />
+
+
+
+
+            <TextView
+                android:id="@+id/agemax"
+                android:layout_width="89dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:text="18"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/incrementmax"
+                android:layout_width="67dp"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/linearLayout"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/violet_round_fill"
+                android:text="+"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.56"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                app:layout_constraintVertical_bias="0.139" />
+
+
+
+        </LinearLayout>
+
+
 
 
         <TextView
@@ -164,7 +250,7 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/incrementButton2"
+                android:id="@+id/decrementButtondistance"
                 android:layout_width="66dp"
                 android:layout_height="32dp"
                 android:layout_below="@+id/linearLayout"
@@ -183,7 +269,7 @@
                 app:layout_constraintVertical_bias="0.139" />
 
             <TextView
-                android:id="@+id/ageTextView2"
+                android:id="@+id/distance"
                 android:layout_width="89dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
@@ -194,7 +280,7 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/decrementButton2"
+                android:id="@+id/incrementButtondistance"
                 android:layout_width="67dp"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/linearLayout"
@@ -216,32 +302,29 @@
 
         </LinearLayout>
 
-
-
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="15dp"/>
 
-            <TextView
-                android:layout_width="195dp"
-                android:layout_height="60dp"
-                android:gravity="fill"
-                android:paddingLeft="15dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:text="Expand Search Area"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:textStyle="bold" />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:layout_width="208dp"
-                android:layout_height="match_parent"
-                android:id="@+id/switch2"
-                app:thumbTint="@color/violet"
-
-                />
-        </LinearLayout>
+        <Spinner
+            android:id="@+id/spinnerGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/edit_button"
+            android:contentDescription="@string/app_name"
+            android:drawableRight="@drawable/ic_round_arrow_drop_down_24"
+            android:minHeight="48dp"
+            android:layout_marginLeft="15dp"
+            android:spinnerMode="dropdown" />
 
 
         <Button
