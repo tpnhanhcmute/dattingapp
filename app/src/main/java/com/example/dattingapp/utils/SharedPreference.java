@@ -101,7 +101,7 @@ public class SharedPreference {
         defaultFilter.maxAge = 150;
         defaultFilter.minAge =0;
         defaultFilter.gender = "Both";
-        defaultFilter.distance = Integer.MAX_VALUE;
+        defaultFilter.distance = Double.MAX_VALUE;
         if(filterJson == ""){
             return defaultFilter;
         }
