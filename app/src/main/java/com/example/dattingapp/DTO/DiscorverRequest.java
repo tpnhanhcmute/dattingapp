@@ -5,5 +5,5 @@ public class DiscorverRequest {
     public  int minAge;
     public  int maxAge;
     public String gender;
-    public Double distance;
+    public int distance;
 }

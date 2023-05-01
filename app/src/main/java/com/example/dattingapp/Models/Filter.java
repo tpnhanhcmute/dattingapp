@@ -4,5 +4,5 @@ public class Filter {
     public  int minAge;
     public  int maxAge;
     public  String gender;
-    public  Double distance;
+    public  int distance;
 }
