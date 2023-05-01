@@ -1,6 +1,12 @@
 package com.example.dattingapp.Activity;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
@@ -11,11 +17,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import com.example.dattingapp.DTO.GetImageResponse;
 import com.example.dattingapp.DTO.LoginRequest;
 import com.example.dattingapp.DTO.LoginResponse;
 import com.example.dattingapp.DTO.ResponseModel;
+import com.example.dattingapp.DTO.UpdateLocationRequest;
+import com.example.dattingapp.DTO.UserRequest;
 import com.example.dattingapp.Models.User;
 import com.example.dattingapp.R;
 import com.example.dattingapp.common.RetrofitClient;
@@ -41,6 +52,7 @@ public class SigninActivity extends AppCompatActivity implements Observer {
     private Button continueButton;
     private  ImageButton imageButtonHintPassword;
     private  boolean isHintPassword =true;
+    private static final int REQUEST_LOCATION_PERMISSION = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,10 +125,13 @@ public class SigninActivity extends AppCompatActivity implements Observer {
                 apiService.login(loginRequest).enqueue(new Callback<ResponseModel>() {
                     @Override
                     public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                        if(!response.isSuccessful()) return;
                         if(response.body().isError){
                             Toast.makeText(getApplicationContext(), "Error: "+ response.body().message,Toast.LENGTH_SHORT).show();
                             return;
                         }
+                        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                        boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
                         Type type = new TypeToken<LoginResponse>(){}.getType();
                         LoginResponse loginResponse =  new Gson().fromJson(new Gson().toJson(response.body().data),type);
@@ -124,7 +139,8 @@ public class SigninActivity extends AppCompatActivity implements Observer {
                         User user = loginResponse.user;
                         user.userID = loginResponse.id;
                         SharedPreference.getInstance(getApplicationContext()).SetUser(user);
-
+                        GetLocation(user,apiService);
+                        GetImage(user, apiService);
                         if(user.isFirstLogin){
                             Intent intent = new Intent(SigninActivity.this, FillProfileActivity.class);
                             startActivity(intent);
@@ -134,6 +150,7 @@ public class SigninActivity extends AppCompatActivity implements Observer {
                         Toast.makeText(getApplicationContext(), response.body().message,Toast.LENGTH_SHORT);
 
                         Intent intent = new Intent(SigninActivity.this, MainActivity.class);
+
                         startActivity(intent);
 
                     }
@@ -143,6 +160,84 @@ public class SigninActivity extends AppCompatActivity implements Observer {
                         Toast.makeText(getApplicationContext(), "Error: "+t.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 });
+
+            }
+        });
+    }
+
+    private void GetLocation(User user, APIService apiService) {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
+            return;
+        }
+
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
+            @Override
+            public void onLocationChanged(@NonNull Location location) {
+                com.example.dattingapp.Models.Location loc = new com.example.dattingapp.Models.Location();
+                loc.lat = location.getLatitude();
+                loc.lng = location.getLongitude();
+                SharedPreference.getInstance(getApplicationContext()).SetLocation(loc);
+                UpdateLocationRequest updateLocationRequest = new UpdateLocationRequest();
+                updateLocationRequest.userID = user.userID;
+                updateLocationRequest.lat = loc.lat;
+                updateLocationRequest.lng = loc.lng;
+                apiService.updateLocation(updateLocationRequest).enqueue(new Callback<ResponseModel>() {
+                    @Override
+                    public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                        if (response.body().isError) {
+                            finish();
+                            return;
+                        }
+                        Type type = new TypeToken<com.example.dattingapp.Models.Location>() {
+                        }.getType();
+                        com.example.dattingapp.Models.Location getLocationResponse = new Gson().fromJson(new Gson().toJson(response.body().data), type);
+                        SharedPreference.getInstance(getApplicationContext()).SetLocation(getLocationResponse);
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseModel> call, Throwable t) {
+
+                    }
+                });
+            }
+
+        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_LOCATION_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                User user = SharedPreference.getInstance(getApplicationContext()).GetUser();
+                APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
+                GetLocation(user,apiService);
+            } else {
+                finish();
+            }
+        }
+    }
+    private void GetImage(User user, APIService apiService) {
+        UserRequest userRequest = new UserRequest();
+        userRequest.userID = user.userID;
+
+        apiService.getImages(userRequest).enqueue(new Callback<ResponseModel>() {
+            @Override
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                if(!response.isSuccessful()) return;
+                if(response.body().isError){
+                    return;
+                }
+                Type type = new TypeToken<GetImageResponse>(){}.getType();
+                GetImageResponse getImageResponse =  new Gson().fromJson(new Gson().toJson(response.body().data),type);
+
+                SharedPreference.getInstance(getApplicationContext()).SetListImage(getImageResponse.listImage);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
 
             }
         });

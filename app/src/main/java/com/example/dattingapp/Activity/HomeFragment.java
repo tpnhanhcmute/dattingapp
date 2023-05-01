@@ -1,8 +1,10 @@
 package com.example.dattingapp.Activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DiffUtil;
@@ -44,7 +46,11 @@ import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -87,7 +93,7 @@ public class HomeFragment extends Fragment {
                     LikeRequest request = new LikeRequest();
                     request.userID = SharedPreference.getInstance(getContext()).GetUser().userID;
                     request.isLike = true;
-                    request.otherUserID = stackItems.get(manager.getTopPosition()).userID;
+                    request.otherUserID = stackItems.get(manager.getTopPosition()-1).userID;
 
                     APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
                     apiService.like(request).enqueue(new Callback<ResponseModel>() {
@@ -117,6 +123,7 @@ public class HomeFragment extends Fragment {
                         }
                     });
                 }
+
                 //----------------------------------------------Dislike--------------------------------------------//
                 if (direction == Direction.Left){
 
@@ -140,7 +147,7 @@ public class HomeFragment extends Fragment {
                 }
 
                 // Paginating
-                if (manager.getTopPosition() == adapter.getItemCount() -1){
+                if (manager.getTopPosition() == adapter.getItemCount()){
                     paginate();
                 }
             }
@@ -190,6 +197,7 @@ public class HomeFragment extends Fragment {
         DiscorverRequest request = new DiscorverRequest();
         request.userID= SharedPreference.getInstance(getContext()).GetUser().userID;
 
+        old = stackItems;
         Filter filter = SharedPreference.getInstance(getContext()).GetFilter();
         request.distance = filter.distance;
         request.gender = filter.gender;
@@ -197,6 +205,7 @@ public class HomeFragment extends Fragment {
         request.minAge = filter.minAge;
 
         apiService.getUserDiscorver(request).enqueue(new Callback<ResponseModel>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if(response.isSuccessful()){
@@ -205,10 +214,23 @@ public class HomeFragment extends Fragment {
                     }
                     Type type = new TypeToken<DiscoverResponse>(){}.getType();
                     DiscoverResponse discoverResponse = new Gson().fromJson(new Gson().toJson(response.body().data), type);
-                    stackItems = discoverResponse.discorverUser;
-                    adapter.AddItem(stackItems);
+
+                    DiscoverModel modelOnTop = stackItems.size() >= (manager.getTopPosition())?null:stackItems.get(manager.getTopPosition());
+                    List<DiscoverModel> tempItem  = discoverResponse.discorverUser;
+
+                    if(modelOnTop!= null)
+                    {
+                        Iterator<DiscoverModel> iterator = tempItem.iterator();
+                        while (iterator.hasNext()){
+                            DiscoverModel model = iterator.next();
+                            if(model.userID == modelOnTop.userID){
+                                iterator.remove();
+                            }
+                        }
+                    }
+                    stackItems = tempItem;
+                    adapter.AddItem(tempItem);
                     adapter.notifyDataSetChanged();
-                    manager.setTopPosition(0);
                 }
             }
             @Override

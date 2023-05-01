@@ -15,7 +15,9 @@ import com.example.dattingapp.Models.Match;
 import com.example.dattingapp.Activity.ProfileActivity;
 import com.example.dattingapp.Models.User;
 import com.example.dattingapp.R;
+import com.example.dattingapp.common.Const;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder>{
@@ -39,6 +41,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         String name = matchList.get(position).fullName;
         holder.textView.setText(name);
+        holder.getMatchModel = matchList.get(position);
     }
 
     @Override
@@ -49,6 +52,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public  String id;
         TextView textView ;
+        public GetmatcModel getMatchModel;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.textViewName);
@@ -56,6 +60,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), ProfileActivity.class);
+                    intent.putExtra(Const.USER, getMatchModel);
                     v.getContext().startActivity(intent);
                 }
             });

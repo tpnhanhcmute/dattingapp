@@ -31,6 +31,7 @@
             android:layout_gravity="center">
 
             <TextView
+                android:id="@+id/textViewNameAge"
                 android:layout_width="303dp"
                 android:layout_height="66dp"
                 android:gravity="center"
@@ -40,6 +41,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/textViewDistance"
                 android:layout_width="59dp"
                 android:layout_height="31dp"
                 android:layout_gravity="center"
@@ -63,6 +65,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/textViewIntroduce"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:text="I'm a single 25 years old. I love fitness, travelling, going out to play. You can find me in Dateh."
@@ -70,6 +73,7 @@
             android:textSize="15sp" />
 
         <TextView
+
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:text="Interest"
@@ -77,21 +81,10 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-
-        <TextView
-            android:layout_width="59dp"
-            android:layout_height="31dp"
-            android:background="@drawable/violet_round_fill"
-            android:gravity="center"
-            android:text="Sport"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-
-
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcHobby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </RelativeLayout>

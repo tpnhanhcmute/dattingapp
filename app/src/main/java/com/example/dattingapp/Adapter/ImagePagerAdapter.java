@@ -7,19 +7,23 @@ import android.widget.ImageView;
 
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.bumptech.glide.Glide;
+
+import java.util.List;
+
 public class ImagePagerAdapter extends PagerAdapter {
 
     private Context context;
-    private int[] images;
+    private List<String> imagesUrl;
 
-    public ImagePagerAdapter(Context context, int[] images) {
+    public ImagePagerAdapter(Context context, List<String> images) {
         this.context = context;
-        this.images = images;
+        this.imagesUrl = images;
     }
 
     @Override
     public int getCount() {
-        return images.length;
+        return imagesUrl.size();
     }
 
     @Override
@@ -30,7 +34,9 @@ public class ImagePagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         ImageView imageView = new ImageView(context);
-        imageView.setImageResource(images[position]);
+
+        String image = imagesUrl.get(position);
+        Glide.with(context).load(image).into(imageView);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         container.addView(imageView);
         return imageView;

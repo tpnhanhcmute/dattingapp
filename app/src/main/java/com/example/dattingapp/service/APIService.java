@@ -51,4 +51,8 @@ public interface APIService {
     @POST("users/like")
     Call<ResponseModel> like(@Body LikeRequest request);
 
+    @POST("users/getUser")
+    Call<ResponseModel> getProfile(@Body UserRequest request);
+
+
 }

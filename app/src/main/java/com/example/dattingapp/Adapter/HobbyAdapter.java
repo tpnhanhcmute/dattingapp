@@ -21,13 +21,16 @@ public class HobbyAdapter  extends RecyclerView.Adapter<HobbyAdapter.ViewHolder>
     Context context;
     List<String> listHobby;
     List<String> hobbySelected;
+    boolean isStranger;
     public  List<String> GetHobbySellected(){
         return hobbySelected;
     }
-    public HobbyAdapter(Context context, List<String> listHobby) {
+    public HobbyAdapter(Context context, List<String> listHobby, boolean isStranger) {
         this.listHobby = listHobby;
         this.context = context;
+        this.isStranger = isStranger;
         hobbySelected= new ArrayList<>();
+
         this.hobbySelected = SharedPreference.getInstance(context).GetUser().hobby==null?new ArrayList<String>():SharedPreference.getInstance(context).GetUser().hobby;
     }
     @NonNull
@@ -61,6 +64,7 @@ public class HobbyAdapter  extends RecyclerView.Adapter<HobbyAdapter.ViewHolder>
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(isStranger) return;
                     if(isSelected) {
                         tvHobby.setBackgroundResource(R.drawable.sellect_hobby);
                         tvHobby.setTextColor(context.getResources().getColor(R.color.white));
@@ -76,6 +80,13 @@ public class HobbyAdapter  extends RecyclerView.Adapter<HobbyAdapter.ViewHolder>
             });
         }
         public  void SetSelected(){
+            if(isStranger)
+            {
+                tvHobby.setBackgroundResource(R.drawable.sellect_hobby);
+                tvHobby.setTextColor(context.getResources().getColor(R.color.white));
+                return;
+            }
+
             if(hobbySelected.contains((hobby))){
                 isSelected =false;
                 tvHobby.setBackgroundResource(R.drawable.sellect_hobby);
