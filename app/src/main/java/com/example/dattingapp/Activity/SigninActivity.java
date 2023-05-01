@@ -29,7 +29,6 @@ import com.example.dattingapp.DTO.UpdateLocationRequest;
 import com.example.dattingapp.DTO.UserRequest;
 import com.example.dattingapp.Models.User;
 import com.example.dattingapp.R;
-import com.example.dattingapp.common.CustomProgressDialog;
 import com.example.dattingapp.common.RetrofitClient;
 import com.example.dattingapp.observerpattern.Observer;
 import com.example.dattingapp.observerpattern.Subject;
@@ -54,13 +53,10 @@ public class SigninActivity extends AppCompatActivity implements Observer {
     private  ImageButton imageButtonHintPassword;
     private  boolean isHintPassword =true;
 
-
-    private CustomProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
-        progressDialog = new CustomProgressDialog(this);
 
         txtSignup = (TextView) findViewById(R.id.txtSignup);
         editTextEmail = findViewById(R.id.editTextEmail);
@@ -124,12 +120,9 @@ public class SigninActivity extends AppCompatActivity implements Observer {
                 LoginRequest loginRequest = new LoginRequest();
                 loginRequest.email = email;
                 loginRequest.password = password;
-
-                progressDialog.show();
                 apiService.login(loginRequest).enqueue(new Callback<ResponseModel>() {
                     @Override
                     public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                        progressDialog.dismiss();
                         if(!response.isSuccessful()) return;
                         if(response.body().isError){
                             Toast.makeText(getApplicationContext(), "Error: "+ response.body().message,Toast.LENGTH_SHORT).show();
@@ -158,7 +151,6 @@ public class SigninActivity extends AppCompatActivity implements Observer {
 
                     @Override
                     public void onFailure(Call<ResponseModel> call, Throwable t) {
-                        progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(), "Error: "+t.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 });

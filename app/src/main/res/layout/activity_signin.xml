@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
 
     <LinearLayout
+        android:gravity="top"
         android:id="@+id/linearLayout7"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="32dp"
-        android:gravity="top"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,32 +21,31 @@
         <ImageButton
             android:id="@+id/signinBack"
             android:layout_width="50dp"
-            android:layout_height="wrap_content"
             android:layout_gravity="left"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:background="@color/white"
-            android:minHeight="48dp"
             app:srcCompat="@drawable/ic_back" />
 
         <ImageView
             android:id="@+id/imageLogoTinder"
+            android:layout_gravity="center"
             android:layout_width="200dp"
             android:layout_height="100dp"
-            android:layout_gravity="center"
             app:srcCompat="@drawable/logovjp" />
 
         <TextView
             android:id="@+id/textViewDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Login To Your Account"
+            android:gravity="center"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="20dp"
-            android:gravity="center"
-            android:text="Login To Your Account"
             android:textColor="#000000"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/editTextEmail"
@@ -55,32 +53,32 @@
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/edit_button"
-            android:drawableLeft="@drawable/ic_round_phone_24"
             android:ems="10"
             android:hint="Enter your email"
             android:inputType="textPersonName"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:textColor="#5c5f72" />
+            android:paddingLeft= "10dp"
+            android:paddingRight= "10dp"
+            android:textColor="#5c5f72"
+            android:drawableLeft="@drawable/ic_round_phone_24"
+            />
 
         <RelativeLayout
+            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="30dp">
-
+            android:layout_height="50dp">
             <EditText
                 android:id="@+id/editTextPassWord"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/edit_button"
-                android:drawableLeft="@drawable/ic_round_lock_24"
                 android:ems="10"
                 android:hint="Enter Your Password"
                 android:inputType="textPassword"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingLeft= "10dp"
+                android:paddingRight= "10dp"
                 android:textColor="#5c5f72"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:drawableLeft="@drawable/ic_round_lock_24"/>
 
             <ImageButton
                 android:id="@+id/imageButtonHintPassword"
@@ -101,7 +99,6 @@
                 app:srcCompat="@drawable/ic_outline_remove_red_eye_24" />
 
         </RelativeLayout>
-
         <Button
             android:id="@+id/buttonContinue"
             style="@android:style/Widget.Button"
@@ -115,12 +112,13 @@
             android:textStyle="bold" />
 
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
             android:gravity="bottom|center"
-            android:orientation="horizontal">
+            android:layout_marginBottom="10dp">
 
 
             <TextView

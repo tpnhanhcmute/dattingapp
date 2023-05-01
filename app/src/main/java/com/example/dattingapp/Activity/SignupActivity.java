@@ -18,7 +18,6 @@ import com.example.dattingapp.DTO.RegisterResponse;
 import com.example.dattingapp.DTO.ResponseModel;
 import com.example.dattingapp.R;
 import com.example.dattingapp.common.Const;
-import com.example.dattingapp.common.CustomProgressDialog;
 import com.example.dattingapp.common.RetrofitClient;
 import com.example.dattingapp.service.APIService;
 import com.google.gson.Gson;
@@ -40,12 +39,11 @@ public class SignupActivity extends AppCompatActivity {
     private ImageButton imageButtonHintPassword;
 
     private  boolean isHintPassword = true;
-    private CustomProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        progressDialog = new CustomProgressDialog(this);
         Mapping();
         SetListener();
     }
@@ -111,11 +109,9 @@ public class SignupActivity extends AppCompatActivity {
                 RegisterRequest request  = new RegisterRequest();
                 request.email = email;
                 request.password = password;
-                progressDialog.show();
                 apiService.register(request).enqueue(new Callback<ResponseModel>() {
                     @Override
                     public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                        progressDialog.dismiss();
                         if(response.body().isError){
                             Toast.makeText(getApplicationContext(),"Error: "+ response.body().message, Toast.LENGTH_SHORT).show();
                             return;
@@ -130,7 +126,6 @@ public class SignupActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<ResponseModel> call, Throwable t) {
                         Toast.makeText(getApplicationContext(), "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
                     }
                 });
             }

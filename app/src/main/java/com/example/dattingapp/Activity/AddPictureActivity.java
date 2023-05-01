@@ -32,7 +32,6 @@ import com.example.dattingapp.DTO.UploadImageRequest;
 import com.example.dattingapp.Models.UploadImageModel;
 import com.example.dattingapp.Models.User;
 import com.example.dattingapp.R;
-import com.example.dattingapp.common.CustomProgressDialog;
 import com.example.dattingapp.common.RetrofitClient;
 import com.example.dattingapp.service.APIService;
 import com.example.dattingapp.service.FireStoreService;
@@ -90,12 +89,9 @@ public class AddPictureActivity extends AppCompatActivity {
     Uri mUri;
     HashMap<RelativeLayout, UploadImageModel> viewMapping = new HashMap<>();
 
-    CustomProgressDialog progressDialog;
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_picture);
-        progressDialog = new CustomProgressDialog(this);
         Mapping();
         SetListener();
         BindingData();
@@ -164,7 +160,7 @@ public class AddPictureActivity extends AppCompatActivity {
                         uris.add(entry.getValue().uri);
                     }
                 }
-                progressDialog.show();
+
                 FireStoreService.getInstance().UploadImage(uris, new OnSuccessListener<List<String>>() {
                     @Override
                     public void onSuccess(List<String> listUrls) {
@@ -179,7 +175,6 @@ public class AddPictureActivity extends AppCompatActivity {
                         apiService.uploadImage(request).enqueue(new Callback<ResponseModel>() {
                             @Override
                             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                                progressDialog.dismiss();
                                 if(response.body().isError) {
                                     Toast.makeText(getApplicationContext(),response.message(),Toast.LENGTH_SHORT).show();
                                             return;
@@ -193,7 +188,6 @@ public class AddPictureActivity extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Call<ResponseModel> call, Throwable t) {
-                                progressDialog.dismiss();
                                 Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -201,7 +195,7 @@ public class AddPictureActivity extends AppCompatActivity {
                 }, new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        progressDialog.dismiss();
+
                     }
                 });
             }

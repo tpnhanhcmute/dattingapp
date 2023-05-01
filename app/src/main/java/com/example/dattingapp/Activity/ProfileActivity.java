@@ -53,8 +53,6 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actitvity_profile);
 
-
-
         Mapping();
         GetmatcModel model = (GetmatcModel) getIntent().getSerializableExtra(Const.USER);
         imageUrl = new ArrayList<>();
