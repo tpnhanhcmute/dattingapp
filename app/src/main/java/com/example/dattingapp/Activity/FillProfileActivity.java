@@ -1,5 +1,6 @@
 package com.example.dattingapp.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -76,6 +77,7 @@ public class FillProfileActivity  extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private void BindingData() {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item,

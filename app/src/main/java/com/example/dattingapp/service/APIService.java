@@ -47,8 +47,9 @@ public interface APIService {
 
     @POST("users/discorver")
     Call<ResponseModel> getUserDiscorver(@Body DiscorverRequest request);
-
     @POST("users/like")
     Call<ResponseModel> like(@Body LikeRequest request);
 
+    @POST("users/getconver")
+    Call<ResponseModel> getConver(@Body UserRequest request);
 }

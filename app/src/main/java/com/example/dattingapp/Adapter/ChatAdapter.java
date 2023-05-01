@@ -1,5 +1,6 @@
 package com.example.dattingapp.Adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,16 +9,22 @@ import android.widget.ImageView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.dattingapp.Activity.ChatMessageActivity;
+import com.example.dattingapp.DTO.ChatModel;
+import com.example.dattingapp.DTO.GetmatcModel;
 import com.example.dattingapp.R;
 
 import java.util.List;
 
 public class ChatAdapter  extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
-    private List<Integer> avatarList;
+    private List<ChatModel> avatarList;
 
-    public ChatAdapter(List<Integer> avatarList) {
+    private Context context;
+
+    public ChatAdapter(Context context, List<ChatModel> avatarList) {
         this.avatarList = avatarList;
+        this.context = context;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -25,9 +32,7 @@ public class ChatAdapter  extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
         public ViewHolder(View itemView) {
             super(itemView);
-
             imageViewAvatar = itemView.findViewById(R.id.imageViewAvatar);
-
             itemView.setOnClickListener(new View.OnClickListener(){
 
                 public void onClick(View v) {
@@ -52,7 +57,7 @@ public class ChatAdapter  extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        holder.imageViewAvatar.setImageResource(avatarList.get(position));
+        Glide.with(context).load(avatarList.get(position).imageUrl).into(holder.imageViewAvatar);
 
     }
 

@@ -9,25 +9,44 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.dattingapp.Adapter.ChatAdapter;
 import com.example.dattingapp.Adapter.ChatItemAdapter;
+import com.example.dattingapp.DTO.ChatModel;
+import com.example.dattingapp.DTO.GetChatRespone;
+import com.example.dattingapp.DTO.GetmatcModel;
+import com.example.dattingapp.DTO.GetmatchRespone;
+import com.example.dattingapp.DTO.ResponseModel;
+import com.example.dattingapp.DTO.UserRequest;
 import com.example.dattingapp.Models.ChatItem;
 import com.example.dattingapp.R;
+import com.example.dattingapp.common.RetrofitClient;
+import com.example.dattingapp.service.APIService;
+import com.example.dattingapp.utils.SharedPreference;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChatFragment extends Fragment {
     private RecyclerView recyclerView;
     private ChatAdapter avatarAdapter;
-    private List<Integer> avatarList;
+
 
     private  RecyclerView mRecyclerView;
 
     private ChatItemAdapter mAdapter;
 
-    private List<ChatItem> chatList = new ArrayList<>();
+
+
+    public List<ChatModel> ChatList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,49 +56,42 @@ public class ChatFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerView);
 
-        // Tạo danh sách các ảnh avatar
-        avatarList = new ArrayList<>();
-        avatarList.add(R.drawable.baseline_tag_faces_24);
-        avatarList.add(R.drawable.baseline_tag_faces_24);
-        avatarList.add(R.drawable.profile2);
-        avatarList.add(R.drawable.profile2);
-        avatarList.add(R.drawable.profile2);
-        avatarList.add(R.drawable.profile2);
-        avatarList.add(R.drawable.profile2);
-        avatarList.add(R.drawable.profile2);
+        SharedPreference userShare = SharedPreference.getInstance(getContext());
+        APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
+        UserRequest UserRequest = new UserRequest();
+        UserRequest.userID = userShare.GetUser().userID;
+        apiService.getConver(UserRequest).enqueue(new Callback<ResponseModel>() {
+            @Override
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                if (response.body().isError) {
+                    Toast.makeText(getActivity(), "Error: " + response.body().message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Type type = new TypeToken<GetChatRespone>() {}.getType();
+                Gson gson = new Gson();
+                GetChatRespone getChatRespone = new Gson().fromJson(new Gson().toJson(response.body().data), type);
+                // sau khi parse xong
+                ChatList = getChatRespone.conver;
 
-        // Tạo Adapter và kết nối với RecyclerView
-        avatarAdapter = new ChatAdapter(avatarList);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(avatarAdapter);
-
-
-        chatList.add(new ChatItem("Alice", "Hello!"));
-        chatList.add(new ChatItem("Bob", "Hi Alice!"));
-        chatList.add(new ChatItem("Alice", "How are you?"));
-        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
-        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
-        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
-        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
-        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
-        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
-        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
-        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
-        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
-        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
-        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
-        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
-        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
-        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
-        chatList.add(new ChatItem("Bob", "I'm fine. Thanks for asking."));
+                avatarAdapter = new ChatAdapter(getContext(),ChatList);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setAdapter(avatarAdapter);
 
 
-        mRecyclerView = view.findViewById(R.id.recyclerView);
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
-        mAdapter = new ChatItemAdapter(chatList);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
+                mRecyclerView = view.findViewById(R.id.recyclerView);
+                LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+                mAdapter = new ChatItemAdapter(getContext(),ChatList);
+                mRecyclerView.setLayoutManager(mLayoutManager);
+                mRecyclerView.setAdapter(mAdapter);
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
+
+            }
+        });
 
         return  view;
     }

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.dattingapp.Adapter.MatchAdapter;
 import com.example.dattingapp.DTO.GetmatcModel;
 import com.example.dattingapp.DTO.GetmatchRespone;
@@ -23,6 +24,7 @@ import com.example.dattingapp.R;
 import com.example.dattingapp.common.RetrofitClient;
 import com.example.dattingapp.service.APIService;
 import com.example.dattingapp.utils.SharedPreference;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -39,6 +41,7 @@ public class MatchFragment extends Fragment {
     private RecyclerView recyclerViewMatch;
     public List<GetmatcModel> matchList;
     MatchAdapter matchAdapter;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,6 +76,7 @@ public class MatchFragment extends Fragment {
                 recyclerViewMatch.setLayoutManager(layoutManager);
                 recyclerViewMatch.setAdapter(matchAdapter);
                 matchAdapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -94,5 +98,6 @@ public class MatchFragment extends Fragment {
 
     private void Mapping(View view) {
         recyclerViewMatch = view.findViewById(R.id.recyclerViewMatch);
+
     }
 }
