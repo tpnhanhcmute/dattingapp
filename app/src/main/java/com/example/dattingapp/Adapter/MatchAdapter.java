@@ -15,9 +15,10 @@ import com.example.dattingapp.DTO.GetmatcModel;
 import com.example.dattingapp.Models.Match;
 import com.example.dattingapp.Activity.ProfileActivity;
 import com.example.dattingapp.Models.User;
-import com.example.dattingapp.R;
-import com.google.android.material.imageview.ShapeableImageView;
+import com.example.dattingapp.R;import com.google.android.material.imageview.ShapeableImageView;
 
+import com.example.dattingapp.common.Const;
+import java.io.Serializable;
 import java.util.List;
 
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder>{
@@ -43,10 +44,9 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         String name = matchList.get(position).fullName;
         int age = matchList.get(position).age;
-        holder.textView.setText(name);
-        holder.atexView.setText(Integer.toString(age));
+        holder.textView.setText(name);        holder.atexView.setText(Integer.toString(age));
         Glide.with(context).load(matchList.get(position).imageUrl).into(holder.shapeableImageView);
-    }
+        holder.getMatchModel = matchList.get(position);    }
 
     @Override
     public int getItemCount() {
@@ -56,10 +56,9 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public  String id;
         TextView textView ;
-
         TextView atexView;
 
-        public ShapeableImageView shapeableImageView;
+        public ShapeableImageView shapeableImageView;        public GetmatcModel getMatchModel;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             atexView = itemView.findViewById(R.id.textViewNameOld);
@@ -69,6 +68,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), ProfileActivity.class);
+                    intent.putExtra(Const.USER, getMatchModel);
                     v.getContext().startActivity(intent);
                 }
             });

@@ -101,7 +101,7 @@ public class FillProfileActivity  extends AppCompatActivity {
         listHobby.add("Cung con bò");
         listHobby.add("Nuôi con mèo con");
 
-        hobbyAdapter = new HobbyAdapter(this, listHobby);
+        hobbyAdapter = new HobbyAdapter(this, listHobby,false);
         rcHobby.setHasFixedSize(true);
 
         FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(this);
@@ -251,10 +251,15 @@ public class FillProfileActivity  extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Error: "+ t.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
-
     }
     public  List<String> GetHobbySellected(){
         //--------------------------------------------Request Fill Profile--------------------------------------------//
         return hobbyAdapter.GetHobbySellected();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }

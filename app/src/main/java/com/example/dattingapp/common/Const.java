@@ -16,4 +16,6 @@ public class Const {
     public  static  final String USERID = "otherUserID";
     public static  final  String USERNAME = "userName";
     public  static  final  String IMAGEURL = "imageUrl";
+
+    public  static  final  String USER ="user";
 }
