@@ -63,12 +63,15 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         }
 
         void setData(DiscoverModel data) {
+
             discoverModel = data;
-            Picasso.get()
-                    .load(data.getImage())
-                    .fit()
-                    .centerCrop()
-                    .into(image);
+            if(data.getImage()!=""&& data.getImage()!= null){
+                Picasso.get()
+                        .load(data.getImage())
+                        .fit()
+                        .centerCrop()
+                        .into(image);
+            }
             nama.setText(data.fullName);
             age.setText(data.age.toString());
             city.setText(data.locationName);

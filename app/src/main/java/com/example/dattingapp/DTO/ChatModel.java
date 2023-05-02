@@ -6,4 +6,5 @@ public class ChatModel {
     public  String userID;
     public  String fullName;
     public String imageUrl;
+    public  String messageID;
 }
