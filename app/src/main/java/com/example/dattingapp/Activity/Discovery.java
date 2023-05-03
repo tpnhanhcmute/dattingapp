@@ -62,8 +62,8 @@ public class Discovery extends AppCompatActivity {
         editTextMaxAge = findViewById(R.id.editTextMaxAge);
         editTextDistance = findViewById(R.id.editTextDistance);
 
-        editTextMinAge.setText(String.valueOf(filter.maxAge));
-        editTextMaxAge.setText(String.valueOf(filter.minAge));
+        editTextMinAge.setText(String.valueOf(filter.minAge));
+        editTextMaxAge.setText(String.valueOf(filter.maxAge));
         editTextDistance.setText(String.valueOf(filter.distance));
         int index = 0;
         for (int i=0;i<listGender.size();i++){
