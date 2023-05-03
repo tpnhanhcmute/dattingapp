@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if (!response.isSuccessful()) return;
                 if (response.body().isError) {
+                    SharedPreference.getInstance(getApplicationContext()).SetListImage(null);
                     return;
                 }
                 Type type = new TypeToken<GetImageResponse>() {

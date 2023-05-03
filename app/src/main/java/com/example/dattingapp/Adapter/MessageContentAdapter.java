@@ -15,11 +15,15 @@ import com.example.dattingapp.Models.User;
 import com.example.dattingapp.R;
 import com.example.dattingapp.utils.SharedPreference;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class MessageContentAdapter  extends RecyclerView.Adapter<MessageContentAdapter.MyViewHolder>{
     public final int MESSAGE_RECEIVER =1;
     public  final int MESSAGE_SENDER =2;
+    public  final  int MESSAGE_DATE =3;
     Context context;
     List<MessageContent> messageContentList;
 
@@ -40,6 +44,9 @@ public class MessageContentAdapter  extends RecyclerView.Adapter<MessageContentA
             case MESSAGE_SENDER:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.holder_chat_content_sender,null);
                 break;
+            case  MESSAGE_DATE:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.holder_chat_date,null);
+                break;
         }
         MessageContentAdapter.MyViewHolder myViewHolder = new MessageContentAdapter.MyViewHolder(view,viewType);
         return myViewHolder;
@@ -48,7 +55,27 @@ public class MessageContentAdapter  extends RecyclerView.Adapter<MessageContentA
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         MessageContent content = messageContentList.get(position);
-        holder.textViewContent.setText(content.content);
+        if(content.content != "" && content.senderID != "")
+            holder.textViewContent.setText(content.content);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("M/dd/yyyy, hh:mm:ss a");
+
+        try {
+            Date date = dateFormat.parse(content.date);
+
+            if(content.senderID != ""){
+                SimpleDateFormat dateFormatHH = new SimpleDateFormat("h:mm:a");
+                String formattedDate = dateFormatHH.format(date);
+                holder.textViewDate.setText(formattedDate);
+                System.out.println(date);
+            }else {
+                SimpleDateFormat dateFormatHH = new SimpleDateFormat("M/dd/yyyy");
+                String formattedDate = dateFormatHH.format(date);
+                holder.textViewDate.setText(formattedDate);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         if(holder.viewType == MESSAGE_SENDER)
         {
             if(content.isSending){
@@ -69,6 +96,7 @@ public class MessageContentAdapter  extends RecyclerView.Adapter<MessageContentA
         // check if is user and type content
         User user = SharedPreference.getInstance(context).GetUser();
         MessageContent message = messageContentList.get(position);
+        if(message.senderID =="") return MESSAGE_DATE;
         return message.senderID.equals(user.userID)?MESSAGE_SENDER:MESSAGE_RECEIVER;
 
     }

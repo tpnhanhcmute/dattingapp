@@ -24,6 +24,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.dattingapp.Adapter.HobbyAdapter;
 import com.example.dattingapp.DTO.FillProfileRequest;
+import com.example.dattingapp.DTO.FillProfileResponse;
+import com.example.dattingapp.DTO.GetImageResponse;
 import com.example.dattingapp.DTO.ResponseModel;
 import com.example.dattingapp.Models.User;
 import com.example.dattingapp.R;
@@ -34,7 +36,10 @@ import com.example.dattingapp.utils.SharedPreference;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,7 +82,6 @@ public class FillProfileActivity  extends AppCompatActivity {
         BindingData();
 
         fillProfileRequest.id = SharedPreference.getInstance(this).GetUser().userID;
-
     }
 
     @SuppressLint("SuspiciousIndentation")
@@ -103,6 +107,17 @@ public class FillProfileActivity  extends AppCompatActivity {
         listHobby.add("Cung nhân mã");
         listHobby.add("Cung con bò");
         listHobby.add("Nuôi con mèo con");
+        listHobby.add("Chơi game");
+        listHobby.add("Thể thao");
+        listHobby.add("Đọc sách");
+        listHobby.add("Coder");
+        listHobby.add("Du lịch");
+        listHobby.add("Coffee");
+        listHobby.add("Xem phim");
+        listHobby.add("Fix bug");
+
+
+
 
         hobbyAdapter = new HobbyAdapter(this, listHobby,false);
         rcHobby.setHasFixedSize(true);
@@ -131,7 +146,6 @@ public class FillProfileActivity  extends AppCompatActivity {
     private void onItemSelectedHandler(AdapterView<?> parent, View view, int position, long id) {
         Adapter adapter = parent.getAdapter();
         String gender = (String)adapter.getItem(position);
-        Toast.makeText(getApplicationContext(), "Selected Gender: " + gender ,Toast.LENGTH_SHORT).show();
 //--------------------------------------------Request Fill Profile--------------------------------------------//
     }
 
@@ -246,6 +260,12 @@ public class FillProfileActivity  extends AppCompatActivity {
                     return;
                 }
                 Toast.makeText(getApplicationContext(), response.body().message,Toast.LENGTH_SHORT).show();
+                Type type = new TypeToken<FillProfileResponse>() {
+                }.getType();
+                FillProfileResponse fillProfileResponse = new Gson().fromJson(new Gson().toJson(response.body().data),type);
+                User user = fillProfileResponse.user;
+                user.userID = fillProfileRequest.id;
+                SharedPreference.getInstance(getApplicationContext()).SetUser(user);
                 Intent intent = new Intent(FillProfileActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();

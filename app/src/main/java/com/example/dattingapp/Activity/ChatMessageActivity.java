@@ -2,6 +2,7 @@ package com.example.dattingapp.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,7 +43,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -65,6 +71,7 @@ public class ChatMessageActivity extends AppCompatActivity implements Observer {
     private int previousHeight = 0;
 
     MessageObserverImpl messageObserver = new MessageObserverImpl() {
+        @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         public void update(Object object) {
             DataSnapshot dataSnapshot = (DataSnapshot) object;
@@ -80,6 +87,36 @@ public class ChatMessageActivity extends AppCompatActivity implements Observer {
 
                 }
             }
+            SimpleDateFormat dateFormat = new SimpleDateFormat("M/dd/yyyy, hh:mm:ss a");
+            List<MessageContent> newList = new ArrayList<>();
+            for(int i=0;i < messageContentList.size();i++)
+            {
+                if(i < messageContentList.size()-1){
+                    try {
+                        Date date = dateFormat.parse(messageContentList.get(i).date);
+                        Date nextDate = dateFormat.parse(messageContentList.get(i+1).date);
+                        SimpleDateFormat dateFormatHH = new SimpleDateFormat("M:dd:yyyy");
+                        String formattedDateCurrent = dateFormatHH.format(date);
+                        String nextDateFormat = dateFormatHH.format(nextDate);
+                        if(i==0 || !(formattedDateCurrent.equals(nextDateFormat))) {
+                            MessageContent messageContent = new MessageContent();
+                            messageContent.senderID = "";
+                            if(i ==0){
+                                messageContent.date = messageContentList.get(i).date;
+                            }else {
+                                messageContent.date = messageContentList.get(i+1).date;
+                            }
+                            newList.add(messageContent);
+                        }
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+                newList.add(messageContentList.get(i));
+            };
+
+            messageContentList.clear();
+            messageContentList.addAll(newList);
             messageContentAdapter.notifyDataSetChanged();
             rcMessage.scrollToPosition(messageContentList.size() - 1);
         };

@@ -167,7 +167,7 @@ public class AddPictureActivity extends AppCompatActivity {
                     if(entry.getValue().uri != null){
                         uris.add(entry.getValue().uri);
                     }
-                    if(entry.getValue().url != ""){
+                    if(entry.getValue().url != "" && entry.getValue().url != null){
                         urls.add(entry.getValue().url);
                     }
                 }
@@ -209,10 +209,7 @@ public class AddPictureActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),response.message(),Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Type type = new TypeToken<GetImageResponse>(){}.getType();
-                GetImageResponse getImageResponse =  new Gson().fromJson(new Gson().toJson(response.body().data),type);
-
-                SharedPreference.getInstance(AddPictureActivity.this).SetListImage(getImageResponse.listImage);
+                SharedPreference.getInstance(AddPictureActivity.this).SetListImage(urls);
                 Intent intent = new Intent(AddPictureActivity.this, FillProfileActivity.class);
                 startActivity(intent);
                 finish();

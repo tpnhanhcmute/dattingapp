@@ -58,7 +58,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
         TextView textView ;
         TextView atexView;
 
-        public ShapeableImageView shapeableImageView;        public GetmatcModel getMatchModel;
+        public ShapeableImageView shapeableImageView;
+        public GetmatcModel getMatchModel;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             atexView = itemView.findViewById(R.id.textViewNameOld);
