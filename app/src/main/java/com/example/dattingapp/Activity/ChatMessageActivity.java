@@ -180,8 +180,6 @@ public class ChatMessageActivity extends AppCompatActivity implements Observer {
 
 
         User user = SharedPreference.getInstance(this).GetUser();
-        user.userID = userID;
-        SharedPreference.getInstance(this).SetUser(user);
         buttonSendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -194,7 +192,7 @@ public class ChatMessageActivity extends AppCompatActivity implements Observer {
                 imm.hideSoftInputFromWindow(editTextMessage.getWindowToken(), 0);
 
                 SendMessageRequest request = new SendMessageRequest();
-                request.userID = userID;
+                request.userID = user.userID;
                 request.messageID = messageID;
                 request.content = messageContent;
 
