@@ -130,7 +130,7 @@ public class HomeFragment extends Fragment {
                     LikeRequest request = new LikeRequest();
                     request.userID = SharedPreference.getInstance(getContext()).GetUser().userID;
                     request.isLike = false;
-                    request.otherUserID = stackItems.get(manager.getTopPosition()).userID;
+                    request.otherUserID = stackItems.get(manager.getTopPosition()-1).userID;
 
                     APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
                     apiService.like(request).enqueue(new Callback<ResponseModel>() {

@@ -63,6 +63,7 @@ public class ChatFragment extends Fragment {
         apiService.getConver(UserRequest).enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                if(!response.isSuccessful()) return;
                 if (response.body().isError) {
                     Toast.makeText(getActivity(), "Error: " + response.body().message, Toast.LENGTH_SHORT).show();
                     return;
