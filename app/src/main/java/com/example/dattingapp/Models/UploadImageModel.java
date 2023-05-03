@@ -14,4 +14,5 @@ public class UploadImageModel {
     public ShapeableImageView shapeableImageView;
     public ImageButton CancelUpload;
     public Uri uri;
+    public String url;
 }

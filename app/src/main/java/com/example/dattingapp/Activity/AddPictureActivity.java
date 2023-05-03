@@ -102,13 +102,15 @@ public class AddPictureActivity extends AppCompatActivity {
     }
     private void BindingData() {
         List<String> imageUrls = SharedPreference.getInstance(this).GetImageList();
-        if(imageUrls ==null) return;
         int index= 0;
-        int count = imageUrls.size();
+        int count = imageUrls == null?-1:imageUrls.size();
 
         for(Map.Entry<RelativeLayout, UploadImageModel>entry: viewMapping.entrySet()){
             if(index < count && imageUrls != null){
+
                 String url = imageUrls.get(index);
+                entry.getValue().url = url;
+                entry.getValue().uri = null;
                 Glide.with(this).load(url).into(entry.getValue().shapeableImageView);
                 entry.getValue().CancelUpload.setVisibility(View.VISIBLE);
             }else {
@@ -150,6 +152,7 @@ public class AddPictureActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     entry.getValue().shapeableImageView.setImageDrawable(null);
                     SetStatusCancelButton();
+                    entry.getValue().url = "";
                     entry.getValue().uri = null;
                 }
             });
@@ -159,44 +162,28 @@ public class AddPictureActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 List<Uri> uris = new ArrayList<Uri>();
+                List<String> urls = new ArrayList<>();
                 for(Map.Entry<RelativeLayout, UploadImageModel> entry :viewMapping.entrySet()){
                     if(entry.getValue().uri != null){
                         uris.add(entry.getValue().uri);
                     }
+                    if(entry.getValue().url != ""){
+                        urls.add(entry.getValue().url);
+                    }
                 }
                 progressDialog.show();
+                if(uris.size() <= 0){
+
+                    UpLoadImage(urls);
+                    return;
+                }
                 FireStoreService.getInstance().UploadImage(uris, new OnSuccessListener<List<String>>() {
                     @Override
                     public void onSuccess(List<String> listUrls) {
 
                         Log.d("UploadImage", String.valueOf(listUrls.size()));
-                        User user = SharedPreference.getInstance(AddPictureActivity.this).GetUser();
-                        UploadImageRequest request = new UploadImageRequest();
-                        request.userID = user.userID;
-                        request.listImage = listUrls;
-
-                        APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
-                        apiService.uploadImage(request).enqueue(new Callback<ResponseModel>() {
-                            @Override
-                            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                                progressDialog.dismiss();
-                                if(response.body().isError) {
-                                    Toast.makeText(getApplicationContext(),response.message(),Toast.LENGTH_SHORT).show();
-                                            return;
-                                }
-                                Type type = new TypeToken<GetImageResponse>(){}.getType();
-                                GetImageResponse getImageResponse =  new Gson().fromJson(new Gson().toJson(response.body().data),type);
-                                SharedPreference.getInstance(AddPictureActivity.this).SetListImage(getImageResponse.listImage);
-
-                                onBackPressed();
-                            }
-
-                            @Override
-                            public void onFailure(Call<ResponseModel> call, Throwable t) {
-                                progressDialog.dismiss();
-                                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        listUrls.addAll(urls);
+                        UpLoadImage(listUrls);
                     }
                 }, new OnFailureListener() {
                     @Override
@@ -204,6 +191,37 @@ public class AddPictureActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                     }
                 });
+            }
+        });
+    }
+    private  void UpLoadImage(List<String> urls){
+
+        User user = SharedPreference.getInstance(AddPictureActivity.this).GetUser();
+        UploadImageRequest request = new UploadImageRequest();
+        request.userID = user.userID;
+        request.listImage = urls;
+        APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
+        apiService.uploadImage(request).enqueue(new Callback<ResponseModel>() {
+            @Override
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                progressDialog.dismiss();
+                if(response.body().isError) {
+                    Toast.makeText(getApplicationContext(),response.message(),Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Type type = new TypeToken<GetImageResponse>(){}.getType();
+                GetImageResponse getImageResponse =  new Gson().fromJson(new Gson().toJson(response.body().data),type);
+
+                SharedPreference.getInstance(AddPictureActivity.this).SetListImage(getImageResponse.listImage);
+                Intent intent = new Intent(AddPictureActivity.this, FillProfileActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -279,6 +297,7 @@ public class AddPictureActivity extends AppCompatActivity {
                         Uri uri = data.getData();
 
                         viewMapping.get(relativeLayoutChoose).uri = uri;
+                        viewMapping.get(relativeLayoutChoose).url = "";
                         Log.d("IMAGE",uri.getPath());
                         try {
                             Bitmap bitmap =
@@ -300,6 +319,5 @@ public class AddPictureActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        finish();
     }
 }

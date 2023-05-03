@@ -15,7 +15,7 @@ public class DiscoverModel {
     public String locationName;
     public List<String> imageUrl;
     public  String getImage(){
-        return imageUrl == null ?"":imageUrl.get(0);
+        return imageUrl == null ?"":imageUrl.size()>0?imageUrl.get(0):"";
     }
 
 }

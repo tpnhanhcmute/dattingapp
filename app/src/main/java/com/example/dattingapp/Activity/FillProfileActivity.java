@@ -123,8 +123,8 @@ public class FillProfileActivity  extends AppCompatActivity {
         //------------------------------------Binding Avatar---------------------------------------//
         List<String> imageList = SharedPreference.getInstance(this).GetImageList();
         if(imageList != null){
-            if(imageList.get(0)!= null)
-            Glide.with(this).load(imageList.get(0)).into(circleImageViewAvatar);
+            if(imageList.size()> 0)
+                Glide.with(this).load(imageList.get(0)).into(circleImageViewAvatar);
         }
     }
 
@@ -248,6 +248,7 @@ public class FillProfileActivity  extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), response.body().message,Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(FillProfileActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
 
             @Override
@@ -265,6 +266,5 @@ public class FillProfileActivity  extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        finish();
     }
 }

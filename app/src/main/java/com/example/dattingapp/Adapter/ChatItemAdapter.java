@@ -16,6 +16,7 @@ import com.example.dattingapp.DTO.ChatModel;
 import com.example.dattingapp.DTO.GetmatcModel;
 import com.example.dattingapp.Models.ChatItem;
 import com.example.dattingapp.R;
+import com.example.dattingapp.common.Const;
 
 import java.util.List;
 
@@ -27,17 +28,21 @@ public class ChatItemAdapter extends RecyclerView.Adapter<ChatItemAdapter.ChatVi
     public static class ChatViewHolder extends RecyclerView.ViewHolder {
         public TextView textName;
         public TextView textMessage;
-
+        public ChatModel chatModel;
         public ImageView imageViewAvatar;
+
         public ChatViewHolder(View itemView) {
             super(itemView);
             textName = itemView.findViewById(R.id.text_name);
-            //textMessage = itemView.findViewById(R.id.text_message);
+
             imageViewAvatar = itemView.findViewById(R.id.imageviewav);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), ChatMessageActivity.class);
+                    intent.putExtra(Const.MESSAGEID, chatModel.messageID);
+                    intent.putExtra(Const.USERNAME, chatModel.fullName);
+                    intent.putExtra(Const.USERID, chatModel.userID);
                     v.getContext().startActivity(intent);
                 }
             });
@@ -62,6 +67,7 @@ public class ChatItemAdapter extends RecyclerView.Adapter<ChatItemAdapter.ChatVi
         ChatModel currentItem = mChatList.get(position);
         holder.textName.setText(currentItem.fullName);
         Glide.with(context).load(mChatList.get(position).imageUrl).into(holder.imageViewAvatar);
+        holder.chatModel = mChatList.get(position);
 
         //holder.textMessage.setText(currentItem.getmMessage());
     }
