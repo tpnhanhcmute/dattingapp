@@ -19,6 +19,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MessageContentAdapter  extends RecyclerView.Adapter<MessageContentAdapter.MyViewHolder>{
     public final int MESSAGE_RECEIVER =1;
@@ -57,21 +58,24 @@ public class MessageContentAdapter  extends RecyclerView.Adapter<MessageContentA
         MessageContent content = messageContentList.get(position);
         if(content.content != "" && content.senderID != "")
             holder.textViewContent.setText(content.content);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("M/dd/yyyy, hh:mm:ss a");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("M/d/yyyy, hh:mm:ss a", Locale.US);
 
         try {
-            Date date = dateFormat.parse(content.date);
 
-            if(content.senderID != ""){
-                SimpleDateFormat dateFormatHH = new SimpleDateFormat("h:mm:a");
-                String formattedDate = dateFormatHH.format(date);
-                holder.textViewDate.setText(formattedDate);
-                System.out.println(date);
-            }else {
-                SimpleDateFormat dateFormatHH = new SimpleDateFormat("M/dd/yyyy");
-                String formattedDate = dateFormatHH.format(date);
-                holder.textViewDate.setText(formattedDate);
-            }
+           if(content.date != null){
+               Date date = dateFormat.parse(content.date);
+               if(content.senderID != ""){
+
+                   SimpleDateFormat dateFormatHH = new SimpleDateFormat("h:mm:a");
+                   String formattedDate = dateFormatHH.format(date);
+                   holder.textViewDate.setText(formattedDate);
+                   System.out.println(date);
+               }else {
+                   SimpleDateFormat dateFormatHH = new SimpleDateFormat("M/dd/yyyy");
+                   String formattedDate = dateFormatHH.format(date);
+                   holder.textViewDate.setText(formattedDate);
+               }
+           }
         } catch (ParseException e) {
             e.printStackTrace();
         }

@@ -256,7 +256,7 @@ public class AddPictureActivity extends AppCompatActivity {
         viewMapping.put(relativeLayout2,uploadImageModel2);
         viewMapping.put(relativeLayout3,uploadImageModel3);
         viewMapping.put(relativeLayout4,uploadImageModel4);
-
+        imageViewBack = findViewById(R.id.imageViewBack);
 
     }
     private void CheckPermission() {

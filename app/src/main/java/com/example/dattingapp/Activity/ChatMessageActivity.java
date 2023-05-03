@@ -49,6 +49,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -87,7 +88,7 @@ public class ChatMessageActivity extends AppCompatActivity implements Observer {
 
                 }
             }
-            SimpleDateFormat dateFormat = new SimpleDateFormat("M/dd/yyyy, hh:mm:ss a");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("M/d/yyyy, hh:mm:ss a", Locale.US);
             List<MessageContent> newList = new ArrayList<>();
             for(int i=0;i < messageContentList.size();i++)
             {
