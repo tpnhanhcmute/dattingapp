@@ -32,7 +32,7 @@ public class ChatItemAdapter extends RecyclerView.Adapter<ChatItemAdapter.ChatVi
         public ChatViewHolder(View itemView) {
             super(itemView);
             textName = itemView.findViewById(R.id.text_name);
-            textMessage = itemView.findViewById(R.id.text_message);
+            //textMessage = itemView.findViewById(R.id.text_message);
             imageViewAvatar = itemView.findViewById(R.id.imageviewav);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
