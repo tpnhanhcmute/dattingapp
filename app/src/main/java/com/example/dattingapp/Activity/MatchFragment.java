@@ -52,6 +52,8 @@ public class MatchFragment extends Fragment {
         SetListener();
 
         AddData();
+        RecyclerView.LayoutManager layoutManager =
+                new GridLayoutManager(getContext().getApplicationContext(),2);
 
         SharedPreference userShare = SharedPreference.getInstance(getContext());
         APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
@@ -73,8 +75,6 @@ public class MatchFragment extends Fragment {
                 matchList = getmatchRespone.match;
                 matchAdapter = new MatchAdapter(getContext(), matchList);
                 recyclerViewMatch.setHasFixedSize(true);
-                RecyclerView.LayoutManager layoutManager =
-                        new GridLayoutManager(getContext().getApplicationContext(),2);
                 recyclerViewMatch.setLayoutManager(layoutManager);
                 recyclerViewMatch.setAdapter(matchAdapter);
                 matchAdapter.notifyDataSetChanged();
