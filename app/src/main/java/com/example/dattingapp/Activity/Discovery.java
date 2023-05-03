@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,22 +35,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Discovery extends AppCompatActivity {
-    private Button btnBack;
+    private ImageView imageViewBack;
 
     private Spinner spnGender;
-
-    private TextView textViewagemin;
-    private TextView textViewagemax;
-    private TextView textViewDistance;
-
-    private Button btninagemax;
-    private Button btndeagemax;
-    private Button btninagemin;
-    private Button btndeagemin;
-
-    private Button btnindis;
-    private Button btndedis;
-
+    private EditText editTextMinAge;
+    private EditText editTextMaxAge;
+    private EditText editTextDistance;
 
     List<String> listGender;
 
@@ -64,42 +56,38 @@ public class Discovery extends AppCompatActivity {
 
         SetData();
         BindingData();
-        btnBack = findViewById(R.id.btnBack);
-        btndeagemax = findViewById(R.id.decrementButtonmax);
-        btndeagemin = findViewById(R.id.decrementButtonmin);
-        btninagemax = findViewById(R.id.incrementmax);
-        btninagemin = findViewById(R.id.incrementButtonmin);
-        btnindis = findViewById(R.id.incrementButtondistance);
-        btndedis = findViewById(R.id.decrementButtondistance);
+
+        imageViewBack = findViewById(R.id.imageViewBack);
+        editTextMinAge = findViewById(R.id.editTextMinAge);
+        editTextMaxAge = findViewById(R.id.editTextMaxAge);
+        editTextDistance = findViewById(R.id.editTextDistance);
+
+        editTextMinAge.setText(String.valueOf(filter.maxAge));
+        editTextMaxAge.setText(String.valueOf(filter.minAge));
+        editTextDistance.setText(String.valueOf(filter.distance));
+        int index = 0;
+        for (int i=0;i<listGender.size();i++){
+            if(listGender.get(i).equals(filter.gender))
+            {
+                index = i;
+                break;
+            }
+        }
+        spnGender.setSelection(index);
 
 
-        textViewagemax = findViewById(R.id.agemax);
-        textViewagemin = findViewById(R.id.agemin);
-        textViewDistance = findViewById(R.id.distance);
-        textViewagemax.setText(String.valueOf(filter.maxAge));
-        textViewagemin.setText(String.valueOf(filter.minAge));
-        textViewDistance.setText(String.valueOf(filter.distance/1000000));
-
-
-        setclick(btndeagemax, btninagemax, textViewagemax);
-        setclick(btndeagemin, btninagemin, textViewagemin);
-        setclickDou(btndedis,btnindis,textViewDistance);
-
-
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        imageViewBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //filter.distance = Double.parseDouble(textViewDistance.getText());
-                filter.minAge = Integer.parseInt((String) textViewagemin.getText());
-                filter.maxAge = Integer.parseInt((String) textViewagemax.getText());
-                filter.distance = (int) (Double.parseDouble((String) textViewDistance.getText())*1000000);
-
-
+                filter.minAge = Integer.parseInt(editTextMinAge.getText().toString());
+                filter.maxAge = Integer.parseInt(editTextMaxAge.getText().toString());
+                filter.distance = (Double.parseDouble((editTextDistance.getText().toString())));
+                filter.gender = spnGender.getSelectedItem().toString();
                 userShare.SetFilter(filter);
                 onBackPressed();
             }
         });
+
         SwitchCompat mySwitch = findViewById(R.id.switch1);
         mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -138,7 +126,7 @@ public class Discovery extends AppCompatActivity {
     private void onItemSelectedHandler(AdapterView<?> parent, View view, int position, long id) {
         Adapter adapter = parent.getAdapter();
         String gender = (String)adapter.getItem(position);
-        Toast.makeText(getApplicationContext(), "Selected Gender: " + gender ,Toast.LENGTH_SHORT).show();
+
 //--------------------------------------------Request Fill Profile--------------------------------------------//
     }
 
@@ -146,50 +134,14 @@ public class Discovery extends AppCompatActivity {
         listGender = new ArrayList<>();
         listGender.add("Male");
         listGender.add("Female");
-        listGender.add("None");
+        listGender.add("Both");
     }
 
-
-    private void setclick(Button decre, Button incre, TextView text){
-        incre.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int currentValue = Integer.parseInt(text.getText().toString());
-                text.setText(String.valueOf(currentValue + 1));
-            }
-        });
-
-        decre.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int currentValue = Integer.parseInt(text.getText().toString());
-                if (currentValue > 0) {
-                    text.setText(String.valueOf(currentValue - 1));
-                }
-            }
-        });
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
-
-    private void setclickDou(Button decre, Button incre, TextView text){
-        incre.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                double currentValue = Double.parseDouble(text.getText().toString());
-                text.setText(String.valueOf(currentValue + 1));
-            }
-        });
-
-        decre.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                double currentValue = Double.parseDouble(text.getText().toString());
-                if (currentValue > 0) {
-                    text.setText(String.valueOf(currentValue - 1));
-                }
-            }
-        });
-    }
-
 }
 
 

@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -86,6 +87,7 @@ public class AddPictureActivity extends AppCompatActivity {
     ImageButton imageButtonCancel4;
 
     Button buttonContinue;
+    ImageView imageViewBack;
     RelativeLayout relativeLayoutChoose;
     Uri mUri;
     HashMap<RelativeLayout, UploadImageModel> viewMapping = new HashMap<>();
@@ -157,7 +159,12 @@ public class AddPictureActivity extends AppCompatActivity {
                 }
             });
         }
-
+        imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         buttonContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
