@@ -1,6 +1,7 @@
 package com.example.dattingapp.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -18,6 +19,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 
@@ -30,6 +32,8 @@ import com.example.dattingapp.R;
 import com.example.dattingapp.common.RetrofitClient;
 import com.example.dattingapp.databinding.ActivityMainBinding;
 import com.example.dattingapp.service.APIService;
+import com.example.dattingapp.service.NotificationService;
+import com.example.dattingapp.utils.MessageManager;
 import com.example.dattingapp.utils.SharedPreference;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 100;
     private static final int REQUEST_ENABLE_GPS = 100;
     LocationManager locationManager;
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,10 +71,10 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.profile:
                     replaceFragment(new SettingFragment());
-
             }
             return true;
         });
+
     }
 
 

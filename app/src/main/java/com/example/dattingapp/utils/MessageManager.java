@@ -1,14 +1,21 @@
 package com.example.dattingapp.utils;
 import android.app.Application;
+import android.os.Build;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.dattingapp.Models.MessageContent;
 import com.example.dattingapp.observerpattern.MessageObserver;
 import com.example.dattingapp.observerpattern.MessageObserverImpl;
 import com.example.dattingapp.observerpattern.Observer;
 import com.example.dattingapp.observerpattern.Subject;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +41,7 @@ public class MessageManager extends Application implements Subject {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         messageObserverList = new ArrayList<>();
         messageRef= database.getReference("message");
+
 
         messageRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -100,6 +108,49 @@ public class MessageManager extends Application implements Subject {
         }
     }
 
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public  void RegisterNewMassage(List<String> listMessageIDs,MessageObserver observer ){
+        FirebaseApp.initializeApp(this);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        listMessageIDs.forEach(x->{
+            DatabaseReference messageRef = database.getReference("message/"+x);
+            messageRef.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    List<DataSnapshot> children = (List<DataSnapshot>) snapshot.getChildren();
+                   if(children.size()> 1){
+                       DataSnapshot lastChild = children.get(children.size() - 2);
+                       MessageContent messageContent =  lastChild.getValue(MessageContent.class);
+                       observer.notify(messageContent);
+                   }
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        });
+
+
+
+    }
     @Override
     public void notifyObservers(Object object) {
         List<Observer> observersLocal = null;

@@ -119,7 +119,14 @@ public class ChatMessageActivity extends AppCompatActivity implements Observer {
             messageContentList.addAll(newList);
             messageContentAdapter.notifyDataSetChanged();
             rcMessage.scrollToPosition(messageContentList.size() - 1);
-        };
+        }
+
+        @Override
+        public void notify(Object object) {
+
+        }
+
+        ;
     };
 
     @Override
