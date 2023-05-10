@@ -171,7 +171,8 @@ public class ChatMessageActivity extends AppCompatActivity implements Observer {
                 int currentHeight = rcMessage.getHeight();
                 if (previousHeight != 0 && currentHeight < previousHeight) {
                     // Keyboard is showing
-                    rcMessage.smoothScrollToPosition(messageContentList.size()-1);
+                    if(messageContentList.size()-1 >=0)
+                        rcMessage.smoothScrollToPosition(messageContentList.size()-1);
                 }
                 previousHeight = currentHeight;
             }

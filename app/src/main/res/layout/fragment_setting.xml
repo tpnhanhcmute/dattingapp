@@ -143,7 +143,7 @@
             android:stateListAnimator="@null"/>
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/buttonLogout"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:background="@drawable/buttonsetting"

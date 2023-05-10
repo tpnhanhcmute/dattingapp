@@ -7,8 +7,10 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.dattingapp.Models.User;
 import com.example.dattingapp.R;
 import com.example.dattingapp.service.FirebaseService;
+import com.example.dattingapp.utils.SharedPreference;
 
 public class Choose_Signin_Signup extends AppCompatActivity {
 
@@ -39,5 +41,12 @@ public class Choose_Signin_Signup extends AppCompatActivity {
         });
         Intent intent = new Intent(Choose_Signin_Signup.this, FirebaseService.class);
         startService(intent);
+
+
+        User user = SharedPreference.getInstance(getApplicationContext()).GetUser();
+        if(user != null){
+            Intent i = new Intent(Choose_Signin_Signup.this, MainActivity.class);
+            startActivity(i);
+        }
     }
 }

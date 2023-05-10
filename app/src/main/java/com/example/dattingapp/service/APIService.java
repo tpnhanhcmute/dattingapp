@@ -56,6 +56,7 @@ public interface APIService {
     @POST("users/getUser")
     Call<ResponseModel> getProfile(@Body UserRequest request);
 
-
+    @POST("users/logout")
+    Call<ResponseModel> logout(@Body UserRequest request);
 
 }

@@ -10,12 +10,13 @@
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="4dp"
         android:background="@android:color/transparent"
+        android:contentDescription="@string/app_name"
         android:drawableStart="@drawable/ic_baseline_keyboard_backspace_24"
         android:onClick="onBackPressed"
         android:text=""
-        android:layout_marginLeft="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -143,17 +144,17 @@
             android:stateListAnimator="@null"/>
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/buttonLogout"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:background="@drawable/buttonsetting"
             android:drawableLeft="@drawable/info"
             android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"
             android:drawablePadding="8dp"
-            android:text="about"
-            android:textAlignment="textStart"
             android:elevation="0dp"
-            android:stateListAnimator="@null"/>
+            android:stateListAnimator="@null"
+            android:text="LOG OUT"
+            android:textAlignment="textStart" />
 
 
     </LinearLayout>
