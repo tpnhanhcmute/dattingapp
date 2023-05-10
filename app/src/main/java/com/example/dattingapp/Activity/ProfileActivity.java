@@ -99,7 +99,6 @@ public class ProfileActivity extends AppCompatActivity {
                 imageUrl.clear();
                 imageUrl.addAll(discoverModel.user.imageUrl);
                 adapter.notifyDataSetChanged();
-
             }
 
             @Override

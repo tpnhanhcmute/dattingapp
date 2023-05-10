@@ -115,7 +115,6 @@ public class ChatMessageActivity extends AppCompatActivity implements Observer {
                 }
                 newList.add(messageContentList.get(i));
             };
-
             messageContentList.clear();
             messageContentList.addAll(newList);
             messageContentAdapter.notifyDataSetChanged();
