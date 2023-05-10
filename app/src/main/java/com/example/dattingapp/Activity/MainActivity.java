@@ -32,7 +32,6 @@ import com.example.dattingapp.R;
 import com.example.dattingapp.common.RetrofitClient;
 import com.example.dattingapp.databinding.ActivityMainBinding;
 import com.example.dattingapp.service.APIService;
-import com.example.dattingapp.service.NotificationService;
 import com.example.dattingapp.utils.MessageManager;
 import com.example.dattingapp.utils.SharedPreference;
 import com.google.gson.Gson;

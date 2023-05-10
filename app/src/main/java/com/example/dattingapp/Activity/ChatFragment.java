@@ -38,13 +38,8 @@ import retrofit2.Response;
 public class ChatFragment extends Fragment {
     private RecyclerView recyclerView;
     private ChatAdapter avatarAdapter;
-
-
     private  RecyclerView mRecyclerView;
-
     private ChatItemAdapter mAdapter;
-
-
 
     public List<ChatModel> ChatList;
 

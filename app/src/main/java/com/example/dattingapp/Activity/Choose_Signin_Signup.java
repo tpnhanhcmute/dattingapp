@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dattingapp.R;
+import com.example.dattingapp.service.FirebaseService;
 
 public class Choose_Signin_Signup extends AppCompatActivity {
 
@@ -36,5 +37,7 @@ public class Choose_Signin_Signup extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        Intent intent = new Intent(Choose_Signin_Signup.this, FirebaseService.class);
+        startService(intent);
     }
 }

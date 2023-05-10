@@ -115,7 +115,7 @@ public class SigninActivity extends AppCompatActivity implements Observer {
                     return;
                 }
                 if(TextUtils.isEmpty(password)){
-                    editTextPassword.setError("Pleasenter your password");
+                    editTextPassword.setError("Please enter your password");
                     editTextPassword.requestFocus();
                     return;
                 }
@@ -124,6 +124,7 @@ public class SigninActivity extends AppCompatActivity implements Observer {
                 LoginRequest loginRequest = new LoginRequest();
                 loginRequest.email = email;
                 loginRequest.password = password;
+                loginRequest.deviceToken = SharedPreference.getInstance(getApplicationContext()).getDeviceToken();
 
                 progressDialog.show();
                 apiService.login(loginRequest).enqueue(new Callback<ResponseModel>() {

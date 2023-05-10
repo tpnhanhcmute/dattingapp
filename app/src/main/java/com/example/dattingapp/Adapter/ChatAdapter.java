@@ -36,16 +36,12 @@ public class ChatAdapter  extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             itemView.setOnClickListener(new View.OnClickListener(){
 
                 public void onClick(View v) {
-
                     Intent intent = new Intent(v.getContext(), ChatMessageActivity.class);
                     v.getContext().startActivity(intent);
                 }
             });
-
         }
-
     }
-
 
     @Override
     public ChatAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

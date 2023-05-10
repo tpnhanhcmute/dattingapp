@@ -17,6 +17,7 @@ public class SharedPreference {
     public static final   String USERKEY = "User";
     public static final String LOCATIONKEY="Location";
     public  static  final String LISTIMAGE="ListImage";
+    public  static final String DEVICE_TOKEN = "DeviceToken";
 
     public  static  final String FILTER ="filter";
 
@@ -113,5 +114,17 @@ public class SharedPreference {
         if(filter.maxAge <150) defaultFilter.maxAge =filter.maxAge;
 
         return defaultFilter;
+    }
+
+    public void setDeviceToken(String deviceToken){
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor =  sharedPreferences.edit();
+        editor.putString(DEVICE_TOKEN, deviceToken);
+        editor.apply();
+    }
+    public  String getDeviceToken(){
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        String deviceToken = sharedPreferences.getString(DEVICE_TOKEN, "");
+        return deviceToken;
     }
 }

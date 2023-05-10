@@ -1,28 +1,38 @@
 package com.example.dattingapp.service;
 
-import android.app.Application;
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.Service;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
-import android.os.IBinder;
-import android.view.View;
 
-import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationManagerCompat;
-
 import com.example.dattingapp.R;
+import com.google.firebase.ktx.Firebase;
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
 
-public class NotificationService extends Service {
-    private NotificationManager mNotificationManager;
-    private final String CHANNEL_ID = "default_channel";
-    private final int NOTIFICATION_ID = 001;
+public class PushNotificationService extends FirebaseMessagingService {
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
-    public IBinder onBind(Intent intent) {
-        return null;
+    public void onMessageReceived(@NonNull RemoteMessage message) {
+        super.onMessageReceived(message);
+        String title = message.getNotification().getTitle();
+        String body = message.getNotification().getBody();
+        final String CHANNEL_ID = "HEADS_UP_NOTIFICATIONS";
+        NotificationChannel channel =  new NotificationChannel(
+                CHANNEL_ID,
+                "My notification",
+                NotificationManager.IMPORTANCE_DEFAULT);
+        getSystemService(NotificationManager.class).createNotificationChannel(channel);
+        Notification.Builder notification = new Notification.Builder(this, CHANNEL_ID)
+                .setContentTitle(title)
+                .setContentText(body)
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat.from(this).notify(1,notification.build());
     }
 }

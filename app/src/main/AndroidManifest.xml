@@ -32,10 +32,16 @@
 
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
-        <service android:name=".service.NotificationService"
-            android:exported="true">
+        <service android:name=".service.PushNotificationService" android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+
+        </service>
+        <service android:name=".service.FirebaseService" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </service>
         <activity
@@ -65,10 +71,6 @@
         <activity
             android:name=".Activity.SigninActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Activity.ChatMessageActivity"
@@ -86,9 +88,18 @@
         <activity
             android:name=".Activity.SignupActivity"
             android:exported="true">
+        </activity>
+        <activity
+            android:name=".Activity.Choose_Signin_Signup"
+            android:exported="true">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
+
     </application>
 
 </manifest>
