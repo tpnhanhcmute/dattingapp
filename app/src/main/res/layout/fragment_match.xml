@@ -36,8 +36,8 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:id="@+id/imageViewSearch"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:scaleType="fitEnd"
                     android:layout_marginRight="20dp"
                     app:srcCompat="@drawable/ic_baseline_search_24" />
