@@ -1,5 +1,7 @@
 package com.example.dattingapp.Activity;
 
+import static java.security.AccessController.getContext;
+
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ import com.example.dattingapp.R;
 import com.example.dattingapp.common.Const;
 import com.example.dattingapp.common.RetrofitClient;
 import com.example.dattingapp.service.APIService;
+import com.example.dattingapp.utils.SharedPreference;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
@@ -44,6 +47,8 @@ public class ProfileActivity extends AppCompatActivity {
     ViewPager viewPager;
     private List<String> imageUrl;
     private String userID;
+
+    private String muserID;
     private RecyclerView rcHobby;
     private  HobbyAdapter hobbyAdapter;
     ImagePagerAdapter adapter;
@@ -57,12 +62,15 @@ public class ProfileActivity extends AppCompatActivity {
         GetmatcModel model = (GetmatcModel) getIntent().getSerializableExtra(Const.USER);
         imageUrl = new ArrayList<>();
         imageUrl.add(model.imageUrl);
-
+        SharedPreference userShare = SharedPreference.getInstance(getApplicationContext());
         userID = model.userID;
-        GetProfile(userID);
+        muserID = userShare.GetUser().userID;
+
+        GetProfile(userID,muserID);
         textViewNameAge.setText( model.fullName+ " "+ model.age);
         //textViewIntroduce.setText(model.);
-        textViewDistance.setText(model.distance!= null?model.distance.toString(): "NaN");
+//        textViewDistance.setText(model.distance!= null?model.distance.toString(): "NaN");
+        textViewDistance.setText(model.distance/100);
         adapter = new ImagePagerAdapter(this, imageUrl);
         viewPager.setAdapter(adapter);
 
@@ -85,10 +93,11 @@ public class ProfileActivity extends AppCompatActivity {
         rcHobby = findViewById(R.id.rcHobby);
     }
 
-    private void GetProfile(String userID) {
+    private void GetProfile(String userID,String muserID) {
         APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
         UserRequest request = new UserRequest();
         request.userID = userID;
+        request.muserID = muserID;
         apiService.getProfile(request).enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {

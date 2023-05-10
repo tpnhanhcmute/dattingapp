@@ -38,7 +38,7 @@
                 android:gravity="center"
                 android:text="John Smith, 25"
                 android:textColor="@color/black"
-                android:textSize="35sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <TextView
