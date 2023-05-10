@@ -192,6 +192,7 @@ public class ChatMessageActivity extends AppCompatActivity implements Observer {
 
                 SendMessageRequest request = new SendMessageRequest();
                 request.userID = user.userID;
+                request.otherUserID = userID;
                 request.messageID = messageID;
                 request.content = messageContent;
 
