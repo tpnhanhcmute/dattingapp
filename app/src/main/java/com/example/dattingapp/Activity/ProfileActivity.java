@@ -96,7 +96,8 @@ public class ProfileActivity extends AppCompatActivity {
 
                 Type type = new TypeToken<GetUserResponse>(){}.getType();
                 GetUserResponse discoverModel = new Gson().fromJson(new Gson().toJson(response.body().data), type);
-                imageUrl= discoverModel.user.imageUrl;
+                imageUrl.clear();
+                imageUrl.addAll(discoverModel.user.imageUrl);
                 adapter.notifyDataSetChanged();
 
             }
