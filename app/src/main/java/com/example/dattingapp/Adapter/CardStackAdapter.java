@@ -1,6 +1,8 @@
 package com.example.dattingapp.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dattingapp.Activity.ProfileActivity;
 import com.example.dattingapp.DTO.DiscoverModel;
+import com.example.dattingapp.DTO.GetmatcModel;
 import com.example.dattingapp.R;
+import com.example.dattingapp.common.Const;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
@@ -38,8 +43,25 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.setData(items.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ProfileActivity.class);
+                DiscoverModel model =items.get(position);
+                GetmatcModel getmatcModel = new GetmatcModel();
+                getmatcModel.userID = model.userID;
+                getmatcModel.fullName = model.fullName;
+                getmatcModel.distance = model.distance;
+                getmatcModel.age = model.age;
+                getmatcModel.imageUrl = model.imageUrl.size() ==0?null:model.imageUrl.get(0);
+                getmatcModel.hobby = model.hobby;
+                getmatcModel.locationName = model.locationName;
+                intent.putExtra(Const.USER, getmatcModel);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

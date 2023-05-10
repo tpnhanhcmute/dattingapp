@@ -8,7 +8,7 @@ public class GetmatcModel implements Serializable {
     public  String fullName;
     public int age;
     public List<String> hobby;
-    public Integer distance;
+    public Double distance;
     public String locationName;
     public String imageUrl;
 }
