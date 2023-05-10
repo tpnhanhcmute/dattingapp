@@ -69,8 +69,8 @@ public class ProfileActivity extends AppCompatActivity {
         GetProfile(userID,muserID);
         textViewNameAge.setText( model.fullName+ " "+ model.age);
         //textViewIntroduce.setText(model.);
-//        textViewDistance.setText(model.distance!= null?model.distance.toString(): "NaN");
-        textViewDistance.setText(model.distance/100);
+        textViewDistance.setText(model.distance!= null?model.distance.toString(): "NaN");
+
         adapter = new ImagePagerAdapter(this, imageUrl);
         viewPager.setAdapter(adapter);
 
@@ -108,6 +108,7 @@ public class ProfileActivity extends AppCompatActivity {
                 imageUrl.clear();
                 imageUrl.addAll(discoverModel.user.imageUrl);
                 adapter.notifyDataSetChanged();
+                textViewDistance.setText((discoverModel.user.distance).toString());
             }
 
             @Override

@@ -11,7 +11,7 @@ public class DiscoverModel {
     public  String fullName;
     public Integer age;
     public List<String> hobby;
-    public double distance;
+    public Double distance;
     public String locationName;
     public List<String> imageUrl;
     public  String getImage(){
