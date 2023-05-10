@@ -32,17 +32,16 @@
                 android:textStyle="bold" />
 
             <ImageView
-                android:layout_width="210dp"
+                android:layout_width="180dp"
                 android:layout_height="match_parent"
                 android:background="@color/transparentcolor"
-                android:paddingLeft="160dp"
+                android:paddingLeft="130dp"
                 android:paddingTop="20dp"
-                android:src="@drawable/baseline_search_24"
-                />
+                android:src="@drawable/baseline_search_24" />
 
 
             <ImageView
-                android:layout_width="48dp"
+                android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/baseline_menu_24" />
         </LinearLayout>
@@ -66,6 +65,7 @@
                 android:layout_height="match_parent"
                 android:gravity="end"
                 android:paddingTop="10dp"
+                android:paddingRight="15dp"
                 android:text="See All"
                 android:textColor="@color/violet"
                 android:textStyle="bold" />
@@ -75,7 +75,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="8dp"/>
+            android:paddingTop="8dp" />
 
     </LinearLayout>
 

@@ -19,8 +19,8 @@
             android:id="@+id/linearLayout7"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:gravity="top"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +55,8 @@
                 android:text="Login To Your Account"
                 android:textColor="#000000"
                 android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                />
 
             <EditText
                 android:id="@+id/editTextEmail"
@@ -63,10 +64,11 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/edit_button"
-                android:drawableLeft="@drawable/ic_round_phone_24"
+                android:drawableLeft="@drawable/email_24"
                 android:ems="10"
                 android:hint="Enter your email"
                 android:inputType="textPersonName"
+                android:drawablePadding="15dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textColor="#5c5f72" />
@@ -86,6 +88,7 @@
                     android:hint="Enter Your Password"
                     android:inputType="textPassword"
                     android:paddingLeft="10dp"
+                    android:drawablePadding="15dp"
                     android:paddingRight="10dp"
                     android:textColor="#5c5f72"
                     android:textSize="18sp" />
@@ -126,8 +129,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
                 android:gravity="bottom|center"
+                android:paddingTop="20dp"
                 android:orientation="horizontal">
 
 

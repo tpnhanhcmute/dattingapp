@@ -14,7 +14,6 @@
         android:layout_marginTop="4dp"
         android:background="@android:color/transparent"
         android:drawableStart="@drawable/ic_baseline_keyboard_backspace_24"
-        android:onClick="onBackPressed"
         android:text=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
