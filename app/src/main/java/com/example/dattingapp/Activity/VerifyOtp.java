@@ -15,6 +15,7 @@ import com.example.dattingapp.DTO.AuthenticationRequest;
 import com.example.dattingapp.DTO.ResponseModel;
 import com.example.dattingapp.R;
 import com.example.dattingapp.common.Const;
+import com.example.dattingapp.common.CustomProgressDialog;
 import com.example.dattingapp.common.RetrofitClient;
 import com.example.dattingapp.service.APIService;
 
@@ -27,11 +28,12 @@ public class VerifyOtp extends AppCompatActivity {
     private Button continueButton;
     private String otp = "";
     private  String userID="";
+    private CustomProgressDialog progressDialog;
     @Override
    protected void onCreate(Bundle savedInstanceState){
        super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_verity_otp);
-
+        progressDialog = new CustomProgressDialog(this);
        pin1EditText = findViewById(R.id.pin1);
        pin2EditText = findViewById(R.id.pin2);
        pin3EditText = findViewById(R.id.pin3);
@@ -115,9 +117,11 @@ public class VerifyOtp extends AppCompatActivity {
                AuthenticationRequest authenticationRequest = new AuthenticationRequest();
                authenticationRequest.email = getIntent().getStringExtra(Const.EMAIL);
                APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
+               progressDialog.show();
                apiService.authentication(authenticationRequest).enqueue(new Callback<ResponseModel>() {
                    @Override
                    public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                       progressDialog.dismiss();
                         if(response.body().isError){
                             Toast.makeText(getApplicationContext(), response.body().message, Toast.LENGTH_SHORT).show();
                             return;
@@ -125,10 +129,12 @@ public class VerifyOtp extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), response.body().message, Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(VerifyOtp.this, SigninActivity.class);
                             startActivity(intent);
+                            finish();
 
                    }
                    @Override
                    public void onFailure(Call<ResponseModel> call, Throwable t) {
+                       progressDialog.dismiss();
                        Toast.makeText(getApplicationContext(),t.getMessage(), Toast.LENGTH_SHORT).show();
                    }
                });

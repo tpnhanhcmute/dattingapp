@@ -149,10 +149,10 @@
             android:drawableLeft="@drawable/info"
             android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"
             android:drawablePadding="8dp"
-            android:text="about"
-            android:textAlignment="textStart"
             android:elevation="0dp"
-            android:stateListAnimator="@null"/>
+            android:stateListAnimator="@null"
+            android:text="Log out"
+            android:textAlignment="textStart" />
 
 
     </LinearLayout>

@@ -44,8 +44,17 @@ public class Choose_Signin_Signup extends AppCompatActivity {
 
 
         User user = SharedPreference.getInstance(getApplicationContext()).GetUser();
+
         if(user != null){
+            if(user.isFirstLogin){
+                Intent i = new Intent(Choose_Signin_Signup.this, FillProfileActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+                return;
+            }
+
             Intent i = new Intent(Choose_Signin_Signup.this, MainActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         }
     }

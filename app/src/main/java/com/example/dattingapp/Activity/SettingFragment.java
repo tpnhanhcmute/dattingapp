@@ -68,6 +68,7 @@ public class SettingFragment extends Fragment {
                 if(!response.isSuccessful() || response.body().isError) return;
 
                 SharedPreference.getInstance(getContext()).SetUser(null);
+                SharedPreference.getInstance(getContext()).SetListImage(null);
 
                 Intent i = getContext().getPackageManager().getLaunchIntentForPackage( getContext().getPackageName());
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -126,6 +126,7 @@ public class SignupActivity extends AppCompatActivity {
                         intent.putExtra(Const.OTP,registerResponse.otp);
                         intent.putExtra(Const.EMAIL, registerResponse.email);
                         startActivity(intent);
+                        finish();
                     }
                     @Override
                     public void onFailure(Call<ResponseModel> call, Throwable t) {
