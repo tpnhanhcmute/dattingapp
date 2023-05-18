@@ -204,7 +204,6 @@ public class HomeFragment extends Fragment {
         request.minAge = filter.minAge;
 
         apiService.getUserDiscorver(request).enqueue(new Callback<ResponseModel>() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if(response.isSuccessful()){
