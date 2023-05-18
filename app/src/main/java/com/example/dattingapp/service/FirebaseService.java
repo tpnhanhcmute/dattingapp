@@ -25,9 +25,12 @@ public class FirebaseService extends Service {
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
             @Override
             public void onComplete(@NonNull Task<String> task) {
-                Log.d("TOKEN", task.getResult());
-                _deviceToken = task.getResult();
-                SharedPreference.getInstance(getApplicationContext()).setDeviceToken(_deviceToken);
+                //Log.d("TOKEN", task.getResult());
+                if(task.isSuccessful())
+                {
+                    _deviceToken = task.getResult();
+                    SharedPreference.getInstance(getApplicationContext()).setDeviceToken(_deviceToken);
+                }
             }
         });
     }
