@@ -22,6 +22,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 
 import com.example.dattingapp.DTO.GetImageResponse;
 import com.example.dattingapp.DTO.ResponseModel;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 100;
     private static final int REQUEST_ENABLE_GPS = 100;
     LocationManager locationManager;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
             UpdateLocation();
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -164,7 +167,29 @@ public class MainActivity extends AppCompatActivity {
 
     private void CallAPIUpdate() {
         @SuppressLint("MissingPermission")
-        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        LocationListener locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                UpdateLocation(location);
+                locationManager.removeUpdates(this);
+                // Đã lấy được vị trí, có thể làm gì đó với nó ở đây
+                // ...
+            }
+        };
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+    }
+
+    public  void UpdateLocation(Location location){
         if (location != null) {
             com.example.dattingapp.Models.Location loc = new com.example.dattingapp.Models.Location();
             loc.lat = location.getLatitude();

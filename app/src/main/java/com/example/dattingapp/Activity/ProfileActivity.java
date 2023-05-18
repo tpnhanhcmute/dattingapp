@@ -3,6 +3,8 @@ package com.example.dattingapp.Activity;
 import static java.security.AccessController.getContext;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
     private List<String> imageUrl;
     private String userID;
 
+    private ImageButton signinBack;
     private String muserID;
     private RecyclerView rcHobby;
     private  HobbyAdapter hobbyAdapter;
@@ -83,6 +86,12 @@ public class ProfileActivity extends AppCompatActivity {
         rcHobby.setLayoutManager(layoutManager);
         rcHobby.setAdapter(hobbyAdapter);
         hobbyAdapter.notifyDataSetChanged();
+        signinBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void Mapping() {
@@ -91,6 +100,7 @@ public class ProfileActivity extends AppCompatActivity {
         textViewDistance= findViewById(R.id.textViewDistance);
         textViewIntroduce= findViewById(R.id.textViewIntroduce);
         rcHobby = findViewById(R.id.rcHobby);
+        signinBack = findViewById(R.id.signinBack);
     }
 
     private void GetProfile(String userID,String muserID) {
@@ -109,6 +119,7 @@ public class ProfileActivity extends AppCompatActivity {
                 imageUrl.addAll(discoverModel.user.imageUrl);
                 adapter.notifyDataSetChanged();
                 textViewDistance.setText((discoverModel.user.distance).toString());
+
             }
 
             @Override
